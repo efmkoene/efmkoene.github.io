@@ -17,3 +17,8 @@ subtitle: Resources that I've found helpful
 * [Difficult Conversations](https://www.amazon.com/Difficult-Conversations-Discuss-What-Matters/dp/0143118447) by Douglas Stone, Bruce Patton, and Sheila Heen: this is a great book about how to navigate difficult conversations in an assertive (but non-violent and non-agressive) way.
 * [The Cognitive Shuffle](https://mysleepbutton.com/support/do-it-yourself-cognitive-shuffle-sdi/): this is the best method that helps me falling asleep that I know of. I've found that "clearing the mind", using mindfulness/force, is not an effective way to get rid of a spinning mind at the end of the day at all, despite it being recommended often. My experience is in line with Steven Hayes' assertion that your mind will only amplify the things you try to ignore. This suffle technique instead fills your mind with absolutely random things, to get you in that groggy dream-like sleep state. That is, you distract yourself asleep. It works wonders!
 * [Loop Habit Tracker](https://loophabits.org): this app changed my life. It's simple -- you can tick a box whenever you finish an activity. It is very gratifying, and gamifies otherwise boring daily chores.
+
+### Research-related
+* [Wolfram Alpha](https://www.wolframalpha.com): a miraculous tool that can solve many math problems and plot any normal function.
+* [Hemingway App](http://www.hemingwayapp.com): a tool that highlights verbiose writing. Nothing less, and nothing more. Extremely helpful in the editing process of a text, as it helps to distill many phrases into their shortest possible units.
+* [Grammarly](https://www.grammarly.com): a very helpful tool to fix a multitude of grammar and spelling mistakes.
