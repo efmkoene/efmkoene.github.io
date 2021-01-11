@@ -25,7 +25,7 @@ _"I write about this very issue in my new book, “The Deplorables’ Guide to M
 
 __\# The Confused Syllogism: Insert persuasive suggestions into someone's argument__  
 __\# The House-Of-Cards: Refute a single premiss to claim everything is wrong__  
-_"CNN called the protests “spontaneous” – which is quite remarkable – considering a number of protesters were waving professionally-made banners and posters. The author suggests that the protests weren't spontaneous but somehow organized."_ The suggestion that the protesters had professionally-made banners doesn’t mean the protest wasn’t spontaneous. It bashes CNN on the side, a favorite past-time activity at Fox News.
+_"CNN called the protests “spontaneous” – which is quite remarkable – considering a number of protesters were waving professionally-made banners and posters._" The author suggests that the protests weren't spontaneous but somehow organized. The suggestion that the protesters had professionally-made banners doesn’t mean the protest wasn’t spontaneous. It bashes CNN on the side, a favorite past-time activity at Fox News.
 
 __\# The Generalization Of The Specific: Agree on a specific case — use it as if it implies the general case__  
 __\# The Absurd: Offer a confusing argument, not easily taken apart__  
