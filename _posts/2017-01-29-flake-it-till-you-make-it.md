@@ -2,9 +2,9 @@
 layout: post
 title: "“Liberals want US to admit all the refugees and pray we don't get blown up”"
 subtitle: ""
-cover-img: /assets/img/path.jpg
+cover-img: https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2018/09/1862/1048/jfkprotest.jpg
 thumbnail-img: https://images-na.ssl-images-amazon.com/images/I/6119nZxOxHL.jpg
-share-img: /assets/img/path.jpg
+share-img: https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2018/09/1862/1048/jfkprotest.jpg
 tags: [books, schopenhauer, politics, Fox News]
 ---
 
