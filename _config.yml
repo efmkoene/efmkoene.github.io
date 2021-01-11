@@ -6,10 +6,10 @@
 # --- Required options --- #
 
 # Name of website
-title: Erik
+title: "Erik"
 
 # Your name to show in the footer
-author: Erik Koene
+author: "Erik Koene"
 
 # --- List of links in the navigation bar --- #
 
@@ -40,13 +40,13 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "efmkoene@gmail.com"
- # facebook: deanattali
- github: efmkoene
- # twitter: daattali
+#  facebook: deanattali
+#  github: efmkoene
+#  twitter: daattali
 #  patreon: DeanAttali
 #  youtube: c/daattali
 #  reddit: yourname
- linkedin: erik-koene-8672705b
+#  linkedin: erik-koene-8672705b
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
