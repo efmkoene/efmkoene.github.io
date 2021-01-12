@@ -2,6 +2,7 @@
 layout: post
 title: "Political stances and stand-offs"
 subtitle: ""
+thumbnail-img: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Discurso_funebre_pericles.PNG"
 tags: [politics, neuroscience, psychology]
 ---
 
