@@ -26,8 +26,8 @@ The effect of these optimal coefficients is that we can simulate high-frequency 
 
 ## The FD-consistent point-source
 I developed a new formulation for the introduction of sources on finite-difference grids. The standard introduction of point-sources makes an intuitive appeal to correctness, but gives wrong results. For example, in this anisotropic medium, a standard point-source results in  
-![stdsource](/assets/img/images34o.gif)
-while the FD-consistent point-source that I worked on results in
+![stdsource](/assets/img/images34o.gif)  
+while the FD-consistent point-source that I worked on results in  
 ![mysource](/assets/img/images35o.gif)
 
 The response computed with the FD-consistent point-source is correct, while the standard source is not. For example, this is shown with
