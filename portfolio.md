@@ -30,5 +30,5 @@ I developed a new formulation for the introduction of sources on finite-differen
 while the FD-consistent point-source that I worked on results in  
 ![mysource](/assets/img/images35o.gif)
 
-The response computed with the FD-consistent point-source is correct, while the standard source is not. For example, this is shown with
+The response computed with the FD-consistent point-source is correct, while the standard source is not. For example, this is shown with the following figure, showing that our proposed method computes an accurate response with respect to an analytical solution, while the standard alternative does not.
 ![mysource](/assets/img/FD-cons-source.png)
