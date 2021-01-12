@@ -13,7 +13,9 @@ The topic of this blog is to investigate the following question:
 {: .box-note}
 Where do people's political stances come from? Can they change?
 
-Political stances are (probably) the biggest source of disagreement and conflict in societies and families. This is not about why people care about politics; but about why they take a political stance. In the US, [the Democratic and Republican parties take roughly half the votes each presidential election, for well over 300 years](https://upload.wikimedia.org/wikipedia/commons/7/76/PartyVotes-Presidents.png). This is despite the fact that these parties have changed their policies over time. Indeed, the Republican party chose [not to write a platform (i.e., new policy ideas) for the 2020 election](https://www.vox.com/2020/8/24/21399396/republican-convention-platform-2020-2016). This to me hints at the possibility that people's political affiliation with the parties (or their leaders) is stronger than the specific policies that these parties support.
+Political stances are (probably) the biggest source of disagreement and conflict in societies and families, making this question relevant.
+
+In the US, [the Democratic and Republican parties take roughly half the votes each presidential election, for well over 300 years](https://upload.wikimedia.org/wikipedia/commons/7/76/PartyVotes-Presidents.png). This is despite the fact that these parties have changed their policies over time. Indeed, the Republican party chose [not to write a platform (i.e., new policy ideas) for the 2020 election](https://www.vox.com/2020/8/24/21399396/republican-convention-platform-2020-2016). This to me hints at the possibility that people's political affiliation with the parties (or their leaders) is stronger than the specific policies that these parties support.
 
 {: .box-warning}
 **1.** Democratic/Republican parties divided votes in a 50/50 ratio, despite changes in time as to what these parties actually stand for. So, people's political stance appears more constant in the population than people's actual support for certain policies.
