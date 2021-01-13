@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About me
+title: About me / CV
 subtitle: ""
 ---
 
-My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV for more information](/CV_English-2.pdf).
+My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV in PDF format](/CV_English-2.pdf), or read on for more information.
 
 ## Education
 
@@ -21,4 +21,4 @@ My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV 
 |-------|--------|---------|
 | 2016--2016 | **Research & Engineering Internship** <br> Development of 2 novel digital signal processing techniques that increase data fidelity, which are being implemented in Petrel to be used by the seismic industry worldwide. <br><br> Report: [*Data-driven 3D Deghosting Using Multisensor Marine Measurements*](/assets/docs/MSc_thesis_Koene.pdf) | Schlumberger-WesternGeco (UK) |
 | 2015--2015 | **Research Student** <br> Design, realization (with NI LabView) and analysis of seismic experiments.| ETH Zürich (CH) |
-| 2014--2015 | **Data Scientist Intern** <br> Python-aided creation of database with QA/QC of 45 000 sedimentary analyses, uncover- ing new spatio-temporal trends in the Dutch stratigraphy. <br><br> Report: [*Zware mineraaltellingen ontcijferen in de Nederlandse ondergrond*](/assets/docs/GDN_report_Koene.pdf) | TNO - Geological Survey of the Netherlands (NL) |
+| 2014--2015 | **Data Scientist Intern** <br> Python-aided creation of database with QA/QC of 45k sedimentary analyses, uncover- ing new spatio-temporal trends in the Dutch stratigraphy. <br><br> Report: [*Zware mineraaltellingen ontcijferen in de Nederlandse ondergrond*](/assets/docs/GDN_report_Koene.pdf) | TNO - Geological Survey of the Netherlands (NL) |
