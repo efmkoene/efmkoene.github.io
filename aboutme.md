@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About me / CV
+cover-img: /assets/img/photo_erik_small.jpg
 subtitle: ""
 ---
 
