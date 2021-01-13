@@ -2,6 +2,7 @@
 layout: page
 title: Recommendations
 subtitle: Resources that I've found helpful
+cover-img: https://pimbook.org/images/book-splash.jpg
 ---
 
 ### Skill-enhancing
