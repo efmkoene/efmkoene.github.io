@@ -28,10 +28,10 @@ My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV 
 
 | Year | Award |
 |------|-------|
-| 2020 | **GEOPHYSICS Reviewer Of The Year Award** |
-| 2020 | **Guido Bonarelli Award** (best paper presentation at EAGE in London) |
-| 2020 | **Geophysics Bright Spots** inclusion of ‘Koene & Robertsson (2020)’ in The Leading Edge. 
-| 2018 | **Best student paper presentation** at SEG in Houston. |
+| 2020 | [**GEOPHYSICS Reviewer Of The Year Award**](https://seg.org/Portals/0/SEG/About%20SEG/HOU20_HandA_Program.pdf) |
+| 2020 | [**Guido Bonarelli Award**](https://www.eage.org/en/about-eage/awards/overview-awards/guido-bonarelli-award) (best paper presentation at EAGE in London) |
+| 2020 | [**Geophysics Bright Spots**](https://library.seg.org/doi/10.1190/tle39070518.1) inclusion of ‘Koene & Robertsson (2020)’ in The Leading Edge. 
+| 2018 | [**Best student paper presentation**](https://seg.org/News-Resources/Press-Releases/SEG-announces-2018-Honors-and-Awards-recipients) at SEG in Houston. |
 | 2016 | **Cum laude** (with honors) in MSc studies. |
 | 2014 | **Cum laude** (with honors) in BSc studies. |
 
