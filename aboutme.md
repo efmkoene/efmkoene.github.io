@@ -5,7 +5,7 @@ cover-img: /assets/img/photo_erik_small.jpg
 subtitle: ""
 ---
 
-My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV in PDF format](/assets/docs/CV_English-2.pdf), or read on for more information!
+My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV in PDF format](/assets/docs/CV_English-2.pdf), or read on for more information.
 
 ## Education
 
