@@ -17,6 +17,7 @@ navbar-links:
   Portfolio: "portfolio"
   About Me: "aboutme"
   Recommendations: "recommendations"
+  Blog: "blog"
 #   Resources:
 #     - About me: "aboutme"
   #  - Beautiful Jekyll: "https://beautifuljekyll.com"
