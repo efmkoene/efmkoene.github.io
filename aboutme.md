@@ -23,7 +23,7 @@ My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV 
 | 2015--2015 | **Research Student** <br> Design, realization (with NI LabView) and analysis of seismic experiments.| ETH Zürich (CH) |
 | 2014--2015 | **Data Scientist Intern** <br> Python-aided creation of database with QA/QC of 45k sedimentary analyses, uncover- ing new spatio-temporal trends in the Dutch stratigraphy. <br><br> Report: [*Zware mineraaltellingen ontcijferen in de Nederlandse ondergrond*](/assets/docs/GDN_report_Koene.pdf) | TNO - Geological Survey of the Netherlands (NL) |
 
-Awards
+## Awards
 
 | Year | Award |
 |------|-------|
@@ -32,3 +32,14 @@ Awards
 | 2020 | **Geophysics Bright Spots** inclusion of ‘Koene & Robertsson (2020)’ in The Leading Edge. 2018 Best student paper presentation at SEG in Houston. |
 | 2016 | **Cum laude** (with honors) in MSc studies. |
 | 2014 | **Cum laude** (with honors) in BSc studies. |
+
+## Papers written
+See also my [Google Scholar profile](https://scholar.google.ch/citations?user=kO2lLJIAAAAJ&hl=en).
+
+* Simaiakis, S., Rijsdijk, K., **Koene, E. F. M.**, Norder, S., Van Boxel, J., Stocchi, P., & Tjørve, K. (2017). Geographic changes in the Aegean Sea since the Last Glacial Maximum: Postulating biogeographic effects of sea-level rise on islands. Palaeogeography, palaeoclimatology, palaeoecology, 471, 108-119. https://doi.org/10.1016/j.palaeo.2017.02.002.
+* **Koene, E. F. M.**, Robertsson, J. O. A., Broggini, F., & Andersson, F. (2018). Eliminating time dispersion from seismic wave modeling. Geophysical Journal International, 213, 169-180. http://doi.org/10.1093/gji/ggx563.
+* Rijsdijk, K., Buijs, S., Quartau, R., Aguilee, R., Norder, S., Avila, S., Nunes, J., Elias, R., Melo, C., Stocchi, P., **Koene, E. F. M.**, Seijmonsbergen, A., de Boer, W. & Borges, P. (2020). Recent geospatial dynamics of Terceira (Azores, Portugal) and the theoretical implications for the biogeography of active volcanic islands. Frontiers of Biogeography. https://doi.org/10.21425/F5FBG45003.
+* **Koene, E. F. M.**, Robertsson, J. O. A. (2020). Optimal finite-difference operators for arbitrarily sampled data. Geophysics, 85, F39-F51. http://doi.org/10.1190/geo2019-0081.1.
+* **Koene, E. F. M.**, Robertsson, J. O. A. & Andersson, F. (2020). A consistent implementation of point-sources on finite-difference grids. Geophysical Journal International, 223, 1144-1161. https://doi.org/10.1093/gji/ggaa383.
+* Jaimes-Osorio, L. E., Malcolm, A., Zheglova, P., ***Koene, E. F. M.*** & Rasmus, T. H. (2021). Building a fast elastic local solver. Geophysics (Just Accepted). https://doi.org/10.1190/geo2020-0468.1.
+* **Koene, E. F. M.**, Robertsson, J. O. A. & Andersson, F. (2021). Anisotropic elastic finite-difference modeling of sources and receivers on Lebedev grids. Geophysics (Just Accepted). https://doi.org/10.1190/geo2020-0522.1.
