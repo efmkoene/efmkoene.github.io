@@ -32,3 +32,25 @@ function BondMatrix2D(d)
 end
 ```
 
+#### System matrix 'A'
+This matrix contains the primary information about a medium (per medium). Simplified for 2-D media, it may be computed in the following way. I'm thinking about whether simplifications may be possible here -- I know for certain that some 
+
+```Julia
+function Amatrix(C,s1,rho)
+    Cxx = [C[1,1] C[1,3];
+           C[1,3] C[3,3]];
+    Czz = [C[3,3] C[2,3];
+           C[2,3] C[2,2]];
+    Cxz = [C[1,3] C[1,2];
+           C[3,3] C[2,3]];
+    Czzi = inv(Czz);
+    CxzCzziCzx = Cxz * inv(Czz) * (Cxz');
+    CxzCzziCzx = (CxzCzziCzx+CxzCzziCzx')/2; # ---> Ensure symmetry is preserved
+    A1 = -s1 * CxzCzziCzx;
+    A2 = Czzi;
+    A3 = rho*I -s1^2* ([C[1,1] C[1,3];C[1,3] C[3,3]] - CxzCzziCzx)
+    A = [ A1 A2           ;
+          A3 tranpose(A1) ]; # ---> There may be room for improvement here; e.g., A3 is quite simple!
+    return A
+end
+```
