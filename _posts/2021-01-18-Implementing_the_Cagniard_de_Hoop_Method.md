@@ -68,4 +68,4 @@ end
 <!-- {% endraw %} -->
 
 #### Eigenvalue decomposition
-Next ...
+Next, we require the (repeated) eigenvalue decomposition of matrix `A`.
