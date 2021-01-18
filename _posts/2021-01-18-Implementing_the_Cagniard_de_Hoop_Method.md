@@ -12,7 +12,7 @@ Anyhow, I decided to implement the [Cagniard-de Hoop method following the theory
 On this blog, I'll try and catalog my code as I write it. Any reader should refer to the dissertation of Van der Hijden for more details.
 
 #### Bond transform matrix
-This matrix allows us to rotate a stiffness matrix. Typically, the Bond transform is defined for the (6x6) stiffness *matrix* that applies in 3-D media. However, I simplify it for a (3x3) stiffness matrix, as applicable in 2-D media. It takes an input variable `d`, which is the angle (in degrees) with which the medium is rotated in the clockwise direction (!).
+This matrix allows us to rotate a stiffness matrix. Typically, the Bond transform is defined for the (6x6) stiffness *matrix* that applies in 3-D media. However, I simplify it for a (3x3) stiffness matrix, as applicable in 2-D media. It takes an input variable `d`, which is the angle (in degrees) with which the medium is rotated in the counterclockwise direction, assuming x pointing to the right and z pointing up. *(Note that we typically assume z pointing down, in which case this transform thus results in a clockwise direction of the medium.)*
 
 ```Julia
 # --- Bond transform matrix
