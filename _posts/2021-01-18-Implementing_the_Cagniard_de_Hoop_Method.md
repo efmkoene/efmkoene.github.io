@@ -32,25 +32,30 @@ function BondMatrix2D(d)
 end
 ```
 
-#### System matrix 'A'
-This matrix contains the primary information about a medium (per medium). Simplified for 2-D media, it may be computed in the following way. I'm thinking about whether simplifications may be possible here -- I know for certain that some 
+#### System matrix 'A' and source vector 'F'
+Matrix 'A' contains the primary information about a medium; it must be constructed for each medium within our domain. The source vector follows similarly, and is computed here as the building blocks based on the matrix C are already present. Simplified for 2-D media (where C is 3x3, rather than 6x6), it may be computed in the following way, where I have explicitly written out all matrix-matrix operations, in the hope that this is faster and retains the symmetry of the system better... I used *Wolfram Mathematica* to simplify the 2-D expressions,
+
+```Mathematica
+Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixForm // FullSimplify
+{{C11, C15}, {C15,C55}} - {{C15, C13}, {C55, C53}}.Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixForm // FullSimplify
+```
+
+and then the matrices are computed as follows.
 
 ```Julia
-function Amatrix(C,s1,rho)
-    Cxx = [C[1,1] C[1,3];
-           C[1,3] C[3,3]];
-    Czz = [C[3,3] C[2,3];
-           C[2,3] C[2,2]];
-    Cxz = [C[1,3] C[1,2];
-           C[3,3] C[2,3]];
-    Czzi = inv(Czz);
-    CxzCzziCzx = Cxz * inv(Czz) * (Cxz');
-    CxzCzziCzx = (CxzCzziCzx+CxzCzziCzx')/2; # ---> Ensure symmetry is preserved
-    A1 = -s1 * CxzCzziCzx;
-    A2 = Czzi;
-    A3 = rho*I -s1^2* ([C[1,1] C[1,3];C[1,3] C[3,3]] - CxzCzziCzx)
+function AFmatrix(C,s1,rho,f,h)
+    DD = (C[2,3]^2-C[2,2]*C[3,3]);
+    CzziCzx = [(C[1,3]*C[2,2]-C[1,2]*C[2,3])/DD 1;
+               (C[1,3]*C[2,3]-C[1,2]*C[3,3])/DD 0];
+    CxxmCxzCzziCzx = [(C[1,3]^2*C[2,2]-2*C[1,2]*C[1,3]*C[2,3]+C[1,1]*C[2,3]^2+C[1,2]^2*C[3,3]-C[1,1]*C[2,2]*C[3,3])/DD 0;
+                       0                    0];
+    A1 = -s1 * CzziCzx;
+    A2 = inv([C[3,3] C[2,3];
+              C[2,3] C[2,2]]);
+    A3 = rho*I - s1^2*CxxmCxzCzziCzx;
     A = [ A1 A2           ;
-          A3 tranpose(A1) ]; # ---> There may be room for improvement here; e.g., A3 is quite simple!
-    return A
+          A3 transpose(A1) ];
+    F = [ CzziCzx*h[:,1]+h[:,2] ; f + s1 * CxxmCxzCzziCzx * h[:,1] ];
+    return A,F
 end
 ```
