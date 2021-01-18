@@ -36,12 +36,10 @@ end
 Matrix 'A' contains the primary information about a medium; it must be constructed for each medium within our domain. The source vector follows similarly, and is computed here as the building blocks based on the matrix C are already present. Simplified for 2-D media (where C is 3x3, rather than 6x6), it may be computed in the following way, where I have explicitly written out all matrix-matrix operations, in the hope that this is faster and retains the symmetry of the system better... I used *Wolfram Mathematica* to simplify the 2-D expressions,
 
 ```
-{% highlight wl linenos %}
 {% raw %}
 Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixForm // FullSimplify
 {{C11, C15}, {C15,C55}} - {{C15, C13}, {C55, C53}}.Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixForm // FullSimplify
 {% endraw %}
-{% endhighlight %}
 ```
 
 and then the matrices are computed as follows.
