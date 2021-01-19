@@ -177,14 +177,16 @@ function setCircleDasharray() {
 }
 </script>
 
+
 I came across *Inner Relationship Focusing* a year ago. I thought it was just weird new wavy bullshit, but I've found it to be actually rather helpful.
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
 ## Zoom in on how you're feeling
+#### Take 30 seconds to just get a sense of yourself.
 <div id="app"></div>
 
-#### Take 30 seconds to feel your body. Are you feeling
+#### Do you notice a weight to your body? Or a springiness?
 <div>
 <input type="radio" name="optradio">Feeling light 
 <input type="radio" name="optradio" checked>Intermediate
