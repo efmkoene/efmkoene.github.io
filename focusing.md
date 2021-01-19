@@ -8,10 +8,12 @@ Testing if Bootstrap buttons work easily like this...
 
 Hello!
 
-
-<label class="radio-inline"><input type="radio" name="optradio" checked>Option 1</label>
-<label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+## Zoom in on how you're feeling
+<div>
+<label class="radio-inline"><input type="radio" name="optradio" checked>Feeling light</label>
+<label class="radio-inline"><input type="radio" name="optradio">Feeling heavy</label>
 <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+</div>
 
 <form>
   <div class="input-group">
