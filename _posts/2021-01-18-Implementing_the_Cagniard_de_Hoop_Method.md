@@ -15,7 +15,7 @@ On this blog, I'll try and catalog my code as I write it. Any reader should refe
 This matrix allows us to rotate a stiffness matrix. Typically, the Bond transform is defined for the (6x6) stiffness *matrix* that applies in 3-D media. However, I simplify it for a (3x3) stiffness matrix, as applicable in 2-D media. It takes an input variable `d`, which is the angle (in degrees) with which the medium is rotated in the counterclockwise direction, assuming x pointing to the right and z pointing up. *(Note that we typically assume z pointing down, in which case this transform thus results in a clockwise direction of the medium.)*
 
 <!-- {% raw %} -->
-```Julia
+```
 # --- Bond transform matrix
 function BondMatrix2D(d)
     b = [cosd(d)     cosd(90 - d);
@@ -38,7 +38,7 @@ end
 Matrix 'A' contains the primary information about a medium; it must be constructed for each medium within our domain. The source vector follows similarly, and is computed here as the building blocks based on the matrix C are already present. Simplified for 2-D media (where C is 3x3, rather than 6x6), it may be computed in the following way, where I have explicitly written out all matrix-matrix operations, in the hope that this is faster and retains the symmetry of the system better... I used *Wolfram Mathematica* to simplify the 2-D expressions,
 
 <!-- {% raw %} -->
-```Mathematica
+```
 Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixForm // FullSimplify
 {{C11, C15}, {C15,C55}} - {{C15, C13}, {C55, C53}}.Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixForm // FullSimplify
 ```
@@ -48,7 +48,7 @@ Inverse[{{C55, C53}, {C53, C33}}].Transpose[{{C15, C13}, {C55, C53}}] // MatrixF
 and then the matrices are computed as follows.
 
 <!-- {% raw %} -->
-```Julia
+```
 function AFmatrix(C,s1,rho,f,h)
     DD = (C[2,3]^2-C[2,2]*C[3,3]);
     CzziCzx = [(C[1,3]*C[2,2]-C[1,2]*C[2,3])/DD 1;
@@ -66,6 +66,8 @@ function AFmatrix(C,s1,rho,f,h)
 end
 ```
 <!-- {% endraw %} -->
+
+Note, interestingly, how we used "I" to represent an identity matrix without specifying the size. I suppose this means that the resulting code can actually be run *faster*, as the meaning of the "I" operator is used, rather than its matrix representation. Clever.
 
 #### Eigenvalue decomposition
 Next, we require the (repeated) eigenvalue decomposition of matrix `A`. Ideally, I can plot the results. This took me quite a while in Julia, as the plotting parameters are not in the slightest as comfortable as those in MATLAB. Eventually, I settled on using the PyPlot back-end. In this way, we can plot the slowness surface of a given stiffness matrix. For example, the following code that puts the ideas from above into practice may be run (ending on `gcf()`, to display the result within `juno`; the `close()` command that follows it is required to restart drawing, as the `plot()` command just writes on top of the previous result.).
