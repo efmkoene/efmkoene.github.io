@@ -93,6 +93,6 @@ savefig("slowness_pyplot.png") # Saves the CURRENT_PLOT as a .png
 close()
 ```
 
-The resulting figure is as shown below
+The resulting figure is as shown below, which is the correct solution (the horizontal axis of the plot corresponds to the slowness along the "X" axis; the vertical axis corresponds to the slowness along the "Z" axis.
 
 ![slownesses](/assets/img/slowness_pyplot.png)
