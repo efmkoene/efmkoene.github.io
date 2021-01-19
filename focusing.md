@@ -5,6 +5,13 @@ subtitle: ""
 ---
 
 <style type="text/css" rel="stylesheet">
+body {
+  font-family: sans-serif;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+}
+  
 .base-timer {
   position: relative;
   width: 300px;
