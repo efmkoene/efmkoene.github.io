@@ -20,8 +20,7 @@ Hello!
 
 ### Where in the body do I feel it
 <div>
-<label class="radio-inline"><input type="radio" name="optradio" checked>In my throat</label> 
-<label class="radio-inline"><input type="radio" name="optradio" checked>In my chest</label>
-<label class="radio-inline"><input type="radio" name="optradio" checked>In my belly</label>
-<label class="radio-inline"><input type="radio" name="optradio"> <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info"> </label>
+<input type="radio" name="optradio" checked>In my chest
+<input type="radio" name="optradio" checked>In my belly
+<input type="radio" name="optradio"> <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
 </div>
