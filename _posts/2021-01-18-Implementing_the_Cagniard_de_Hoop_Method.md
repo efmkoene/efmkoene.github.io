@@ -68,4 +68,31 @@ end
 <!-- {% endraw %} -->
 
 #### Eigenvalue decomposition
-Next, we require the (repeated) eigenvalue decomposition of matrix `A`.
+Next, we require the (repeated) eigenvalue decomposition of matrix `A`. Ideally, I can plot the results. This took me quite a while in Julia, as the plotting parameters are not in the slightest as comfortable as those in MATLAB. Eventually, I settled on using the PyPlot back-end. In this way, we can plot the slowness surface of a given stiffness matrix. For example, the following code that puts the ideas from above into practice may be run (ending on `gcf()`, to display the result within `juno`; the `close()` command that follows it is required to restart drawing, as the `plot()` command just writes on top of the previous result.).
+
+```
+M = BondMatrix2D(22.5)
+C0 = [64 18 -4;
+     18 46 -2;
+     -4 -2 7 ]*3.1e8;
+C = M * C0 * M'
+rho = 2000;
+s1=0;
+f = [1;0]
+h = [0 0; 0 0];
+# === Get and sort D matrix (0th iteration, with s1=0)
+using PyPlot
+for s in 0:100
+    s1  = s/100000;
+    A,F = AFmatrix(C,s1,rho,f,h);
+    L,D = eigen(A);
+    plot([s1;s1;s1;s1],real(L),marker=".",linestyle="none",color="black")
+end
+gcf()
+savefig("slowness_pyplot.png") # Saves the CURRENT_PLOT as a .png
+close()
+```
+
+The resulting figure is as shown below
+
+![slownesses](/assets/img/slowness_pyplot.png)
