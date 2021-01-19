@@ -18,7 +18,7 @@ Hello!
 <label class="radio-inline"><input type="radio" name="optradio">Feeling heavy</label>
 </div>
 
-### Where in the body do I feel it
+### Where in the body do I sense something (e.g., tightness, pressure, a knocking feeling, ...)
 <div>
 <input type="radio" name="optradio" checked>In my chest
 <input type="radio" name="optradio" checked>In my belly
