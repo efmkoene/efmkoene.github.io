@@ -112,12 +112,14 @@ V32.
 <!--Question three, with new timer...-->
 <br clear="all" />
 <div id="Q3" class="hidden">
-  <h4> Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"</h4>
-  <div id='countdown2'></div>
+  <h4> Try to get a handle on the unclear bodily sensation. Is it a pressure, something moving, something hot/cold, ... . Something vague suffices for now. Try to sense it wholly. Tell yourself "I'm sensing ..., and I am saying hello to that."</h4>
+    <div id='countdown2'></div>
 </div>
 
 <div id="Q4" class="hidden">
-  <h4> "Try and characterize the feeling. For example, " </h4>
+  <h4> Get a sense of the emotional quality of the feeling. You do this by testing with yourself. For example, "I'm sensing pain", or "I'm sensing frustration". This can take a moment. </h4>
+  <p><img src="https://gritx.org/skills-studio/uploads/exerciseimage/emotion_wheel8.jpg"></p>
+  <button class="option4 buttoned">Done.</button>
 </div>
 
 
@@ -125,14 +127,16 @@ V32.
 <script>
 $('button').click(function() {
     $(this).css('background-color', 'black');
-    $(this).effect( "highlight", {color: '#4CAF50'}, 3000 );
 });
 
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
 var Q2 = document.getElementById('Q2');
+var Q3 = document.getElementById('Q3');
+var Q4 = document.getElementById('Q4');
 var btn1 = document.getElementsByClassName('option1');
 var btn2 = document.getElementsByClassName('option2');
+var btn4 = document.getElementsByClassName('option4');
 
 for(var i=0; i<btn1.length; i++){
     btn1[i].addEventListener("click", function(){ 
@@ -144,6 +148,13 @@ for(var i=0; i<btn2.length; i++){
     btn2[i].addEventListener("click", function(){ 
   Q3.className = ''; 
   countdown('countdown2', 20,'Q4');
+})
+}
+
+for(var i=0; i<btn2.length; i++){
+    btn2[i].addEventListener("click", function(){ 
+  Q3.className = ''; 
+  countdown('countdown2', 30,'Q4');
 })
 }
   
