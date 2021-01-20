@@ -7,19 +7,6 @@ subtitle: ""
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
 
-.buttoned {
-  background-color: #4CAF50; /* Green */
-  border: 1px solid green;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  float: left;
-}
-
 .base-timer {
   position: relative;
   width: 300px;
@@ -81,7 +68,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V30.
+V31.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
