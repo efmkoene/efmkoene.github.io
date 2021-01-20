@@ -68,7 +68,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V19.
+V20.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
@@ -99,7 +99,7 @@ V19.
   <h4> Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"</h4>
   <div id="app2">
   
-  <h4> "Try and characterize the feeling. For example, "
+  <h4> "Try and characterize the feeling. For example, " </h4>
 </div>
 
 
@@ -162,12 +162,12 @@ function countdown(element, seconds) {
 <div class="base-timer";>
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path id="base-timer-path-remaining" stroke-dasharray="`+ (seconds)/total_time*283 + ` 283" class="base-timer__path-remaining green" d="
-          M 50, 50
-          m -45, 0
-          a 45,45 0 1,0 90,0
-          a 45,45 0 1,0 -90,0
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="25"></circle>
+      <path id="base-timer-path-remaining" stroke-dasharray="`+ (seconds)/total_time*157 + ` 157" class="base-timer__path-remaining green" d="
+          M 30, 30
+          m -5, 20
+          a 25,25 0 1,0 50,0
+          a 25,25 0 1,0 -50,0
         "></path>
     </g>
   </svg>
@@ -188,19 +188,17 @@ function fixedcount(element, seconds) {
 <div class="base-timer";>
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path id="base-timer-path-remaining" stroke-dasharray="`+ (seconds)/total_time*283 + ` 283" class="base-timer__path-remaining green" d="
-          M 50, 50
-          m -45, 0
-          a 45,45 0 1,0 90,0
-          a 45,45 0 1,0 -90,0
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="25"></circle>
+      <path id="base-timer-path-remaining" stroke-dasharray="`+ (seconds)/total_time*157 + ` 157" class="base-timer__path-remaining green" d="
+          M 30, 30
+          m -5, 20
+          a 25,25 0 1,0 50,0
+          a 25,25 0 1,0 -50,0
         "></path>
     </g>
   </svg>
   <span id="base-timer-label" class="base-timer__label">`+ Math.floor(seconds/100+0.5) +`</span>
 </div>`;
-        
-    seconds--;
 }
 
 
