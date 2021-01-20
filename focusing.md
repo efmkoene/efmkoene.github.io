@@ -7,7 +7,7 @@ subtitle: ""
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
 
-button {
+.button {
   background-color: #4CAF50; /* Green */
   border: 1px solid green;
   color: white;
@@ -118,7 +118,12 @@ V28.
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script>
+$('button').click(function() {
+    $(this).css('background-color', black);
+    $(this).effect( "highlight", {color: #4CAF50}, 3000 );
+});
 
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
