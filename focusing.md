@@ -149,24 +149,31 @@ My understanding of the method is that you create a space in your body to meet y
   <button class="option5 buttoned">Done.</button>
 </div>
 
-<!--Question six...-->
+<!--Question five...-->
 <div id="Q6" class="hidden">
 <br clear="all" />
-  <h4> 7. Ask yourself, "What would it feel like if it was all OK?". "What is in the way of that?". See what bubbles up.</h4>
+  <h4> 7. Now, try to connect with a young version of yourself experiencing this emotion. Focus on young and powerful. Do you think your felt quality relates to a problem you're facing in your life, try to connect with a particular version that applies to your young self..</h4>
+  <button class="option6 buttoned">Done.</button>
+</div>
+
+<!--Question six...-->
+<div id="Q7" class="hidden">
+<br clear="all" />
+  <h4> 8. Ask yourself, "What would it feel like if it was all OK?". "What is in the way of that?". See what bubbles up.</h4>
   <div id='countdown3'></div>
 </div>
 
 <!--End...-->
-<div id="Q7" class="hidden">
+<div id="Q8" class="hidden">
 <br clear="all" />
-  <h4> 8. The end! Thank your body for speaking with you. You may want to ask your body for any ideas about how to resolve the situation; to receive any wisdom... Remember, you just have to acknowledge what it says, there's no need to do anything with it.</h4>
+  <h4> 9. The end! Thank your body for speaking with you. You may want to ask your body for any ideas about how to resolve the situation; to receive any wisdom... Remember, you just have to acknowledge what it says, there's no need to do anything with it.</h4>
 </div>
 
 
 
 <br clear="all" />
 <div id="Progress_Status"> 
-  <div id="myprogressBar" style="width: 16%"></div> 
+  <div id="myprogressBar" style="width: 14%"></div> 
 </div>
 
   
@@ -191,16 +198,17 @@ var Q4 = document.getElementById('Q4');
 var Q5 = document.getElementById('Q5');
 var Q6 = document.getElementById('Q6');
 var Q7 = document.getElementById('Q7');
+var Q8 = document.getElementById('Q8');
 var btn1 = document.getElementsByClassName('option1');
 var btn2 = document.getElementsByClassName('option2');
 var btn4 = document.getElementsByClassName('option4');
 var btn5 = document.getElementsByClassName('option5');
-
+var btn6 = document.getElementsByClassName('option5');
 
 for(var i=0; i<btn1.length; i++){
     btn1[i].addEventListener("click", function(){ 
   Q2.className = ''; 
-  updateTimer(16);
+  updateTimer(14);
 })
 }
 
@@ -214,15 +222,21 @@ for(var i=0; i<btn2.length; i++){
 for(var i=0; i<btn4.length; i++){
     btn4[i].addEventListener("click", function(){ 
   Q5.className = ''; 
-  updateTimer(16);
+  updateTimer(14);
 })
 }
- 
+
 for(var i=0; i<btn5.length; i++){
     btn5[i].addEventListener("click", function(){ 
   Q6.className = ''; 
-  countdown('countdown3', 120,'Q7');
-  updateTimer(4);
+  updateTimer(14);
+})
+} 
+for(var i=0; i<btn6.length; i++){
+    btn6[i].addEventListener("click", function(){ 
+  Q7.className = ''; 
+  countdown('countdown3', 120,'Q8');
+  updateTimer(2);
 })
 } 
   
@@ -254,7 +268,7 @@ function countdown(element, seconds, next_class) {
         }
         if(seconds == (5)*100) {
           nex.className = '';
-          updateTimer(16);
+          updateTimer(14);
         }
         el.innerHTML = `
 <div class="base-timer";>
