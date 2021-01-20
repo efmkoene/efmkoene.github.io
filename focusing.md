@@ -10,13 +10,13 @@ common-ext-js:
 .hidden{ display: none; }
   
 #Progress_Status { 
-  width: 50%; 
+  width: 100%; 
   background-color: #ddd; 
 } 
   
 #myprogressBar { 
-  width: 10%; 
-  height: 35px; 
+  width: 12.5%; 
+  height: 18px; 
   background-color: #4CAF50; 
   text-align: center; 
   line-height: 32px; 
@@ -170,7 +170,7 @@ OK?
   <div id="myprogressBar"></div> 
 </div>
 
-Ok!
+Ok! :D
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
@@ -178,7 +178,7 @@ $('button').click(function() {
     $(this).css('background-color', 'black');
 });
 
-function update(amount) { 
+function updateTimer(amount) { 
   var element = document.getElementById("myprogressBar");    
   element.style.width = amount + '%';   
 } 
@@ -200,6 +200,7 @@ var btn5 = document.getElementsByClassName('option5');
 for(var i=0; i<btn1.length; i++){
     btn1[i].addEventListener("click", function(){ 
   Q2.className = ''; 
+  updateTimer(12.5);
 })
 }
 
@@ -213,6 +214,7 @@ for(var i=0; i<btn2.length; i++){
 for(var i=0; i<btn4.length; i++){
     btn4[i].addEventListener("click", function(){ 
   Q5.className = ''; 
+  updateTimer(12.5);
 })
 }
  
@@ -251,6 +253,7 @@ function countdown(element, seconds, next_class) {
         }
         if(seconds < (5)*100) {
           nex.className = '';
+          updateTimer(12.5);
         }
         el.innerHTML = `
 <div class="base-timer";>
