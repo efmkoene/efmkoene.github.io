@@ -68,13 +68,14 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V16.
+V18.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
 <div id="Q0" class="">
-<h4> Take 30 seconds to just get a sense of yourself. </h4>
-<div id="app"></div>
+  <h4> Take 30 seconds to just get a sense of yourself. </h4>
+<div id='countdown1'></div>
+<input id="timer1" type="button" value="Start timer..." />
 </div>
 
 <!--Question one-->
@@ -132,144 +133,79 @@ for(var i=0; i<btn2.length; i++){
 }
   
   
-  // Credit: Mateusz Rybczonec
-const TIME_LIMIT = 30;
-const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
-
-const COLOR_CODES = {
-  info: {
-    color: "green"
-  },
-  warning: {
-    color: "LemonChiffon",
-    threshold: WARNING_THRESHOLD
-  },
-  alert: {
-    color: "LightCyan",
-    threshold: ALERT_THRESHOLD
-  }
-};
-
-let timePassed = 0;
-let timeLeft = TIME_LIMIT;
-let timerInterval = null;
-let remainingPathColor = COLOR_CODES.info.color;
-
-document.getElementById("app").innerHTML = `
+  
+  
+  
+  
+  
+  
+  
+  
+// Countdown timer stuff  
+function countdown(element, seconds) {
+    // Fetch the display element
+    seconds = seconds*100;
+    var total_time=seconds;
+    var el = document.getElementById(element);
+    // Set the timer
+    var interval = setInterval(function() {
+        if(seconds == 0) {
+            clearInterval(interval);
+            return;
+        }
+        el.innerHTML = `
 <div class="base-timer";>
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
       <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path
-        id="base-timer-path-remaining"
-        stroke-dasharray="283"
-        class="base-timer__path-remaining ${remainingPathColor}"
-        d="
+      <path id="base-timer-path-remaining" stroke-dasharray="`+ (seconds)/total_time*283 + ` 283" class="base-timer__path-remaining green" d="
           M 50, 50
           m -45, 0
           a 45,45 0 1,0 90,0
           a 45,45 0 1,0 -90,0
-        "
-      ></path>
+        "></path>
     </g>
   </svg>
-  <span id="base-timer-label" class="base-timer__label">${formatTime(
-    timeLeft
-  )}</span>
-</div>
-`;
+  <span id="base-timer-label" class="base-timer__label">`+ Math.floor(seconds/100+0.5) +`</span>
+</div>`;
+        
+    seconds--;
+    }, 10); // Update every 10 ms
+}
 
-document.getElementById("app2").innerHTML = `
+function fixedcount(element, seconds) {
+    // Fetch the display element
+    seconds = seconds*100;
+    var total_time=seconds;
+    var el = document.getElementById(element);
+    // Set the timer
+        el.innerHTML = `
 <div class="base-timer";>
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
       <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path
-        id="base-timer-path-remaining"
-        stroke-dasharray="283"
-        class="base-timer__path-remaining ${remainingPathColor}"
-        d="
+      <path id="base-timer-path-remaining" stroke-dasharray="`+ (seconds)/total_time*283 + ` 283" class="base-timer__path-remaining green" d="
           M 50, 50
           m -45, 0
           a 45,45 0 1,0 90,0
           a 45,45 0 1,0 -90,0
-        "
-      ></path>
+        "></path>
     </g>
   </svg>
-  <span id="base-timer-label" class="base-timer__label">${formatTime(
-    timeLeft
-  )}</span>
-</div>
-`;
-
-startTimer();
-
-function onTimesUp() {
-  clearInterval(timerInterval);
-  console.log("hey");
+  <span id="base-timer-label" class="base-timer__label">`+ Math.floor(seconds/100+0.5) +`</span>
+</div>`;
+        
+    seconds--;
 }
 
-function startTimer() {
-  timerInterval = setInterval(() => {
-    timePassed = timePassed += 1;
-    timeLeft = TIME_LIMIT - timePassed;
-    document.getElementById("base-timer-label").innerHTML = formatTime(
-      timeLeft
-    );
-    setCircleDasharray();
-    setRemainingPathColor(timeLeft);
 
-    if (timeLeft <= 0) {
-      onTimesUp();
-    }
-  }, 1000);
-}
 
-function formatTime(time) {
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
+// Make buttons load timers
+var start1 = document.getElementById('timer1');
 
-  if (seconds < 10) {
-    seconds = `0${seconds}`;
-  }
+fixedcount('countdown1', 30) 
 
-  return `${minutes}:${seconds}`;
-}
-
-function setRemainingPathColor(timeLeft) {
-  const { alert, warning, info } = COLOR_CODES;
-  if (timeLeft <= alert.threshold) {
-    document
-      .getElementById("base-timer-path-remaining")
-      .classList.remove(warning.color);
-    document
-      .getElementById("base-timer-path-remaining")
-      .classList.add(alert.color);
-    Q1.className = '';
-  } else if (timeLeft <= warning.threshold) {
-    document
-      .getElementById("base-timer-path-remaining")
-      .classList.remove(info.color);
-    document
-      .getElementById("base-timer-path-remaining")
-      .classList.add(warning.color);
-  }
-}
-
-function calculateTimeFraction() {
-  const rawTimeFraction = timeLeft / TIME_LIMIT;
-  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
-}
-
-function setCircleDasharray() {
-  const circleDasharray = `${(
-    calculateTimeFraction() * FULL_DASH_ARRAY
-  ).toFixed(0)} 283`;
-  document
-    .getElementById("base-timer-path-remaining")
-    .setAttribute("stroke-dasharray", circleDasharray);
+start1.onclick = function() {
+    countdown('countdown1', 30);
 }
 </script>
