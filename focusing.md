@@ -159,7 +159,7 @@ My understanding of the method is that you create a space in your body to meet y
 <!--End...-->
 <div id="Q7" class="hidden">
 <br clear="all" />
-  <h4> 8. The end! Thank your body for speaking with you. Remember, you don't have to agree with your body, you just have to acknowledge what it said to you.</h4>
+  <h4> 8. The end! Thank your body for speaking with you. You may want to ask your body for any ideas about how to resolve the situation; to receive any wisdom... Remember, you just have to acknowledge what it says, there's no need to do anything with it.</h4>
 </div>
 
 
