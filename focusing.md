@@ -68,7 +68,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V9.
+V10.
 
 <h2> Zoom in on how you're feeling </h2>
 
@@ -82,43 +82,23 @@ V9.
 <!--Question one-->
 <div id="Q1" class="hidden">
   <h4> Do you notice a weight to your body? Or a springiness? </h4>
-  <button id="option1">Feeling light</button> 
-  <button id="option1">Intermediate</button>
-  <button id="option1">Feeling heavy</button>
+  <button class="option1">Feeling light</button> 
+  <button class="option1">Intermediate</button>
+  <button class="option1">Feeling heavy</button>
 </div>
 
 <!--Question two-->
 <div id="Q2" class="hidden">
   <h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)</h4>
-  <button id="option2">My chest</button> 
-  <button id="option2">My belly</button>
-  <button id="option2">Elsewhere</button>
+  <button class="option2">My chest</button> 
+  <button class="option2">My belly</button>
+  <button class="option2">Elsewhere</button>
 </div>
 
 <!--Question three, with new timer...-->
 <div id="Q3" class="hidden">
   <h4> Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"</h4>
-  <div class="base-timer";>
-  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path
-        id="base-timer-path-remaining"
-        stroke-dasharray="283"
-        class="base-timer__path-remaining ${remainingPathColor}"
-        d="
-          M 50, 50
-          m -45, 0
-          a 45,45 0 1,0 90,0
-          a 45,45 0 1,0 -90,0
-        "
-      ></path>
-    </g>
-  </svg>
-  <span id="base-timer-label" class="base-timer__label">${formatTime(
-    timeLeft
-  )}</span>
-</div>
+  <div id="app">
   
   <h4> "Try and characterize the feeling. For example, "
 </div>
@@ -132,9 +112,8 @@ const TIME_LIMIT = 30;
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
 var Q2 = document.getElementById('Q2');
-var btn1 = document.getElementById('option1');
-var btn2  = document.getElementById('option2');
-var optNo  = document.getElementById('optradio');
+var btn1 = document.getElementsByClassName('option1');
+var btn2 = document.getElementsByClassName('option2');
 
 btn1.addEventListener('click', function(){
   Q0.className = 'hidden';
@@ -148,15 +127,6 @@ btn2.addEventListener('click', function(){
   startTimer();
 });
   
-  
-function startFocusing() {   
-  Q1.className = '';
-  let timePassed = 0;
-  let timeLeft = TIME_LIMIT;
-  let timerInterval = null;
-  let remainingPathColor = COLOR_CODES.info.color;
-  startTimer();  
-         }  
   
   // Credit: Mateusz Rybczonec
 
