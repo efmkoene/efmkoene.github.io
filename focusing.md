@@ -182,6 +182,8 @@ function updateTimer(amount) {
   console.log('I was here at all...?');
   var element = document.getElementById("myprogressBar");
   var current_amount = element.style.width;
+  console.log(current_amount);
+  console.log(amount);
   element.style.width = current_amount + amount + '%';   
 } 
 
