@@ -169,7 +169,7 @@ OK?
   <div id="myprogressBar" style="style="width: 12.5%"></div> 
 </div>
 
-This should do it!
+This should do it!Quickfix
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
