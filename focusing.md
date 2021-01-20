@@ -68,20 +68,25 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V2.
+V5.
 
-## Zoom in on how you're feeling
-#### Take 30 seconds to just get a sense of yourself.
-<div id="app" style="width: 100%;margin: 0 auto;></div>
+<h2> Zoom in on how you're feeling </h2>
 
-#### Do you notice a weight to your body? Or a springiness?
-<button id="option1">Feeling light</button> 
-<button id="option1">Intermediate</button>
-<button id="option1">Feeling heavy</button>
+<!--Timer portion-->
+<h4> Take 30 seconds to just get a sense of yourself. </h4>
+<div id="app" style="width: 100%;margin: 0 auto;"></div>
 
+<!--Question one-->
+<div id="Q1" class="hidden">
+  <h4> Do you notice a weight to your body? Or a springiness? </h4>
+  <button id="option1">Feeling light</button> 
+  <button id="option1">Intermediate</button>
+  <button id="option1">Feeling heavy</button>
+</div>
 
+<!--Question two-->
 <div id="Q2" class="hidden">
-<h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)</h4>
+  <h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)</h4>
   <button id="option2">My chest</button> 
   <button id="option2">My belly</button>
 </div>
@@ -93,6 +98,7 @@ V2.
 
 <script>
 var btnYes = document.getElementById('option1');
+var Q1 = document.getElementById('Q1');
 var Q2 = document.getElementById('Q2');
 var btnNo  = document.getElementById('option2');
 var optNo  = document.getElementById('optradio');
@@ -198,6 +204,7 @@ function setRemainingPathColor(timeLeft) {
     document
       .getElementById("base-timer-path-remaining")
       .classList.add(alert.color);
+    Q1.className = '';
   } else if (timeLeft <= warning.threshold) {
     document
       .getElementById("base-timer-path-remaining")
