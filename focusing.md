@@ -5,6 +5,7 @@ subtitle: ""
 ---
 
 <style type="text/css" rel="stylesheet">  
+.hidden{ display: none; }
 body {
    font-family: sans-serif;
    display: grid;
@@ -99,21 +100,7 @@ My understanding of the method is that you create a space in your body to meet y
 
 
 <script>
-var btnYes = document.getElementById('option1');
-var optYes = document.getElementById('option1-yes');
-var btnNo  = document.getElementById('option1no');
-var optNo  = document.getElementById('option1-no');
 
-btnYes.addEventListener('click', function(){
-  optYes.className = ''; 
-  optNo.className = 'hidden';
-});
-
-btnNo.addEventListener('click', function(){
-  optNo.className = '';
-  optYes.className = 'hidden';
-});
-  
   
   
   
