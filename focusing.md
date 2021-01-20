@@ -68,12 +68,12 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V21.
+V22.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
 <div id="Q0" class="">
-  <h4> Take 30 seconds to just get a sense of yourself. Breath calmly and deeply.</h4>
+  <h4> Take 30 seconds to just get a sense of yourself. Breath calmly and deeply. How do you feel, in general?</h4>
   <input id="timer1" type="button" value="Start timer..." />
 <div id='countdown1'></div>
 </div>
@@ -97,8 +97,10 @@ V21.
 <!--Question three, with new timer...-->
 <div id="Q3" class="hidden">
   <h4> Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"</h4>
-  <div id="app2">
-  
+  <div id='countdown2'></div>
+</div>
+
+<div id="Q4" class="hidden">
   <h4> "Try and characterize the feeling. For example, " </h4>
 </div>
 
@@ -115,20 +117,14 @@ var btn2 = document.getElementsByClassName('option2');
 
 for(var i=0; i<btn1.length; i++){
     btn1[i].addEventListener("click", function(){ 
-  Q0.className = 'hidden';
-  Q1.className = 'hidden';
   Q2.className = ''; 
 })
 }
 
 for(var i=0; i<btn2.length; i++){
     btn2[i].addEventListener("click", function(){ 
-  Q2.className = 'hidden';
   Q3.className = ''; 
-  let timePassed = 0;
-  let timeLeft = TIME_LIMIT;
-  let timerInterval = null;
-  startTimer();
+  countdown('countdown2', 30,'Q4');
 })
 }
   
