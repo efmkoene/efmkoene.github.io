@@ -72,7 +72,7 @@ V2.
 
 ## Zoom in on how you're feeling
 #### Take 30 seconds to just get a sense of yourself.
-<div id="app"></div>
+<div id="app" style="width: 100%;margin: 0 auto;></div>
 
 #### Do you notice a weight to your body? Or a springiness?
 <button id="option1">Feeling light</button> 
@@ -132,7 +132,7 @@ let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 document.getElementById("app").innerHTML = `
-<div class="base-timer" style="{margin-left: auto;margin-right: auto}";
+<div class="base-timer";
 >
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
