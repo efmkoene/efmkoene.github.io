@@ -83,7 +83,7 @@ My understanding of the method is that you create a space in your body to meet y
 
 
 <div id="Q2" class="hidden">
-#### Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)
+<h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)</h4>
   <button id="option2">My chest</button> 
   <button id="option2">My belly</button>
 </div>
