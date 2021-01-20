@@ -6,12 +6,7 @@ subtitle: ""
 
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
-body {
-   font-family: sans-serif;
-   display: grid;
-   height: 100vh;
-   place-items: center;
- }
+
 .base-timer {
   position: relative;
   width: 300px;
@@ -89,11 +84,6 @@ My understanding of the method is that you create a space in your body to meet y
   <button id="option2">My belly</button>
 </div>
 
-<div>
-<input type="radio" name="optradio">My chest
-<input type="radio" name="optradio" checked>My belly
-<input type="radio" name="optradio"> <input type="text" value="My ...">
-</div>
 
 #### Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"
 
@@ -108,8 +98,6 @@ var optNo  = document.getElementById('optradio');
 btnYes.addEventListener('click', function(){
   Q.className = ''; 
 });
-  
-  
   
   
   
