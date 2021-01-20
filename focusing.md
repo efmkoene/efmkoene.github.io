@@ -159,7 +159,7 @@ My understanding of the method is that you create a space in your body to meet y
 <!--Question six...-->
 <div id="Q7" class="hidden">
 <br clear="all" />
-  <h4> 8. Ask yourself, "What would it feel like if it was all OK?". "What is in the way of that?". See what bubbles up.</h4>
+  <h4> 8. Ask yourself, "What would it feel like if it was all OK?". "What is in the way of that?". "What does the feeling need to feel more safe and secure?". See what bubbles up. Check if there's any "wisdom" within yourself.</h4>
   <div id='countdown3'></div>
 </div>
 
