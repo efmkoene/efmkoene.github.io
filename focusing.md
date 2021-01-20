@@ -68,6 +68,8 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
+V2.
+
 ## Zoom in on how you're feeling
 #### Take 30 seconds to just get a sense of yourself.
 <div id="app"></div>
@@ -114,11 +116,11 @@ const COLOR_CODES = {
     color: "green"
   },
   warning: {
-    color: "orange",
+    color: "LemonChiffon",
     threshold: WARNING_THRESHOLD
   },
   alert: {
-    color: "red",
+    color: "LightCyan",
     threshold: ALERT_THRESHOLD
   }
 };
@@ -130,7 +132,8 @@ let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 document.getElementById("app").innerHTML = `
-<div class="base-timer">
+<div class="base-timer" style="{margin-left: auto;margin-right: auto}";
+>
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
       <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
