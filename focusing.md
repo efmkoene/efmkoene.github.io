@@ -170,7 +170,7 @@ OK?
   <div id="myprogressBar"></div> 
 </div>
 
-Ok, hihi.
+Ok, hihi..........
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
@@ -179,6 +179,7 @@ $('button').click(function() {
 });
 
 function updateTimer(amount) { 
+  console.log('I was here at all...?');
   var element = document.getElementById("myprogressBar");
   var current_amount = element.style.width;
   element.style.width = current_amount + amount + '%';   
