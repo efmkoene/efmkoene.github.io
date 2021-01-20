@@ -166,10 +166,10 @@ My understanding of the method is that you create a space in your body to meet y
 OK? 
 
 <div id="Progress_Status"> 
-  <div id="myprogressBar" style="style="width: 12.5%"></div> 
+  <div id="myprogressBar" style="width: 12.5%"></div> 
 </div>
 
-This should do it!Quickfix
+This should do it! Whoops.
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
