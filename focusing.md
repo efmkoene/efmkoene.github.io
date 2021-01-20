@@ -2,8 +2,6 @@
 layout: page
 title: Focusing resource
 subtitle: ""
-common-ext-js:
-  - href: "https://code.jquery.com/jquery-3.5.1.slim.min.js"
 ---
 
 <style type="text/css" rel="stylesheet">  
@@ -12,6 +10,7 @@ common-ext-js:
 #Progress_Status { 
   width: 100%; 
   background-color: #ddd; 
+  border-radius: 8px;
 } 
   
 #myprogressBar { 
@@ -23,6 +22,7 @@ common-ext-js:
   color: black; 
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
+  border-radius: 8px;
 } 
   
 .ui-progressbar-value {
@@ -170,7 +170,7 @@ OK?
   <div id="myprogressBar"></div> 
 </div>
 
-Ok! :D
+Ok....;
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
