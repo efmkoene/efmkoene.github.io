@@ -7,6 +7,10 @@ subtitle: ""
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
 
+.button-clicked {
+  background: red;
+}
+
 .base-timer {
   position: relative;
   width: 300px;
@@ -68,7 +72,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V24.
+V25.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
@@ -107,6 +111,10 @@ V24.
 
 
 <script>
+  
+$("#button").click(function() {
+  $("#button").addClass('button-clicked');
+});
   
 
 var Q0 = document.getElementById('Q0');
