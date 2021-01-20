@@ -203,7 +203,7 @@ var btn1 = document.getElementsByClassName('option1');
 var btn2 = document.getElementsByClassName('option2');
 var btn4 = document.getElementsByClassName('option4');
 var btn5 = document.getElementsByClassName('option5');
-var btn6 = document.getElementsByClassName('option5');
+var btn6 = document.getElementsByClassName('option6');
 
 for(var i=0; i<btn1.length; i++){
     btn1[i].addEventListener("click", function(){ 
