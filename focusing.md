@@ -68,7 +68,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V12.
+V13.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
@@ -121,7 +121,7 @@ for(var i=0; i<btn1.length; i++){
 }
 
 for(var i=0; i<btn2.length; i++){
-    btn1[i].addEventListener("click", function(){ 
+    btn2[i].addEventListener("click", function(){ 
   Q2.className = 'hidden';
   Q3.className = ''; 
 })
