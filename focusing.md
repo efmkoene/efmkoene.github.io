@@ -73,22 +73,22 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V22.
+V23.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
 <div id="Q0" class="">
   <h4> Take 30 seconds to just get a sense of yourself. Breath calmly and deeply. How do you feel, in general?</h4>
-  <input id="timer1" type="button" value="Start timer..." />
+  <input id="timer1" type="button" class="button" value="Start timer..." />
 <div id='countdown1'></div>
 </div>
 
 <!--Question one-->
 <div id="Q1" class="hidden">
   <h4> Do you notice a weight to your body? Or a springiness? </h4>
-  <button class="option1">Feeling light</button> 
-  <button class="option1">Intermediate</button>
-  <button class="option1">Feeling heavy</button>
+  <button class="button option1">Feeling light</button> 
+  <button class="button option1">Intermediate</button>
+  <button class="button option1">Feeling heavy</button>
 </div>
 
 <!--Question two-->
