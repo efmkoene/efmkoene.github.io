@@ -252,7 +252,7 @@ function countdown(element, seconds, next_class) {
             clearInterval(interval);
             return;
         }
-        if(seconds < (5)*100) {
+        if(seconds == (5)*100) {
           nex.className = '';
           updateTimer(12.5);
         }
