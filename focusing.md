@@ -142,6 +142,7 @@ My understanding of the method is that you create a space in your body to meet y
   <h4> 8. The end! Thank your body for speaking with you. Remember, you don't have to agree with your body, you just have to acknowledge what it said to you.</h4>
 </div>
 
+<div id="progressbar"></div>
 
 
 
@@ -151,6 +152,12 @@ My understanding of the method is that you create a space in your body to meet y
 $('button').click(function() {
     $(this).css('background-color', 'black');
 });
+  
+$( function() {
+    $( "#progressbar" ).progressbar({
+      value: 10
+    });
+  } );
 
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
