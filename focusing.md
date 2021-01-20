@@ -7,6 +7,19 @@ subtitle: ""
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
 
+.buttoned {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
 .base-timer {
   position: relative;
   width: 300px;
@@ -108,8 +121,8 @@ V31.
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script>
 $('button').click(function() {
-    $(this).css('background-color', black);
-    $(this).effect( "highlight", {color: #4CAF50}, 3000 );
+    $(this).css('background-color', 'black');
+    $(this).effect( "highlight", {color: '#4CAF50'}, 3000 );
 });
 
 var Q0 = document.getElementById('Q0');
