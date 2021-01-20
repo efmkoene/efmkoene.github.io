@@ -68,7 +68,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V10.
+V11.
 
 <h2> Zoom in on how you're feeling </h2>
 
@@ -249,6 +249,7 @@ function setRemainingPathColor(timeLeft) {
     document
       .getElementById("base-timer-path-remaining")
       .classList.add(alert.color);
+    Q1.className = '';
   } else if (timeLeft <= warning.threshold) {
     document
       .getElementById("base-timer-path-remaining")
