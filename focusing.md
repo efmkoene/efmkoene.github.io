@@ -14,14 +14,13 @@ subtitle: ""
 } 
   
 #myprogressBar { 
-  width: 12.5%; 
   height: 18px; 
   background-color: #4CAF50; 
   text-align: center; 
   line-height: 32px; 
   color: black; 
-  transition: width 0.5s;
-  -webkit-transition: width 0.5s;
+  transition: width 1s;
+  -webkit-transition: width 1s;
   border-radius: 8px;
 } 
   
@@ -167,10 +166,10 @@ My understanding of the method is that you create a space in your body to meet y
 OK? 
 
 <div id="Progress_Status"> 
-  <div id="myprogressBar"></div> 
+  <div id="myprogressBar" style="style="width: 12.5%"></div> 
 </div>
 
-Ok, work it?
+This should do it!
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
@@ -179,12 +178,10 @@ $('button').click(function() {
 });
 
 function updateTimer(amount) { 
-  console.log('I was here at all...?');
   var element = document.getElementById("myprogressBar");
   var current_amount = element.style.width;
-  console.log(current_amount);
-  console.log(amount);
-  element.style.width = current_amount + amount + '%';   
+  var integer = parseInt(current_amount, 10);
+  element.style.width = integer + amount + '%';   
 } 
 
 var Q0 = document.getElementById('Q0');
