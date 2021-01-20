@@ -7,8 +7,8 @@ subtitle: ""
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
 
-.button-clicked {
-  background: red;
+button {
+  background: green;
 }
 
 .base-timer {
@@ -109,13 +109,7 @@ V27.
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-  
-$("#button").click(function() {
-  $("#button").addClass('button-clicked');
-});
-  
 
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
