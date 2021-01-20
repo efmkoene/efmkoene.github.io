@@ -4,14 +4,7 @@ title: Focusing resource
 subtitle: ""
 ---
 
-<style type="text/css" rel="stylesheet">
-body {
-  font-family: sans-serif;
-  display: grid;
-  height: 100vh;
-  place-items: center;
-}
-  
+<style type="text/css" rel="stylesheet">  
 .base-timer {
   position: relative;
   width: 300px;
@@ -78,13 +71,17 @@ My understanding of the method is that you create a space in your body to meet y
 <div id="app"></div>
 
 #### Do you notice a weight to your body? Or a springiness?
-<div>
-<input type="radio" name="optradio">Feeling light 
-<input type="radio" name="optradio" checked>Intermediate
-<input type="radio" name="optradio">Feeling heavy
+<button id="option1">Feeling light</button> 
+<button id="option1">Intermediate</button>
+<button id="option1">Feeling heavy</button>
+
+
+<div id="Q2" class="hidden">
+#### Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)
+  <button id="option2">My chest</button> 
+  <button id="option2">My belly</button>
 </div>
 
-#### Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)
 <div>
 <input type="radio" name="optradio">My chest
 <input type="radio" name="optradio" checked>My belly
@@ -93,7 +90,30 @@ My understanding of the method is that you create a space in your body to meet y
 
 #### Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"
 
+
+
 <script>
+var btnYes = document.getElementById('option1');
+var optYes = document.getElementById('option1-yes');
+var btnNo  = document.getElementById('option1no');
+var optNo  = document.getElementById('option1-no');
+
+btnYes.addEventListener('click', function(){
+  optYes.className = ''; 
+  optNo.className = 'hidden';
+});
+
+btnNo.addEventListener('click', function(){
+  optNo.className = '';
+  optYes.className = 'hidden';
+});
+  
+  
+  
+  
+  
+  
+  
   // Credit: Mateusz Rybczonec
 
 const FULL_DASH_ARRAY = 283;
