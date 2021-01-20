@@ -170,7 +170,7 @@ OK?
   <div id="myprogressBar"></div> 
 </div>
 
-Ok, hihi..........
+Ok, work it?
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
