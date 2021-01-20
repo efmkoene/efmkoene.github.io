@@ -68,13 +68,15 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V5.
+V7.
 
 <h2> Zoom in on how you're feeling </h2>
 
 <!--Timer portion-->
+<div id="Q0" class="">
 <h4> Take 30 seconds to just get a sense of yourself. </h4>
 <div id="app" style="width: 100%;margin: 0 auto;"></div>
+</div>
 
 <!--Question one-->
 <div id="Q1" class="hidden">
@@ -89,22 +91,35 @@ V5.
   <h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)</h4>
   <button id="option2">My chest</button> 
   <button id="option2">My belly</button>
+  <button id="option2">Elsewhere</button>
 </div>
 
-
-#### Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"
+<!--Question three-->
+<div id="Q3" class="hidden">
+  <h4> Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"</h4>
+  <div id="app" style="width: 100%;margin: 0 auto;"></div>
+  <h4> "Try and characterize the feeling. For example, "
+</div>
 
 
 
 <script>
-var btnYes = document.getElementById('option1');
+var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
 var Q2 = document.getElementById('Q2');
-var btnNo  = document.getElementById('option2');
+var btn1 = document.getElementById('option1');
+var btn2  = document.getElementById('option2');
 var optNo  = document.getElementById('optradio');
 
-btnYes.addEventListener('click', function(){
+btn1.addEventListener('click', function(){
+  Q0.className = 'hidden';
   Q2.className = ''; 
+});
+
+btn2.addEventListener('click', function(){
+  Q1.className = 'hidden';
+  Q3.className = ''; 
+  startTimer();
 });
   
   
