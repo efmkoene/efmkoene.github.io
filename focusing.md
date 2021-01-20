@@ -165,6 +165,7 @@ My understanding of the method is that you create a space in your body to meet y
 
 
 <div id="Progress_Status"> 
+<br clear="all" />
   <div id="myprogressBar" style="width: 16%"></div> 
 </div>
 
