@@ -2,14 +2,30 @@
 layout: page
 title: Focusing resource
 subtitle: ""
+common-ext-js:
+  - href: "https://code.jquery.com/jquery-3.5.1.slim.min.js"
 ---
 
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
   
-.ui-progressbar-value {
+#Progress_Status { 
+  width: 50%; 
+  background-color: #ddd; 
+} 
+  
+#myprogressBar { 
+  width: 10%; 
+  height: 35px; 
+  background-color: #4CAF50; 
+  text-align: center; 
+  line-height: 32px; 
+  color: black; 
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
+} 
+  
+.ui-progressbar-value {
 }
 
 .buttoned {
@@ -150,29 +166,22 @@ My understanding of the method is that you create a space in your body to meet y
 
 OK? 
 
-<div id="progressbar"></div>
+<div id="Progress_Status"> 
+  <div id="myprogressBar"></div> 
+</div>
 
-Ok ,,,
-
-<div id="progressbar"></div>
+Ok!
   
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-    $( "#progressbar" ).progressbar({
-      value: 37
-    });
-  } );  
-</script>
-
-
 <script> 
 $('button').click(function() {
     $(this).css('background-color', 'black');
 });
-  
+
+function update(amount) { 
+  var element = document.getElementById("myprogressBar");    
+  element.style.width = amount + '%';   
+} 
 
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
