@@ -68,18 +68,18 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V18.
+V19.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
 <div id="Q0" class="">
-  <h4> Take 30 seconds to just get a sense of yourself. </h4>
+  <h4> Take 30 seconds to just get a sense of yourself. Breath calmly and deeply.</h4>
+  <input id="timer1" type="button" value="Start timer..." />
 <div id='countdown1'></div>
-<input id="timer1" type="button" value="Start timer..." />
 </div>
 
 <!--Question one-->
-<div id="Q1" class="">
+<div id="Q1" class="hidden">
   <h4> Do you notice a weight to your body? Or a springiness? </h4>
   <button class="option1">Feeling light</button> 
   <button class="option1">Intermediate</button>
@@ -147,11 +147,16 @@ function countdown(element, seconds) {
     seconds = seconds*100;
     var total_time=seconds;
     var el = document.getElementById(element);
+    
+
     // Set the timer
     var interval = setInterval(function() {
         if(seconds == 0) {
             clearInterval(interval);
             return;
+        }
+        if(seconds < (5)*100) {
+          Q1.className = '';
         }
         el.innerHTML = `
 <div class="base-timer";>
