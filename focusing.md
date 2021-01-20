@@ -207,7 +207,7 @@ for(var i=0; i<btn1.length; i++){
 for(var i=0; i<btn2.length; i++){
     btn2[i].addEventListener("click", function(){ 
   Q3.className = ''; 
-  countdown('countdown2', 20,'Q4');
+  countdown('countdown2', 60,'Q4');
 })
 }
 
