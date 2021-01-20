@@ -166,7 +166,7 @@ My understanding of the method is that you create a space in your body to meet y
 <!--End...-->
 <div id="Q8" class="hidden">
 <br clear="all" />
-  <h4> 9. The end! Thank your body for speaking with you. You may want to ask your body for any ideas about how to resolve the situation; to receive any wisdom... Remember, you just have to acknowledge what it says, there's no need to do anything with it.</h4>
+  <h4> 9. The end! Thank your body for speaking with you. You may want to ask your body for any ideas about how to resolve the situation; to receive any wisdom... Remember, you just have to acknowledge what it says, there's no need to do anything with it. Try to bring some love to this feeling, no matter how negative; as this really is about bringing love and unity to yourself. Comfort yourself emotionally.</h4>
 </div>
 
 
