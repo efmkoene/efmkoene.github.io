@@ -163,13 +163,11 @@ My understanding of the method is that you create a space in your body to meet y
 </div>
 
 
-OK? 
 
 <div id="Progress_Status"> 
-  <div id="myprogressBar" style="width: 12.5%"></div> 
+  <div id="myprogressBar" style="width: 16%"></div> 
 </div>
 
-This should do it! Whoops.
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script> 
@@ -201,7 +199,7 @@ var btn5 = document.getElementsByClassName('option5');
 for(var i=0; i<btn1.length; i++){
     btn1[i].addEventListener("click", function(){ 
   Q2.className = ''; 
-  updateTimer(12.5);
+  updateTimer(16);
 })
 }
 
@@ -215,7 +213,7 @@ for(var i=0; i<btn2.length; i++){
 for(var i=0; i<btn4.length; i++){
     btn4[i].addEventListener("click", function(){ 
   Q5.className = ''; 
-  updateTimer(12.5);
+  updateTimer(16);
 })
 }
  
@@ -223,6 +221,7 @@ for(var i=0; i<btn5.length; i++){
     btn5[i].addEventListener("click", function(){ 
   Q6.className = ''; 
   countdown('countdown3', 120,'Q7');
+  updateTimer(4);
 })
 } 
   
@@ -254,7 +253,7 @@ function countdown(element, seconds, next_class) {
         }
         if(seconds == (5)*100) {
           nex.className = '';
-          updateTimer(12.5);
+          updateTimer(16);
         }
         el.innerHTML = `
 <div class="base-timer";>
