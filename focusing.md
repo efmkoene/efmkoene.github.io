@@ -91,12 +91,12 @@ My understanding of the method is that you create a space in your body to meet y
 
 <script>
 var btnYes = document.getElementById('option1');
-var optYes = document.getElementById('Q');
+var Q2 = document.getElementById('Q2');
 var btnNo  = document.getElementById('option2');
 var optNo  = document.getElementById('optradio');
 
 btnYes.addEventListener('click', function(){
-  Q.className = ''; 
+  Q2.className = ''; 
 });
   
   
