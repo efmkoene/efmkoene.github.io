@@ -6,6 +6,11 @@ subtitle: ""
 
 <style type="text/css" rel="stylesheet">  
 .hidden{ display: none; }
+  
+.ui-progressbar-value {
+  transition: width 0.5s;
+  -webkit-transition: width 0.5s;
+}
 
 .buttoned {
   background-color: #4CAF50; /* Green */
@@ -142,22 +147,23 @@ My understanding of the method is that you create a space in your body to meet y
   <h4> 8. The end! Thank your body for speaking with you. Remember, you don't have to agree with your body, you just have to acknowledge what it said to you.</h4>
 </div>
 
+
+OK? 
+
 <div id="progressbar"></div>
 
-
+Ok
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 $('button').click(function() {
     $(this).css('background-color', 'black');
 });
   
-$( function() {
-    $( "#progressbar" ).progressbar({
-      value: 10
-    });
-  } );
+$( function() {$( "#progressbar" ).progressbar({value: 10});});
 
 var Q0 = document.getElementById('Q0');
 var Q1 = document.getElementById('Q1');
