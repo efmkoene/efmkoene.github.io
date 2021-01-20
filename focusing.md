@@ -11,7 +11,7 @@ subtitle: ""
   background-color: #4CAF50; /* Green */
   border: 1px solid green;
   color: white;
-  padding: 15px 32px;
+  padding: 7px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -81,7 +81,7 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V31.
+V32.
 
 <h2> Zoom in on how you're feeling </h2>
 <!--Timer portion-->
@@ -92,6 +92,7 @@ V31.
 </div>
 
 <!--Question one-->
+<br clear="all" />
 <div id="Q1" class="hidden">
   <h4> Do you notice a weight to your body? Or a springiness? </h4>
   <button class="option1 buttoned">Feeling light</button> 
@@ -100,14 +101,16 @@ V31.
 </div>
 
 <!--Question two-->
+<br clear="all" />
 <div id="Q2" class="hidden">
-  <h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...)</h4>
+  <h4> Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...). Where is your body trying to get to speak to you?</h4>
   <button class="option2 buttoned">My chest</button> 
   <button class="option2 buttoned">My belly</button>
   <button class="option2 buttoned">Elsewhere</button>
 </div>
 
 <!--Question three, with new timer...-->
+<br clear="all" />
 <div id="Q3" class="hidden">
   <h4> Welcome the feeling, say "I am sensing ... in me, and I'm saying hello to that feeling"</h4>
   <div id='countdown2'></div>
