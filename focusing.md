@@ -111,8 +111,8 @@ My understanding of the method is that you create a space in your body to meet y
 </div>
 
 <!--Question one-->
-<br clear="all" />
 <div id="Q1" class="hidden">
+<br clear="all" />
   <h4> 2. Do you notice a weight to your body? Or a springiness? </h4>
   <button class="option1 buttoned">Feeling light</button> 
   <button class="option1 buttoned">Intermediate</button>
@@ -120,8 +120,8 @@ My understanding of the method is that you create a space in your body to meet y
 </div>
 
 <!--Question two-->
-<br clear="all" />
 <div id="Q2" class="hidden">
+<br clear="all" />
   <h4> 3. Where in the body do I sense something taking my attention (e.g., tightness, pressure, a knocking feeling, ...). Where is your body trying to get to speak to you?</h4>
   <button class="option2 buttoned">My chest</button> 
   <button class="option2 buttoned">My belly</button>
@@ -129,37 +129,37 @@ My understanding of the method is that you create a space in your body to meet y
 </div>
 
 <!--Question three; just a timer...-->
-<br clear="all" />
 <div id="Q3" class="hidden">
+<br clear="all" />
   <h4> 4. Try to get a handle on the unclear bodily sensation. Is it a pressure, something moving, something hot/cold, ... . Something vague suffices for now. Try to sense it wholly. Tell yourself "I'm sensing ..., and I am saying hello to that."</h4>
     <div id='countdown2'></div>
 </div>
 
 <!--Question four...-->
-<br clear="all" />
 <div id="Q4" class="hidden">
+<br clear="all" />
   <h4> 5. Get a more sense of the emotional quality of the feeling. You do this by testing with yourself. For example, "I'm sensing pain", or "I'm sensing frustration". See what words bubble up. Try to capture the whole feeling in a single qualitative word. Your body will respond if the word resonates with its feeling.</h4>
   <p><img src="https://gritx.org/skills-studio/uploads/exerciseimage/emotion_wheel8.jpg"></p>
   <button class="option4 buttoned">Done.</button>
 </div>
 
 <!--Question five...-->
-<br clear="all" />
 <div id="Q5" class="hidden">
+<br clear="all" />
   <h4> 6. Now create a relationship with this felt quality. Say, you'd meet this person in a bar, what kind of bar would it be? Would you be having intense conversations, or would you both sit quietly by? Would you be drinking or eating? Again, use what intuition bubbles up. Check by seeing what resonates. Take a moment again, to imagine this.</h4>
   <button class="option5 buttoned">Done.</button>
 </div>
 
 <!--Question six...-->
-<br clear="all" />
 <div id="Q6" class="hidden">
+<br clear="all" />
   <h4> 7. Ask yourself, "What would it feel like if it was all OK?". "What is in the way of that?". See what bubbles up.</h4>
   <div id='countdown3'></div>
 </div>
 
 <!--End...-->
-<br clear="all" />
 <div id="Q7" class="hidden">
+<br clear="all" />
   <h4> 8. The end! Thank your body for speaking with you. Remember, you don't have to agree with your body, you just have to acknowledge what it said to you.</h4>
 </div>
 
