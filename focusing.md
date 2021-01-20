@@ -68,10 +68,11 @@ I came across *Inner Relationship Focusing* a year ago. I thought it was just we
 
 My understanding of the method is that you create a space in your body to meet yourself. I know it sounds stupid. But hear me out. You create a space to get a sense on how you're feeling, deep down. 
 
-V7.
+V8.
 
 <h2> Zoom in on how you're feeling </h2>
 
+<input type = "button" onclick = "startFocusing()" value = "Start"> 
 <!--Timer portion-->
 <div id="Q0" class="">
 <h4> Take 30 seconds to just get a sense of yourself. </h4>
@@ -113,18 +114,25 @@ var optNo  = document.getElementById('optradio');
 
 btn1.addEventListener('click', function(){
   Q0.className = 'hidden';
+  Q1.className = 'hidden';
   Q2.className = ''; 
 });
 
 btn2.addEventListener('click', function(){
-  Q1.className = 'hidden';
+  Q2.className = 'hidden';
   Q3.className = ''; 
   startTimer();
 });
   
   
-  
-  
+function startFocusing() {   
+  Q1.className = '';
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+  let timerInterval = null;
+  let remainingPathColor = COLOR_CODES.info.color;
+  startTimer();  
+         }  
   
   // Credit: Mateusz Rybczonec
 
@@ -219,7 +227,6 @@ function setRemainingPathColor(timeLeft) {
     document
       .getElementById("base-timer-path-remaining")
       .classList.add(alert.color);
-    Q1.className = '';
   } else if (timeLeft <= warning.threshold) {
     document
       .getElementById("base-timer-path-remaining")
