@@ -145,7 +145,7 @@ My understanding of the method is that you create a space in your body to meet y
 <!--Question five...-->
 <div id="Q5" class="hidden">
 <br clear="all" />
-  <h4> 6. Now create a relationship with this felt quality. Say, you'd meet this person in a bar, what kind of bar would it be? Would you be having intense conversations, or would you both sit quietly by? Would you be drinking or eating? Again, use what intuition bubbles up. Check by seeing what resonates. Take a moment again, to imagine this.</h4>
+  <h4> 6. Now create a relationship with this felt quality. Say, you'd met this quality in a bar, what kind of bar would it be? Would you be having intense conversations, or would you both sit quietly by? Would you be drinking or eating? What would the quality be wearing? Again, use what intuition bubbles up. Check by seeing what resonates. Take a moment again, to imagine this.</h4>
   <button class="option5 buttoned">Done.</button>
 </div>
 
