@@ -157,8 +157,8 @@ My understanding of the method is that you create a space in your body to meet y
 </div>
 
 <!--End...-->
-<div id="Q7" class="hidden">
 <br clear="all" />
+<div id="Q7" class="hidden">
   <h4> 8. The end! Thank your body for speaking with you. Remember, you don't have to agree with your body, you just have to acknowledge what it said to you.</h4>
 </div>
 
