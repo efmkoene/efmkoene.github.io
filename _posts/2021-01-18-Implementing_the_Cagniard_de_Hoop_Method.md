@@ -98,3 +98,167 @@ close()
 The resulting figure is as shown below, which is the correct solution (the horizontal axis of the plot corresponds to the slowness along the "X" axis; the vertical axis corresponds to the slowness along the "Z" axis.
 
 ![slownesses](/assets/img/slowness_pyplot.png)
+
+#### Pairwise minimum
+When given the two inputs `s=[1 5]` and `l=[4.4 0.8]`, I want to be able to say that `s[1]` is closest to `l[2]` and that `s[2]` is closest to `l[1]` -- simultaneously. This is what is accomplished by the following function.
+
+```
+function pairwisemin(s3,l3)
+    mins,idx = findmin(abs.( repeat( l3 , 1, 2  ) - repeat(transpose(s3),2,1) ) , dims=1 );
+    idx = [idx[1][1] idx[2][1]];
+    # --- If (3) unique values appear, return to the program
+    # if sum(idx)==3
+        return idx;
+    # end
+    # # --- If (<3) unique values appear, establish which value is missing     >> This branch is never hit...?
+    # idx2 = sortperm(vec(mins));
+    # expectedvals = collect(1:2);
+    # deleteat!(expectedvals, sort(unique(idx)));
+    # idx[ idx2[ (2-length(expectedvals)+1):end ] ] = expectedvals[end:-1:1];
+    # println("Oops, Im here")
+    # println(s3);
+    # println(l3);
+    # pause()
+    # return idx;
+end
+```
+
+#### Two further assorted programs
+I don't want to explain all parts, so just take the following.
+
+```
+function ds3ds1(C,D0,D0I,s1,N)
+    # Partitions of the stiffness matrix
+    DD = @views (C[2,3]^2-C[2,2]*C[3,3]);
+    CzziCzx = @views[(C[1,3]*C[2,2]-C[1,2]*C[2,3])/DD 1;
+                     (C[1,3]*C[2,3]-C[1,2]*C[3,3])/DD 0];
+    CxzCzzi = @views [(C[1,3]*C[2,2]-C[1,2]*C[2,3])/DD (C[1,3]*C[2,3]-C[1,2]*C[3,3])/DD;
+                       1                              0];
+
+    CxxmCxzCzziCzx = @views [(C[1,3]^2*C[2,2]-2*C[1,2]*C[1,3]*C[2,3]+C[1,1]*C[2,3]^2+C[1,2]^2*C[3,3]-C[1,1]*C[2,2]*C[3,3])/DD 0;
+                              0                    0];
+    # --- The differentiated system matrix A
+    dAds = [-CzziCzx                     zeros(2,2) ;
+            -2*s1*CxxmCxzCzziCzx    -CxzCzzi];
+    # ---
+    ds3 = transpose(D0I[N,:]) * dAds * D0[:,N];
+end
+```
+
+And the following, which takes up the most computational time due to its need for an eigenvector/eigenvalue routine
+
+```
+function AssignEigenvaluesEigenvectors(C0,s1,rho0,f,h,s30e,s30)
+    A0,F0   = AFmatrix(C0,s1,rho0,f,h);
+    L0,D0   = eigen(A0);
+    posneg0 = sign.(imag( L0./s1 ));
+    negidx  = @views pairwisemin( s30e[1:2], L0[ posneg0.==+1 ] );
+    posidx  = @views pairwisemin( s30e[3:4], L0[ posneg0.==-1 ] );
+    posneg0[posneg0.==-1]=2 .+ vec(posidx);
+    posneg0[posneg0.==+1]=     vec(negidx);
+    posneg0I= round.(Int, posneg0);
+    s30[ posneg0I] = L0;
+    D0[:,posneg0I] = D0;
+    return s30,D0,F0
+end
+```
+
+#### Finally, the program
+A call to `CdH()` runs the entire program.
+
+```
+using Plots
+function CdH()
+
+theta = 0;
+M = BondMatrix2D(22.5)
+C0 = [64 18 -4;
+     18 46 -2;
+     -4 -2 7 ]*3.1e8;
+C0 = M * C0 * M';
+rho0 = 2000;
+C1 = 4.5*C0;
+rho1 = 1.5*rho0;
+# -------------------- Setup source details
+f = [1;0]
+h = [0 0; 0 0];
+# -------------------- Setup receiver details
+h0 = 200;
+h1 = -300;
+x  = 10;
+N0 =  [3 3 4 4]; # P/ P/ S/ S/
+N1 =  [1 2 1 2]; # P\ S\ P\ S\
+# -------------------- Setup temporal vector
+ts = collect(0:2e-5:0.8);
+solution1 = ts.*0;
+# -------------------- Setup initial iteration details
+A0,F0 = AFmatrix(C0,0,rho0,f,h)
+L0,D0 = eigen(A0);
+L0init  = [-sort( -L0[ L0.<0 ] ); sort( L0[ L0.>0 ])]; # >> Sort as [-a1, -a2, a1, a2], with a1<a2.
+
+A1,F1 = AFmatrix(C1,0,rho1,f,h)
+L1,D1 = eigen(A1);
+L1init  = [-sort( -L1[ L1.<0 ] ); sort( L1[ L1.>0 ])]; # >> Sort as [-a1, -a2, a1, a2], with a1<a2.
+
+
+# --- Julia-specific initializing of variables, so scope is kept
+D0I = inv(D0); # Create for sake of Julia
+# inve = transpose([D0[3:4,:] ; D0[1:2,:]]);  # LinAlgebra version is faster than algebraic inverse
+# facs = diag(inve * D0);
+# D0I  = diagm(0=> 1 ./ facs) * inve;
+Fp = 1+im;
+
+# -------------------- Start iterating
+for N = 1:4
+    println(N)
+    s1new = 0;
+    s1 = 0;
+    s30c = complex(L0init);
+    s31c = complex(L1init);
+    s30 = complex(L0init);
+    s31 = complex(L1init);
+    for ii=1:length(ts)
+        t=ts[ii];
+        if t< ( L0init[N0[N]]*h0+L0init[N1[N]]*h1 )
+            continue;
+        end
+        s30h = complex(s30c);
+        s31h = complex(s31c);
+        s30c = complex(s30);
+        s31c = complex(s31);
+        s30e = complex(2*s30c - s30h);    # Expected s3 (eigen)values (medium 1)
+        s31e = complex(2*s31c - s31h);    # Expected s3 (eigen)values (medium 2)
+        jj=0;
+        while (abs(s1*x+s30[N0[N]]*h0+s30[N1[N]]*h1-t )>1e-10 || jj==0) && (jj<100)
+            s1      = real(s1new) + im*(abs(imag(s1new))+eps()); # Keep Im[s1]>=0
+            # --- Assign eigenvalues and eigenvectors to medium 1
+            s30,D0,F0 = AssignEigenvaluesEigenvectors(C0,s1,rho0,f,h,s30e,s30e);
+            s31,D1,F1 = AssignEigenvaluesEigenvectors(C1,s1,rho1,f,h,s31e,s31e);
+            D0I = inv(D0); # Faster than doing it algebraically
+            # --- Newton-Raphson iteration
+            s1 = s1 - im*eps(); # Correct for minor imaginary part
+            Fp = ( x + ds3ds1(C0,D0,D0I,s1,N0[N]) * h0 + ds3ds1(C0,D0,D0I,s1,N1[N]) * h1 );
+            s1new = s1 - ( s1*x + s30[N0[N]]*h0 + s30[N1[N]]*h1-t ) ./ Fp;
+            jj=jj+1;
+        end
+        # --- Scattering matrix
+        D1I = inv(D1);
+        Q   = D1I * D0;
+        R   = @views Q[1:2,1:2] \ Q[1:2,3:4];
+        BJN = D0[:,N1[N]] .* ( transpose(D0I[N0[N],:]) * F0 ) * R[N1[N],N0[N]-2] ;
+        dsdt = 1/Fp;
+
+        sol = 1/pi * imag( BJN * dsdt );
+        solution1[ii] = solution1[ii] + cos(theta)*sol[1] - sin(theta)*sol[2];
+        # if (ii%50==0)
+        #     # println(ii)
+        #     p = plot(ts,solution1);
+        #     display(p);
+        # end
+    end
+    p = plot(ts,solution1);
+    display(p);
+end
+
+end
+```
