@@ -1,0 +1,44 @@
+---
+layout: post
+title: "News as a calibration of outrage"
+subtitle: ""
+tags: [news,politics]
+---
+
+I have a lot of different conceptualizations about news, what it is, and what it should do. Some of those views are compatible, but they aren't always. It probably means that "news" is a multi-faceted concept, serving different needs for different people. Still, I think it's useful for me to write down my conceptualizations in a bit more clarity.
+
+#### Calibration as a continuous routine positioning itself within extremes
+
+When I was preparing food for 30 kids at a scouting camp, 5 years ago, I had to cut a few kilograms of bell peppers. My strategy: cut them in half, cut off the green stem and the white bit with which the stem connects to the inside of the pepper, and chop up the rest. That is just one of the many available techniques, but it's the one I knew.  
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/MW2hN3IwIPM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+What I didn't know at the time was that one is supposed to fully de-seed a pepper, i.e., throw away all the seeds. It was only because my cooking mates told me ("it's what you're supposed to do"), that I now always de-seed my peppers when cooking. The seeds [are not toxic and actually contains valuable nutrients][https://www.hortidaily.com/article/6017576/don-t-throw-away-these-bell-pepper-seeds/], but they just leave an unwanted texture in many dishes.
+
+You figure out what is normal in life only through continuous exposure to a somewhat fixed set of ideas, behavior, and interactions. If not through other people's guidance or example, it's through culture (TV, movies, books, etcetera). Essentially, our brain is carrying out a constant calibration routine; *determining true value spaces in a gradated world*. That is not to say that our behavior is that easily programmed -- for example, [there is no link between playing violent video games and violent behavior][https://www.apa.org/news/press/releases/2020/03/violent-video-games-behavior]. Clearly, humans are capable of steering their calibration routines in safe ways.
+
+When I was young, I spent so many hours of my life playing [Star Wars: Rogue Squadron](https://en.wikipedia.org/wiki/Star_Wars:_Rogue_Squadron) using a joystick. Before every game, I had to do a calibration of the joystick. It told me to push the joystick as far in any direction as I could. It would then know what deviation on the joystick corresponded to what intended move. I think that most calibration routines in your brain work in a similar way. Only when you are aware of the normal extremes, you can properly see what a deviation from normal amounts to. For example, I was under the impression that I earn less than the average Swiss person, on my PhD salary combined with that of my girlfriend's. When filling out a test on [https://www.compareyourincome.org][https://www.compareyourincome.org], I assumed that 70% of Swiss people earned more than we did; it turned out that we earn more than 70% of Swiss people instead! It appears that I'm not well calibrated when it comes to the topic of incomes, but it's because most of my friends and social contacts are earning more than we do, so it seems sensible to assume we're not that rich. It shows that our sense of "normal" can be quite out of touch with reality. Another famous example that went around the world many times the past few years, is that [the world is statistically speaking better in essentially every possible way, yet so many people feel everything is getting worse every year][https://www.forbes.com/sites/robasghar/2020/06/20/things-keep-getting-better-heres-why-your-brain-thinks-theyre-getting-worse/].
+
+#### A calibration of relevancy
+I would pose that news plays a very similar role in society and in individual lives. News just reporting just facts doesn't get you very far, without a way to make sense of them. For example, [news that poverty rates have risen from 2020 to 2021 (the sharpest rise in more than 50 years) to the levels of 2017/2018](https://www.bloomberg.com/news/articles/2021-01-25/u-s-suffers-sharpest-rise-in-poverty-rate-in-more-than-50-years) is shocking when taken on its own. When you realize that these numbers come in the context of the COVID-19 pandemic that stalled the economy for months on end, we may also realize that these numbers could have been way worse. Taken in context, there is a slight silver lining. Facts are nothing without context, and do not help you to make sense of the world. It is no different in science. A fact on its own (e.g., "my cup of tea is hot now, and is cold an hour later, and it is a cold Wednesday today and I make these measurements in the evening while I'm sitting on the couch") is nothing without a theory (e.g., the theory of how objects change in temperature over time). Only with the theory (whether written down in a mathematical formula, or simply understood intuitively by anyone!), we can figure out what factors are relevant (e.g., the temperature of the cup and the room) and what factors are irrelevant (e.g., where I'm sitting). A context, a theory, a story, can help to calibrate between relevancy and irrelevancy.
+
+#### News as a calibration of normalcy and outrage
+News sits in a peculiar place. It is primarily written when something extraordinarily happens. The news thus talks pretty much exclusively about *abnormal* events. But our usual calibration tools (exposure to ideas, behavior, culture, theories, stories) have the explicit goal of describing out what's *normal*. Hence, it is pretty hard to appropriately assess the value of any given news article on our own -- just *how* abnormal is it. Consequently, one of the main tasks of news sources is to tell you exactly that. Can I shrug off this news? Or should I get emotionally involved, because there is some real injustice here?
+
+If you read the news without getting emotionally involved sometimes, it is my suspicion that you would be just as well off *not* reading the news. It then wouldn't really provide any *value*, no understanding of the world. Its only value then is to provide entertainment. Fair game, of course, and something that essentially all news sources try to accomodate these days too. I, too, love the strange and entertaining news from all over the world.
+
+So, news sources have taken it upon themselves to explain to you what news requires your emotional investment. Not necessarily out of an activist desire to rile you up, but to help you make sense of the news itself. I think that this is a valuable and good calibration service that they provide. [Ideally, it's carried out through extensive research, getting appropriate data, expert opinions, analyzing trends, contexts, underlying causes and patterns, and the very underlying stories and systems of the events](https://www.systems.journalismdesign.com).
+
+Imagine a news source that provides no context at all, where the news never makes you feel any outrage. Your only conclusion would be that the news just deals with normal things. You would be forgiven for finding this news source boring; we don't need to be told what's normal on a daily basis! On the contrary, imagine news that is wrongly analyzed and/or put into the wrong context. For example, the economy takes a bad turn, and person X, Y or Z is blamed for it. This happens in nearly all news I've ever seen explained. But, clearly, the economy is too complicated and too multi-faceted to assign responsbility to a single person! Similarly, I often see opinion articles that contain no research at all, and just [function to show off how "virtuous" the writer is](https://en.wikipedia.org/wiki/Virtue_signalling), rather than providing any help at all to understand the world. The problem? (1) Outrage sells a lot better than normalcy (and is a lot easier to include even in respected newspapers, compared to the old "sex sells" method of selling your product). If a news agency makes me feel outraged, I feel like they serviced me -- they helped me calibrate my sense of the world. Again, only through knowing the extremes can we find out what's normal. The problem? (2) It is in the interest of newspapers to keep you outraged, rather than informed. The problem? (3) We can get outraged about things that are not worth getting mad about, while learning nothing useful about the world.
+
+News sources that objectively try harder to provide context to me will, naturally, be more boring news sources than the sensational ones. I read news to learn something about the world, but end up misinformed due to bad news sources pushing my buttons better than the good ones. I don't see a fix for this problem yet, unfortunately. But then again, I don't think anyone does currently.
+
+
+
+
+
+
+
+
+
+
+
+
