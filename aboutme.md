@@ -5,7 +5,7 @@ cover-img: /assets/img/photo_erik_small.jpg
 subtitle: ""
 ---
 
-My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV in PDF format](/assets/docs/CV_English-2.pdf), or read on for more information.
+My name is Erik Koene, I am a PhD student at the ETH Zürich. Please find [my CV in PDF format](/assets/docs/CV_English-2.pdf), or read on for more information.
 
 ## Education
 
@@ -39,7 +39,7 @@ My name is Erik Koene, I am  PhD student at the ETH Zürich. Please find [my CV 
 See also my [Google Scholar profile](https://scholar.google.ch/citations?user=kO2lLJIAAAAJ&hl=en).
 
 * **Koene, E. F. M.**, Robertsson, J. O. A., & Andersson, F. (2021). *Anisotropic elastic finite-difference modeling of sources and receivers on Lebedev grids*. Geophysics (Just Accepted). [https://doi.org/10.1190/geo2020-0522.1](https://doi.org/10.1190/geo2020-0522.1).
-* Jaimes-Osorio, L. E., Malcolm, A., Zheglova, P., **Koene, E. F. M.**, & Rasmus, T. H. (2021). *Building a fast elastic local solver*. Geophysics (Just Accepted). [https://doi.org/10.1190/geo2020-0468.1](https://doi.org/10.1190/geo2020-0468.1).
+* Jaimes-Osorio, L. E., Malcolm, A., Zheglova, P., **Koene, E. F. M.**, & Thomsen, H. R. (2021). *Reduced memory implementation of a local elastic finite-difference solver*. Geophysics (Just Accepted). [https://doi.org/10.1190/geo2020-0468.1](https://doi.org/10.1190/geo2020-0468.1).
 * **Koene, E. F. M.**, Robertsson, J. O. A., & Andersson, F. (2020). *A consistent implementation of point-sources on finite-difference grids*. Geophysical Journal International, 223, 1144-1161. [https://doi.org/10.1093/gji/ggaa383](https://doi.org/10.1093/gji/ggaa383).
 * **Koene, E. F. M.** & Robertsson, J. O. A. (2020). *Optimal finite-difference operators for arbitrarily sampled data*. Geophysics, 85, F39-F51. [http://doi.org/10.1190/geo2019-0081.1](http://doi.org/10.1190/geo2019-0081.1).
 * Rijsdijk, K., Buijs, S., Quartau, R., Aguilee, R., Norder, S., Avila, S., Nunes, J., Elias, R., Melo, C., Stocchi, P., **Koene, E. F. M.**, Seijmonsbergen, A., de Boer, W., & Borges, P. (2020). *Recent geospatial dynamics of Terceira (Azores, Portugal) and the theoretical implications for the biogeography of active volcanic islands*. Frontiers of Biogeography. [https://doi.org/10.21425/F5FBG45003](https://doi.org/10.21425/F5FBG45003).
