@@ -68,8 +68,14 @@ end
 The theory behind FWI is relatively complicated. Typically, the introductions take you pretty deep into the realms of Lagrangians, operator theory, Born approximations, and all that. I think that for a first introduction, this complexity is not actually needed, and we can get away with a LOT less mathematics. This is what I intend to do here in this blog post: de-mystify FWI for a first-time user.
 
 ### The adjoint trick
-A large part of the efficiency of FWI is based on the following linear algebra 'trick': $\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf{y}A)\mathbf{x}=(A^T\mathbf{y})^T\mathbf{x}\equiv \langle A^T\mathbf{y},\mathbf{x} \rangle$.
+A large part of the efficiency of FWI is based on the following linear algebra 'trick', for vectors $\mathbf{y}$ and $\mathbf{x}$, and matrix $A$. We use a standard understanding of the inner product to find:
 
+$$\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf{y}A)\mathbf{x}=(A^T\mathbf{y})^T\mathbf{x}\equiv \langle A^T\mathbf{y},\mathbf{x} \rangle.$$
+
+The matrix $A^T$ is the 'Hermitian adjoint', sometimes denoted with $A^\dagger$. Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it.
+
+### The cost function and discretized pressure field
+Now, in FWI we want to minimize the difference between the observed pressure data at some receiver stations, $\mathbf{p}^\text{obs}(x_r,t)$ and our modeled version of that data, $\mathbf{p}^\text{synthetic}(x_r,t)$.
 
 
 
