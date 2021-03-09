@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "Full waveform inversion and adjoint wavefields"
+title: "Time-reverse imaging without the mystery"
 subtitle: ""
-tags: [FWI,geophysics,adjoint methods]
+tags: [full waveform inversion, FWI, reverse time migration, RTM,geophysics,algorithms]
 ---
+
+There are two standard modern imaging methods in (exploration) seismology: reverse-time migration (RTM) and full-waveform inversion (FWI). Both of these methods rest on the need for doing reverse-time wave simulations. The methods are often introduced with large amounts of mathematics, and complicated concepts such as "adjoints" and other such mathematical details. In my view, these complications are unnecessary for a first introduction to them. In this blog post, I will introduce RTM and FWI without any appeal to complicated math beyond a simple course in linear algebra.
 
 # Reverse-time imaging
 Being an exploration geophysicist by training, I am quite familiar with the ideas underlying reverse-time migration. It's a really rather simple method. 
@@ -67,12 +69,12 @@ end
 ## The theory of full waveform inversion
 The theory behind FWI is relatively complicated. Typically, the introductions take you pretty deep into the realms of Lagrangians, operator theory, Born approximations, and all that. I think that for a first introduction, this complexity is not actually needed, and we can get away with a LOT less mathematics. This is what I intend to do here in this blog post: de-mystify FWI for a first-time user.
 
-### The adjoint trick
+### A linear algebra trick
 A large part of the efficiency of FWI is based on the following linear algebra 'trick', for vectors $\mathbf{y}$ and $\mathbf{x}$, and matrix $A$. We use a standard understanding of the inner product to find:
 
 $$\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf{y}A)\mathbf{x}=(A^T\mathbf{y})^T\mathbf{x}\equiv \langle A^T\mathbf{y},\mathbf{x} \rangle.$$
 
-The matrix $A^T$ is the 'Hermitian adjoint', sometimes denoted with $A^\dagger$. Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it.
+Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it.
 
 ### The cost function and discretized pressure field
 Now, in FWI we want to minimize the difference between the observed pressure data at some receiver stations, $\mathbf{p}^\text{obs}(x_r)$ and our modeled version of that data, $\mathbf{p}^\text{synthetic}(x_r)$. The cost-function that we may write down for this problem is $ J = \frac{1}{2} \|\| \mathbf{p}^\text{synthetic}(x_r) - \mathbf{p}^\text{obs}(x_r) \|\|_2^2 $, which is simply the ($L^2$-normed) difference between the synthetic and observed data. With some slight abuse of notation, we will consider it in particular as
@@ -111,7 +113,7 @@ Luckily, we can compute $\text{d}\mathbf{p}/\mathbf{d} v$ in another way, from a
 
 $$ \frac{\text{d}\mathbf{p}}{\text{d}v} = \frac{\partial \mathbf{F}}{\partial \mathbf{p}}\frac{\text{d}\mathbf{p}}{\text{d}v} + \frac{\partial \mathbf{F}}{\partial v} \Longleftrightarrow \frac{\text{d}\mathbf{p}}{\text{d}v} = \left( \mathbf{I} - \frac{\partial \mathbf{F}}{\partial \mathbf{p}} \right)^{-1} \frac{\partial \mathbf{F}}{\partial v}.  $$
 
-Okay, we can plug that into the inner product, and use the adjoint rule!
+Okay, we can plug that into the inner product, and use the linear algebra trick!
 
 $$ \frac{\text{d}J}{\text{d}v} = \left\langle (\mathbf{p} - \mathbf{p}^\text{obs})\delta(x-x_r), \left( \mathbf{I} - \frac{\partial \mathbf{F}}{\partial \mathbf{p}} \right) \frac{\partial \mathbf{F}}{\partial v} \right\rangle = \left\langle \left( \mathbf{I} - \frac{\partial \mathbf{F}}{\partial \mathbf{p}} \right)^{-T}(\mathbf{p} - \mathbf{p}^\text{obs})\delta(x-x_r), \frac{\partial \mathbf{F}}{\partial v} \right\rangle .$$
 
