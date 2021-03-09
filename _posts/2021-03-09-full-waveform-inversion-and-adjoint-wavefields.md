@@ -151,7 +151,7 @@ Oh, and by the way, the theory works equally well for a velocity model that is n
 ## An example of FWI
 So, the recipe we've found is that to compute
 $$ \frac{\text{d}J}{\text{d}v} = \left\langle r_[1:N], \Delta t^2\nabla^2 p_{[0:N-1]} \right\rangle ,$$
-we require a scaled version of the pressure wavefield $\mathbf{p}$, and we require $\mathvf{r}$, which is the solution to the wave equation with as its source the misfit between the observed and predicted data. How does this relate to reverse time migration? Well, it's very similar. We (1) compute a forward wavefield, in the current guess of the velocity model (not necessarily a smooth velocity model!), (2) we time-reverse the wavefield simulation of the previous step, just as with RTM, and (3) we compute a time-reversed wavefield with as its source the misfit between the obvserved and modeled data. Then we multiply the snapshots and sum all those results, just as with RTM. Indeed, we can show wavefields (3) as
+we require a scaled version of the pressure wavefield $\mathbf{p}$, and we require $\mathvf{r}$, which is the solution to the wave equation with as its source the misfit between the observed and predicted data. How does this relate to reverse time migration? Well, it's very similar. We (1) compute a forward wavefield, in the current guess of the velocity model (not necessarily a smooth velocity model!), (2) we time-reverse the wavefield simulation of the previous step, just as with RTM, and (3) we compute a time-reversed wavefield with as its source the misfit between the obvserved and modeled data. Then we multiply the snapshots and sum all those results, just as with RTM. Indeed, we can show wavefields (2) as
 
 ![FWI_reverse_source](/assets/img/FWI_reverse_source.gif)
 
