@@ -75,9 +75,9 @@ $$\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf
 The matrix $A^T$ is the 'Hermitian adjoint', sometimes denoted with $A^\dagger$. Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it.
 
 ### The cost function and discretized pressure field
-Now, in FWI we want to minimize the difference between the observed pressure data at some receiver stations, $\mathbf{p}^\text{obs}(x_r,t)$ and our modeled version of that data, $\mathbf{p}^\text{synthetic}(x_r,t)$.
+Now, in FWI we want to minimize the difference between the observed pressure data at some receiver stations, $\mathbf{p}^\text{obs}(x_r)$ and our modeled version of that data, $\mathbf{p}^\text{synthetic}(x_r)$. The cost-function that we may write down for this problem is $ J = \frac{1}{2} \|\| \mathbf{p}^\text{synthetic}(x_r) - \mathbf{p}^\text{obs}(x_r) \|\|_2^2 $, which is simply the ($L^2$-normed) difference between the synthetic and observed data. With some slight abuse of notation, we will consider it in particular as
 
-
+$$ J = \frac{1}{2} \|\| (\mathbf{p}^\text{synthetic}(x) - \mathbf{p}^\text{obs}(x))\delta(x-x_r) \|\|_2^2, $$
 
 
 
