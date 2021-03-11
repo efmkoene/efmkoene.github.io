@@ -7,7 +7,7 @@ tags: [full waveform inversion, FWI, reverse time migration, RTM,geophysics,algo
 
 There are two standard modern imaging methods in (exploration) seismology: reverse-time migration (RTM) and full-waveform inversion (FWI). Both of these methods rest on the need for doing reverse-time wave simulations. The methods are often introduced with large amounts of mathematics, and complicated concepts such as "adjoints" and other such mathematical details. In my view, these complications are unnecessary for a first introduction to these imaging methods. In this blog post, I want to introduce RTM and FWI without any appeal to complicated math beyond a simple course in linear algebra and some vague knowledge of (partial) derivatives.
 
-# Reverse-time imaging
+# Reverse-time migration
 Being an exploration geophysicist by training, I am quite familiar with the ideas underlying reverse-time migration. It's a really rather simple method. 
 
 ## A simple modeling example
