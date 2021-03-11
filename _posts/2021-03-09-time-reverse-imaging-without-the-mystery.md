@@ -46,7 +46,7 @@ We require one additional step. Remember that I said that only where wavefields 
 ![reversemarmousi](/assets/img/reversemarmousi.gif)
 
 ## Creating the reverse time migrated image
-Now, we have access to the source and receiver wavefield in reverse time. All we have to do, is to multiply each snapshot. In a language like MATLAB, we have a for-loop running from `nt` back to time `1`, and we simply compute `image = image + source .* reflected`, assuming `source` and `reflected` correspond to the current snapshots of the wavefield. If we do that, we end up with a simple reverse time migrated image!
+Now, we have access to the source and receiver wavefield in reverse time. All we have to do, is to multiply each snapshot. In a language like MATLAB, we have a for-loop running from `nt` back to time `1`, and we simply compute `image = image + source .* reflected`, assuming `source` and `reflected` correspond to the current snapshots of the two simulated wavefields. If we do that, we end up with a simple reverse time migrated image!
 
 ![RTMimage](/assets/img/RTMimage.gif)
 
@@ -72,7 +72,7 @@ The theory behind FWI is relatively complicated. Typically, the introductions ta
 ### A linear algebra trick
 A large part of the efficiency of FWI is based on the following linear algebra 'trick', for vectors $\mathbf{y}$ and $\mathbf{x}$, and matrix $A$. We use a standard understanding of the inner product to find:
 
-$$\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf{y}A)\mathbf{x}=(A^T\mathbf{y})^T\mathbf{x}\equiv \langle A^T\mathbf{y},\mathbf{x} \rangle.$$
+$$\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf{y}^TA)\mathbf{x}=(A^T\mathbf{y})^T\mathbf{x}\equiv \langle A^T\mathbf{y},\mathbf{x} \rangle.$$
 
 Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it.
 
