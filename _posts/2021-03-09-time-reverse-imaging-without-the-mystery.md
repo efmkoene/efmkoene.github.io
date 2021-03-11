@@ -74,7 +74,7 @@ A large part of the efficiency of FWI is based on the following linear algebra '
 
 $$\langle\mathbf{y},A\mathbf{x}\rangle \equiv \mathbf{y}^T(A\mathbf{x})=(\mathbf{y}^TA)\mathbf{x}=(A^T\mathbf{y})^T\mathbf{x}\equiv \langle A^T\mathbf{y},\mathbf{x} \rangle.$$
 
-Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it.
+Notice, essentially, how we could move operator $A$ 'through' the inner product by taking the transpose of it. It has some pretty fundamental implications if you think about spaces and efficiency and all that, see the page on the [Hermitian adjoint on Wikipedia](https://en.wikipedia.org/wiki/Hermitian_adjoint). However, for our purposes, all that's relevant is that this is an obvious linear algebra operation.
 
 ### The cost function and discretized pressure field
 Now, in FWI we want to minimize the difference between the observed pressure data at some receiver stations, $\mathbf{p}^\text{obs}(x_r)$ and our modeled version of that data, $\mathbf{p}^\text{synthetic}(x_r)$. The cost-function that we may write down for this problem is $ J = \frac{1}{2} \|\| \mathbf{p}^\text{synthetic}(x_r) - \mathbf{p}^\text{obs}(x_r) \|\|_2^2 $, which is simply the ($L^2$-normed) difference between the synthetic and observed data. With some slight abuse of notation, we will consider it in particular as
