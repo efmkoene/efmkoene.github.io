@@ -62,7 +62,13 @@ I show the results of this operation below, where a function is sampled at 11 po
 
 We can do the same for the derivative (which is $f'(x)=4x$, but as of yet unknown to us). We differentiate the interpolating polynomial using the chain rule,
 
-$$ P'(x) = \left( \frac{-x}{x_2-x_1}\frac{x_3-x}{x_3-x_1} + \frac{x_2-x}{x_2-x_1}\frac{-x}{x_3-x_1}\right)f(x_1) + \left( \frac{-x}{x_1-x_2}\frac{x_3-x}{x_3-x_2} + \frac{x_1-x}{x_1-x_2}\frac{-x}{x_3-x_2} \right)f(x_2) + \left( \frac{-x}{x_1-x_3}\frac{x_2-x}{x_2-x_3} + \frac{x_1-x}{x_1-x_3}\frac{-x}{x_2-x_3} \right)f(x_3) , $$
+$$ 
+\begin{align}
+P'(x) = & \left( \frac{-x}{x_2-x_1}\frac{x_3-x}{x_3-x_1} + \frac{x_2-x}{x_2-x_1}\frac{-x}{x_3-x_1}\right)f(x_1) \\
++& \left( \frac{-x}{x_1-x_2}\frac{x_3-x}{x_3-x_2} + \frac{x_1-x}{x_1-x_2}\frac{-x}{x_3-x_2} \right)f(x_2) \\
++& \left( \frac{-x}{x_1-x_3}\frac{x_2-x}{x_2-x_3} + \frac{x_1-x}{x_1-x_3}\frac{-x}{x_2-x_3} \right)f(x_3) , 
+\end{align}
+$$
 
 which for our specific sample locations $x_n$ and output location $x=0.5$ provides
 
