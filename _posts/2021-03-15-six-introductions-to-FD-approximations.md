@@ -24,7 +24,7 @@ In high-school you probably learned to define a derivative with some kind of 'li
 
 $$ f'(x) \equiv \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}. $$
 
-Limits are typically computed with [symbolic manipulation](https://en.wikipedia.org/wiki/(ε,_δ)-definition_of_limit), i.e., with a pen and a piece of paper. But we want a direct computation with the computer instead. Unfortunately, if we try to compute the limit with direct assignment, we get a problem: $ \frac{f(x+h)-f(x)}{h}\bigg|_{h=0} = \frac{0}{0} = \text{NaN}$. Here, $\text{NaN}$ means 'not a number', as we're doing [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). Not very useful.
+Limits are typically computed with [symbolic manipulation](https://en.wikipedia.org/wiki/(ε,_δ)-definition_of_limit), i.e., with a pen and a piece of paper. But we want a direct computation with the computer instead. Unfortunately, if we try to compute the limit with direct assignment, we get a problem: $\frac{f(x+h)-f(x)}{h}\bigg|\_{h=0} = \frac{0}{0} = \text{NaN}$. Here, $\text{NaN}$ means 'not a number', as we're doing [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). Not very useful.
 
 So, what's the closest thing we can do instead? We can define a parameterized function $f'_h$ as $ f_h'(x) \equiv \frac{f(x+h)-f(x)}{h} $ for which it holds that
 
@@ -104,14 +104,14 @@ $$
 Hey, $\pm\tfrac{1}{2}$ are [the FD coefficients for this problem](https://web.media.mit.edu/~crtaylor/calculator.html), which give $f'(0)=0$, found neatly through inverting a system! The biggest approximation we've made is the sudden change from $\approx$ to $=$ in the linear system. What does that tell us? We assume that $f(x)$ could indeed be well-described by a function $f(x)=f(0)+af'(x)/1+a^2f''(x)/2$, without needing the further expansion coefficients. But we can now take our system further:
 
 $$
-\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}}(0}{4!} \end{pmatrix},
+\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(0)}{4!} \end{pmatrix},
 $$
 
 and pre-multiply with the found FD coefficients,
 
 \begin{align}
 \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} &= \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(0){4!} \end{pmatrix},\\
-& = \begin{pmatrix} 0 & 1 & 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(4!) \end{pmatrix},\\
+& = \begin{pmatrix} 0 & 1 & 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(0)}(4!) \end{pmatrix},\\
 & = f'(0) + \frac{f^{(3)}(0)}{6}.
 \end{align}
 
