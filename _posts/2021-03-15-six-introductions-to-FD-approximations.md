@@ -83,7 +83,7 @@ In the previous section we have deepened our knowledge, by observing that FD ope
 
 $$ f(x) = f(0) + x\frac{f'(0)}{1!} + x^2\frac{f''(0)}{2!} + \dots = \sum_{k=0}^\infty x^k \frac{f^{(n)}(0)}{k!}. $$
 
-For example, with the same example we saw thus far, we had three sample locations $\{-1,0,1\}$ with associated values $\{2,0,2\}. We will write down the Taylor expansion for each of these terms to the 3rd term. I will use a matrix-vector notation, the use of which will be clear soon.
+For example, with the same example we saw thus far, we had three sample locations $\{-1,0,1\}$ with associated values $\{2,0,2\}. We will write down the Taylor expansion for each of these sampled values, up to the 3rd term. I will use a matrix-vector notation, the use of which will be clear soon.
 
 $$
 \begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \end{pmatrix},
@@ -92,7 +92,7 @@ $$
 where we used $\approx$ just because we truncated the Taylor expansion at three terms. Now, we invert this system,
 
 $$
-\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}^{-1}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} = \begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \end{pmatrix},
+\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}^{-1}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \end{pmatrix},
 $$
 
 and we pre-multiply with a column vector,
@@ -110,7 +110,7 @@ $$
 Hey, $\pm\tfrac{1}{2}$ are [the FD coefficients for this problem](https://web.media.mit.edu/~crtaylor/calculator.html), which give $f'(0)=0$, found neatly through inverting a system! The biggest approximation we've made is the sudden change from $\approx$ to $=$ in the linear system. What does that tell us? We assume that $f(x)$ could indeed be well-described by a function $f(x)=f(0)+af'(x)/1+a^2f''(x)/2$, without needing the further expansion coefficients. But we can now take our system further:
 
 $$
-\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(0)}{4!} \end{pmatrix},
+\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(0)}{4!} \end{pmatrix},
 $$
 
 and pre-multiply with the found FD coefficients,
