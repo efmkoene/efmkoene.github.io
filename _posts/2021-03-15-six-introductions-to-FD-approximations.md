@@ -24,7 +24,7 @@ In high-school you probably learned to define a derivative with some kind of 'li
 
 $$ f'(x) \equiv \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}. $$
 
-Limits are typically computed with [symbolic manipulation](https://en.wikipedia.org/wiki/(ε,_δ)-definition_of_limit), i.e., with a pen and a piece of paper. But we want a direct computation with the computer instead. Unfortunately, if we try to compute the limit with direct assignment, we get a problem: $\frac{f(x+h)-f(x)}{h}\bigg|\_{h=0} = \frac{0}{0} = \text{NaN}$. Here, $\text{NaN}$ means 'not a number', as we're doing [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). Not very useful.
+Limits are typically computed with [symbolic manipulation](https://en.wikipedia.org/wiki/(ε,_δ)-definition_of_limit), i.e., with a pen and a piece of paper. But we want a direct computation with the computer instead. Unfortunately, if we try to compute the limit with direct assignment, we get a problem: $\frac{f(x+0)-f(x)}{0} = \frac{0}{0} = \text{NaN}$. Here, $\text{NaN}$ means 'not a number', as we're doing [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). Not very useful.
 
 So, what's the closest thing we can do instead? We can define a parameterized function $f'_h$ as $ f_h'(x) \equiv \frac{f(x+h)-f(x)}{h} $ for which it holds that
 
