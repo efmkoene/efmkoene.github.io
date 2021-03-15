@@ -5,17 +5,6 @@ subtitle: ""
 tags: [finite-difference,FDM,algorithms]
 ---
 
-\begin{align}
-x^2 + 2
-\end{align}
-
-and
-
-\begin{align}
-x^2  + 2 &= 5 \\
-x &= \sqrt{3}
-\end{align}
-
 # Introduction
 Finite-difference (FD) methods are ways to approximate a function or its derivatives at a given point, by computing a weighted sum of some input values. 
 
@@ -120,11 +109,13 @@ $$
 
 and pre-multiply with the found FD coefficients,
 
+$$
 \begin{align}
-\begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} &= \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(0){4!} \end{pmatrix},\\
-& = \begin{pmatrix} 0 & 1 & 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(0)}(4!) \end{pmatrix},\\
+\begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} & \approx \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(0)}{4!} \end{pmatrix},\\
+& = \begin{pmatrix} 0 & 1 & 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(0)}(4!) \end{pmatrix},\\
 & = f'(0) + \frac{f^{(3)}(0)}{6}.
 \end{align}
+$$
 
 This finding means the following. If we use our FD coefficients $\{-\tfrac{1}{2},0,\tfrac{1}{2}\}$ on an arbitrary function, we will return 0 times $f(0)$, once $f'(0)$, and zero times $f''(0)$. Furthermore, however, we will compute $f^{(3)}(0)/6$ once, and $f^{(4)}(0)$ zero times. Etcetera. Hence, if the function that we are applying the FD coefficients on has $f^{(3)}(0)\neq 0$, our FD operator is erroneous (and similar for higher derivatives not included in this series).
 
