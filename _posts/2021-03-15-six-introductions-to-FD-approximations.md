@@ -104,13 +104,13 @@ $$
 Hey, $\pm\tfrac{1}{2}$ are [the FD coefficients for this problem](https://web.media.mit.edu/~crtaylor/calculator.html), which give $f'(0)=0$, found neatly through inverting a system! The biggest approximation we've made is the sudden change from $\approx$ to $=$ in the linear system. What does that tell us? We assume that $f(x)$ could indeed be well-described by a function $f(x)=f(0)+af'(x)/1+a^2f''(x)/2$, without needing the further expansion coefficients. But we can now take our system further:
 
 $$
-\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(4!) \end{pmatrix},
+\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}}(0}{4!} \end{pmatrix},
 $$
 
 and pre-multiply with the found FD coefficients,
 
 \begin{align}
-\begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} &= \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(4!) \end{pmatrix},\\
+\begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} &= \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(0){4!} \end{pmatrix},\\
 & = \begin{pmatrix} 0 & 1 & 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(4!) \end{pmatrix},\\
 & = f'(0) + \frac{f^{(3)}(0)}{6}.
 \end{align}
@@ -130,13 +130,13 @@ $$
 \widehat{f}(k) = \int_{-\infty}^\infty f(x)e^{-ikx}\text{d}\! x,
 $$
 
-we have that 
+we can use the partial integration rule $(f'g=fg-fg')$ to find
 
 $$
 \widehat{\frac{\text{d}f}{\text{d}x}}(k) = \int_{-\infty}^\infty \frac{\text{d}f(x)}{\text{d}x}e^{-ikx}\text{d}\! x = \left. f(x)e^{-ikx}\right|_{x=-\infty}^\infty + \int_{-\infty}^\infty f(x) (ik) e^{-ikx} \text{d}\! x = (ik) \widehat{f}(k),
 $$
 
-so that for a 'nice' $f(x)$ which vanishes at $\pm \infty$, we have that derivatives simply correspond to multiplication with $(ik)$ in the Fourier domain:
+such that for a 'nice' $f(x)$ which vanishes at $\pm \infty$, we have that derivatives simply correspond to multiplication with $(ik)$ in the Fourier domain:
 
 $$
 \widehat{\frac{\text{d}^nf}{\text{d}x^n}}(k) = (ik)^n \widehat{f}(k).
