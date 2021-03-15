@@ -86,13 +86,13 @@ $$
 where we used $\approx$ just because we truncated the Taylor expansion at three terms. Now, we invert this system,
 
 $$
-\left(\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}\right)^{-1}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} = \begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \end{pmatrix},
+\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}^{-1}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} = \begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \end{pmatrix},
 $$
 
 and we pre-multiply with a column vector,
 
 $$
-\begin{pmatrix} 0&1&0 \end{pmatrix}\left(\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}\right)^{-1}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} = \begin{pmatrix} 0&1&0\end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} = f'(0).
+\begin{pmatrix} 0&1&0 \end{pmatrix}\begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 \\ (0)^0 & (0)^1 & (0)^2 \\ 1^0 & 1^1 & 1^2   \end{pmatrix}^{-1}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 0&1&0\end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!}\end{pmatrix} = f'(0).
 $$
 
 Thus, if we solve this system on the left-hand side (e.g., with MATLAB), we find 
@@ -101,10 +101,10 @@ $$
 \begin{pmatrix} -\frac{1}{2} & 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = f'(0).
 $$
 
-Hey, $\pm\tfrac{!}{2}$ are [the FD coefficients for this problem](https://web.media.mit.edu/~crtaylor/calculator.html), which give $f'(0)=0$, found neatly through inverting a system! The biggest approximation we've made is the sudden change from $\approx$ to $=$ in the linear system. What does that tell us? We assume that $f(x)$ could indeed be well-described by a function $f(x)=f(0)+af'(x)/1+a^2f''(x)/2$, without needing the further expansion coefficients. But we can now take our system further:
+Hey, $\pm\tfrac{1}{2}$ are [the FD coefficients for this problem](https://web.media.mit.edu/~crtaylor/calculator.html), which give $f'(0)=0$, found neatly through inverting a system! The biggest approximation we've made is the sudden change from $\approx$ to $=$ in the linear system. What does that tell us? We assume that $f(x)$ could indeed be well-described by a function $f(x)=f(0)+af'(x)/1+a^2f''(x)/2$, without needing the further expansion coefficients. But we can now take our system further:
 
 $$
-\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} & \frac{f^{(4)}(4!) \end{pmatrix},
+\begin{pmatrix} f(-1) \\ f(0) \\ f(1) \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix} \approx \begin{pmatrix} (-1)^0 & (-1)^1 & (-1)^2 & (-1)^3 & (-1)^4 \\ (0)^0 & (0)^1 & (0)^2 & (0)^3 & (0)^4 \\ 1^0 & 1^1 & 1^2 & 1^3 & 1^4  \end{pmatrix}\begin{pmatrix} f(0) \\ \frac{f'(0)}(1!) \\ \frac{f''(0)}{2!} \\ \frac{f^{(3)}(0)}{3!} \\ \frac{f^{(4)}(4!) \end{pmatrix},
 $$
 
 and pre-multiply with the found FD coefficients,
