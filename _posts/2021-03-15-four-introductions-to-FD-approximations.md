@@ -26,7 +26,7 @@ Thus, a computer may try to compute the derivative operation by trying to replac
 
 $$ \frac{f(x+h)-f(x)}{h}\bigg|_{h=0} = \frac{0}{0} = \text{NaN}, $$
 
-where $\text{NaN}$ means 'not a number'. Okay, that's not very useful.
+where $\text{NaN}$ means 'not a number', as we're doing [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). Okay, that's not very useful.
 
 So, what's the closest thing we can do? We can define a parameterized function $f'_h$ as
 
@@ -36,9 +36,9 @@ for which it holds that
 
 $$ \lim_{h\to 0} f_h'(x) = f'(x). $$
 
-Now, if we evaluate $f_h'$ for a *very small* value of $h$, we will get a good approximation of $f'(x)$. 
+Now, if we evaluate $f_h'$ for a *very small* value of $h$, we will get a good approximation of $f'(x)$. This is what you see in the gif, below.
 
-![derivative approximation](./assets/img/FD_as_limit.gif)
+![derivative approximation](../assets/img/FD_as_limit.gif)
 
 
 # 2. The finite-difference method as exact evaluation of integral
