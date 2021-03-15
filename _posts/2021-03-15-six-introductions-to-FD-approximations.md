@@ -5,6 +5,17 @@ subtitle: ""
 tags: [finite-difference,FDM,algorithms]
 ---
 
+\begin{align}
+x^2 + 2
+\end{align}
+
+and
+
+\begin{align}
+x^2  + 2 &= 5 \\
+x &= \sqrt{3}
+\end{align}
+
 # Introduction
 Finite-difference (FD) methods are ways to approximate a function or its derivatives at a given point, by computing a weighted sum of some input values. 
 
