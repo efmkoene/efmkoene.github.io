@@ -15,14 +15,31 @@ Note that I use "finite-difference operators" in the sense of linear combination
 
 # 1. The finite-difference method as approximation of a derivative
 The most obvious way to approach the FD method is through an approximation of a derivative. In high-school or university, you probably learned that a derivative is defined through a limiting procedure,
-$$ \frac{\text{d}f}{\text{d}x}\equiv \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}. $$
+
+$$ f'(x) = \equiv \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}. $$
+
 *(In mathematics, the limit has a [long history of being sufficiently formalized](https://en.wikipedia.org/wiki/(ε,_δ)-definition_of_limit), but the long and short of it is the simple [rise over run](https://www.onlinemath4all.com/rise-over-run-formula.html).
 If you could graph the function, it would be the vertical difference over the horizontal difference $\updownarrow/\leftrightarrow$.)*
 
 To compute these limits, we typically need *symbolic manipulation*, i.e., pen and paper. The computers that we consider are typically not so good at pen and paper operations, and prefer to spend their time doing $+$, $-$, $\times$ and $\div$ operations.
-Thus, a computer may try to compute the derivative operation by trying
+Thus, a computer may try to compute the derivative operation by trying to replace the limit operation with direct assignment,
+
 $$ \frac{f(x+h)-f(x)}{h}\bigg|_{h=0} = \frac{0}{0} = \text{NaN}, $$
-where $\text{NaN}$ means 'not a number'.
+
+where $\text{NaN}$ means 'not a number'. Okay, that's not very useful.
+
+So, what's the closest thing we can do? We can define a parameterized function $f'_h$ as
+
+$$ f_h'(x) = \frac{f(x+h)-f(x)}{h} $$
+
+for which it holds that
+
+$$ \lim_{h\to 0} f_h'(x) = f'(x). $$
+
+Now, if we evaluate $f_h'$ for a *very small* value of $h$, we will get a good approximation of $f'(x)$. 
+
+![derivative approximation](./assets/img/FD_as_limit.gif)
+
 
 # 2. The finite-difference method as exact evaluation of integral
 
