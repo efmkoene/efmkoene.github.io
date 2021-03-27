@@ -69,7 +69,11 @@ Your quark is now ready. Simply scoop it out of the cheese cloth into any contai
 ## 6. (Optional) create pancakes
 ![step6a](../assets/img/quark_remaining_whey.jpg)
 
-You'll notice that after starting off with one liter of milk, you end up with almost 2/3rds of a liter of whey (and water)! One of the uses for whey (if you don't want to throw it away) is to make pancakes. Take your ~600 ml of whey, add 300 g of plain white flour, 3 eggs, 2 table-spoons of sugar, a teaspoon of baking powder, half a teaspoon of salt, 4 tablespoons of vegetable oil. Add in your bowl, and mix together. Then heat up a pan on a very hot setting. Add butter to the pan, and a scoop of batter. With a small pan (21 cm diameter), that produces about 10 pancakes. Enjoy!
+You'll notice that after starting off with one liter of milk, you end up with almost 2/3rds of a liter of whey (and water)! One of the uses for whey (if you don't want to throw it away) is to make pancakes. Take your ~600 ml of whey, add 300 g of plain white flour, 3 eggs, 2 table-spoons of sugar, a teaspoon of baking powder, half a teaspoon of salt, 4 tablespoons of vegetable oil. Add in your bowl, and mix together. Then heat up a pan on a very hot setting. Add butter to the pan, and a scoop of batter. With a small pan (21 cm diameter), that produces about 10 pancakes.
+The pancakes will be nice and fluffy, and as delicious as pancakes made with milk!
 
 ![step6b](../assets/img/quark_whey_pancakes.jpg)
 
+![step6b](../assets/img/quark_pancake_with_jam.jpg)
+
+Enjoy!
