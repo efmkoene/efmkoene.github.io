@@ -48,5 +48,28 @@ Wait for 12-24 hours.
 ## 3. Add rennet (start cheese-making)
 ![step3](../assets/img/quark_add_renet.jpg)
 
-Add one drop (!) of rennet to the cheese. 
+We're now one day later, ready to curdle the "active" milk (i.e., to form little grains of the quark). Simply add one drop of rennet to the pack of milk, shake, and put the lid back on top again.
+
+Wait for 1-2 more days (the longer you wait, the more "bitter" the taste becomes, as the rennet keeps working).
+
+## 4. Drain quark through cheese cloth
+![step4](../assets/img/quark_drain_in_sieve.jpg)
+
+It's now 1 or 2 days after you added the rennet. Prepare a cheese cloth in a sieve, over a large bowl. Pour in the product you've created. It may be relatively "wet" still, that's alright. What will happen is that the curds have separated from the whey.
+The cheese cloth will let the whey drip through, and keep the quark in.
+
+Let drain for 12 hours (overnight).
+
+## 5. Scoop out quark
+![step5](../assets/img/quark_scoop_out.jpg)
+
+Your quark is now ready. Simply scoop it out of the cheese cloth into any container. It should survive in the fridge for a week, but it's tasty enough to eat it within that time!
+
+
+## 6. (Optional) create pancakes
+![step6a](../assets/img/quark_remaining_whey.jpg)
+
+You'll notice that after starting off with one liter of milk, you end up with almost 2/3rds of a liter of whey (and water)! One of the uses for whey (if you don't want to throw it away) is to make pancakes. Take your ~600 ml of whey, add 300 g of plain white flour, 3 eggs, 2 table-spoons of sugar, a teaspoon of baking powder, half a teaspoon of salt, 4 tablespoons of vegetable oil. Add in your bowl, and mix together. Then heat up a pan on a very hot setting. Add butter to the pan, and a scoop of batter. With a small pan (21 cm diameter), that produces about 10 pancakes. Enjoy!
+
+![step6b](../assets/img/quark_whey_pancakes.jpg)
 
