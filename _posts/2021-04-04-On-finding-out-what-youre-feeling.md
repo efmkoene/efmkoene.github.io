@@ -75,7 +75,7 @@ The key aspect of the latter two questions is two-fold.
 
 1. First of all, the answers are not graded. If one day you feel your stress as a knot in the pit of your stomach, and another you feel your stress as a heaviness pressing on your lungs, then any comparison between the two is essentially meaningless. The bodily sensation just "is" what it is, today. This massively aids with an acceptance of your feelings. 
 2. Second of all, it gives you a way to approach your feelings.
-    - For example, you can realize that your stress is just a knot in your stomach! The rest of your body still works as it did before. Emotions don't have to overwhelm you. You, physically, are bigger than what bugs you!
+    - For example, you can realize that your stress is just a knot in your stomach! The rest of your body still works as it did before. Emotions don't have to overwhelm you. You're bigger than what's bugging you, physically!
     - Or, if you imagine your emotions as characters living within you, [as in the Pixar movie Inside Out (2015)](https://en.wikipedia.org/wiki/Inside_Out_(2015_film)), you can see whether these characters are really trying to tell you something (in the way that angry emotions may actually reflect underlying emotions of insecurity) and whether there is something positive that can be done with it. 
 
 In other words, third-wave psychotherapies *ask different questions about feelings*. What we care about is not how we grade our emotions (not "a little", or "a lot", or "7/10"), but how we can conceptualize them as physical or personal features. [The effect is real and significant](https://en.wikipedia.org/wiki/Inner_Relationship_Focusing). I can attest to this.
