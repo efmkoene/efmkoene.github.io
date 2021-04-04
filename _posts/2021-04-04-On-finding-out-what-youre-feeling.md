@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "On not knowing what you're feeling"
+title: "On finding out what you're feeling"
 subtitle: ""
 tags: [psychology,experience,feeling,thinking]
 ---
