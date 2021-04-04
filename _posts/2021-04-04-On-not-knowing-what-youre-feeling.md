@@ -9,7 +9,7 @@ tags: [psychology,experience,feeling,thinking]
 How happy are you these days? As remarked in [Thinking, Fast and Slow](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow), this is a hard question!
 In that book, it's told that we typically thinking in two ways: fast and slow. The fast system is the intuitive "gut" response, the slow system is the rational part of the brain. The most lovely example of the two systems is the following riddle,   
 *A bat and a ball cost $1.10 in total. The bat costs $1 more than the ball. How much does the ball cost?*    
-Without putting in any effort, your intuition (system 1) will come back at you with the answer: $0.10 exactly. That looks right!    
+Without putting in any effort, your intuition will come back at you with the answer: $0.10!    
 ... But wait, that gives a total cost of $0.10+$1.10=$1.20, which is wrong!    
 People who correctly give the correct answer do *not* skip the intuitive step, they're merely better in suppressing their gut feeling.
 
