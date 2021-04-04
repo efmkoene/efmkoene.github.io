@@ -41,9 +41,9 @@ No, that seems a bit outlandish,
 Yeah, that feels about right.    
 This gut-response is entirely effortlessly. Illogical, but effortless.
 
-The key aspect is that we are given a **frame** that the answer should conform to: somewhere on the scale of normal human sizes. And giving such answers is remarkably simple for our minds.
+The key aspect is that we are given a **frame** that the answer should conform to: human tallness. Giving such answers is, apparently, remarkably simple for our minds!
 
-In the same way, answering the question "how happy are you these days" is pretty hard. But if you had to give an answer to the question "how happy am I at this very moment, *on a scale of 0 to 10*", you would get an immediate response quickly and intuitively. The answer may even sometimes surprise you, despite "feeling" that it is right.
+In the same way, answering the question "how happy are you these days" is pretty hard. There are so many things to consider that our "fast" system cannot possibly help us out here. But if you had to give an answer to the question "how happy am I at this very moment, *on a scale of 0 to 10*", you would get an immediate response quickly and intuitively. The answer may even sometimes surprise you, despite "feeling" that it is right!
 **Our exact emotional state may only be revealed to us when we interrogate ourselves**. *(Note that I don't claim that you cannot be aware of feeling good or bad without these steps. Merely, knowing "exactly" how you feel is not something that happens automatically. Only by supplying a mental framework (e.g., testing for specific emotions, rating them from 0 to 10, ...) can we start to understand how we feel in any detail.)*
 
 # Changing the scales
