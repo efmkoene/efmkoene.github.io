@@ -13,17 +13,17 @@ Without putting in any effort, your intuition will come back at you with the ans
 ... But wait, that gives a total cost of $0.10+$1.10=$1.20, which is wrong!    
 As told in the book, people who give the correct answer do *not* skip the intuitive wrong answer, they're merely better in suppressing this gut feeling momentarily!
 
-*Thinking, Fast and Slow* is full of examples of this type. Humans spend most of their time in the "fast" thinking system, even when they are aware of the errors that it makes. The slow system simply takes a lot of energy that we often don't want to spend.
+*Thinking, Fast and Slow* is full of examples of this type.
 
-But there is another interesting point in *Thinking, Fast and Slow*, which remarks how easily the slow system can put things on dimensions.
-First, one example just to show how flexible humans are in this regard:    
+There is another interesting point in *Thinking, Fast and Slow*, which remarks how easily the fast system can project answers onto any dimension.
+One example to show the flexibility we have in this regard:    
 *If Sam were as tall as he is intelligent, how tall would he be?*     
 Say, this Sam would be a rather intelligent person. We would perhaps think    
 *180 cm?*    
 No, that feels to small    
 *220 cm?*    
 No, that seems a bit outlandish,      
-*about 190 cm*       
+*about 195 cm*       
 Yeah, that feels about right.    
 This response happens nearly effortlessly, despite there being no immediately obvious link between these two scales. Certainly not one that you typically encounter.
 
