@@ -25,17 +25,17 @@ One example to show the flexibility we have in this regard:
 
 Say, this Sam would be a rather intelligent person. We would perhaps think    
 
-{: .box-warning}
+{: .box-note}
 *180 cm?*    
 
 No, that feels to small    
 
-{: .box-warning}
+{: .box-note}
 *220 cm?*    
 
 No, that seems a bit outlandish,      
 
-{: .box-warning}
+{: .box-note}
 *about 195 cm.*  
 
 Yeah, that feels about right.    
@@ -43,8 +43,8 @@ This gut-response is entirely effortlessly. Illogical, but effortless.
 
 The key aspect is that we are given a **frame** that the answer should conform to: somewhere on the scale of normal human sizes. And giving such answers is remarkably simple for our minds.
 
-In the same way, answering the question "how happy are you these days" is pretty hard. But if you had to give an answer to the question "how happy am I at this very moment, *on a scale of 0 to 10*", you would get an immediate response quickly and intuitively. The answer probably won't surprise you ("*that feels about right!*"), but certainly reveals more about your mood than you knew about yourself before you answered it, nonetheless.
-Our exact emotional state may only be revealed to us when we interrogate ourselves. *(Note that I don't claim that you cannot be aware of feeling good or bad without these steps. Merely, knowing "exactly" how you feel is not something that happens automatically. Only by supplying a mental framework (e.g., testing for specific emotions, rating them from 0 to 10, ...) can we start to understand how we actually feel.)*
+In the same way, answering the question "how happy are you these days" is pretty hard. But if you had to give an answer to the question "how happy am I at this very moment, *on a scale of 0 to 10*", you would get an immediate response quickly and intuitively. The answer may even sometimes surprise you, despite "feeling" that it is right.
+**Our exact emotional state may only be revealed to us when we interrogate ourselves**. *(Note that I don't claim that you cannot be aware of feeling good or bad without these steps. Merely, knowing "exactly" how you feel is not something that happens automatically. Only by supplying a mental framework (e.g., testing for specific emotions, rating them from 0 to 10, ...) can we start to understand how we feel in any detail.)*
 
 # Changing the scales
 The above section has given us a way to make your inner emotional state tractable. You ask yourself a question ("how happy/angry/sad/hurt/overwhelmed/... do I feel at this moment, on a scale of 0 to 10?"), and you know the answer instantaneously, somehow, in a way and detail you didn't know before. In a one-liner: the dashboard to your feelings works by touch, not by vision.
