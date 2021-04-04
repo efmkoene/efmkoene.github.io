@@ -7,7 +7,7 @@ tags: [psychology,experience,feeling,thinking]
 
 # The intuitive mind
 How happy are you these days? As remarked in [Thinking, Fast and Slow](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow), this is a hard question!
-It tells us that we typically thinking in one of two ways: **fast**, or **slow**. The fast system is the intuitive "gut" response, the slow system is the rational part of the brain which takes more effort and which is often bypassed. The most lovely example of the two systems is the following riddle,
+It tells us that we typically think in one of two ways: **fast**, or **slow**. The fast system is the intuitive "gut" response, the slow system is the rational part of the brain which takes more effort and which is often bypassed. The most lovely example of the two systems is the following riddle,
 
 {: .box-warning}
 *A bat and a ball cost \\$1.10 in total. The bat costs \\$1 more than the ball. How much does the ball cost?*
