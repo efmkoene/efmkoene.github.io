@@ -35,7 +35,7 @@ No, that feels to small
 No, that seems a bit outlandish,      
 
 {: .box-warning}
-*about 195 cm*  
+*about 195 cm.*  
 
 Yeah, that feels about right.    
 This response happens nearly effortlessly, despite there being no immediately obvious link between these two scales. Certainly not one that you typically encounter.
