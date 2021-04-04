@@ -12,7 +12,7 @@ It tells us that we typically think in one of two ways: **fast**, or **slow**. T
 {: .box-warning}
 *A bat and a ball cost \\$1.10 in total. The bat costs \\$1 more than the ball. How much does the ball cost?*
 
-Without putting in any effort, your intuition will come back at you with the answer: \\$0.10!    
+Well, obviously, \\$0.10! That's the answer that feels intuitively correct.    
 ...     
 But wait, that gives a total cost of \\$0.10+\\$1.10=\\$1.20, which is wrong!    
 As told in the book, people who give the correct answer do *not* skip the intuitive wrong answer, they're merely better at suppressing their gut feeling for a moment!
