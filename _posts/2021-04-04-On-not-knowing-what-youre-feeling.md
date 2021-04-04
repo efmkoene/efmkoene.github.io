@@ -55,15 +55,27 @@ Different emotions cause different actions (note the word *motion* within *emoti
 In so-called "third-wave psychotherapies", influences from Eastern philosophies are included in CBT. These psychotherapy methods claim that the CBT method of trying to control the intensity of negative emotions only makes them stronger. This leads to paradoxical outcomes, e.g., [trying to be happy makes you miserable](https://time.com/5356657/trying-to-be-happy/).
 
 So, what is the opposite of trying to control your thoughts/feelings? The answer is *accepting* your thoughts/feelings. That can be pretty hard in and by itself. But the third-wave methods go about this by projecting your feelings onto **physical** and **personal** scales, rather than graded scales. What that means is that the question    
+
+{: .box-warning}
 *"how do I feel X right now, on a scale of 0 to 10?"*,    
+
 gets replaced with    
+
+{: .box-note}
 *"how do I feel X right now, as a bodily sensation?"*,     
+
 or    
+
+{: .box-note}
 *"how do I feel X right now, if it were a person?"*.    
+
 The fact that people can answer these questions at all is the magic of how the intuitive mind can produce answers in arbitrary dimensions. Despite the lack of logic in the questions, there is a gut response. An answer.
 
-The key aspect of the latter two questions is two-fold. First of all, the answers are not graded. If one day you feel your stress as a knot in the pit of your stomach, and another you feel your stress as a heaviness pressing on your lungs, then any comparison between the two is essentially meaningless. The bodily sensation just "is" what it is, today. This massively aids with an acceptance of your feelings. Second of all, it gives you a way to approach your feelings.
-For example, you can realize that your stress is just a knot in your stomach! The rest of your body still works as it did before. Emotions don't have to overwhelm you -- you, physically, are bigger than what bugs you!
-Or, if you imagine your emotions as characters living within you, [as in the Pixar movie Inside Out (2015)](https://en.wikipedia.org/wiki/Inside_Out_(2015_film)), you can see whether these characters are really trying to tell you something (in the way that angry emotions may actually reflect underlying emotions of insecurity) and whether there is something positive that can be done with it. 
+The key aspect of the latter two questions is two-fold. 
+
+1. First of all, the answers are not graded. If one day you feel your stress as a knot in the pit of your stomach, and another you feel your stress as a heaviness pressing on your lungs, then any comparison between the two is essentially meaningless. The bodily sensation just "is" what it is, today. This massively aids with an acceptance of your feelings. 
+2. Second of all, it gives you a way to approach your feelings.
+    - For example, you can realize that your stress is just a knot in your stomach! The rest of your body still works as it did before. Emotions don't have to overwhelm you. You, physically, are bigger than what bugs you!
+    - Or, if you imagine your emotions as characters living within you, [as in the Pixar movie Inside Out (2015)](https://en.wikipedia.org/wiki/Inside_Out_(2015_film)), you can see whether these characters are really trying to tell you something (in the way that angry emotions may actually reflect underlying emotions of insecurity) and whether there is something positive that can be done with it. 
 
 In other words, third-wave psychotherapies *ask different questions about feelings*. What we care about is not how we grade our emotions (not "a little", or "a lot", or "7/10"), but how we can conceptualize them as physical or personal features. [The effect is real and significant](https://en.wikipedia.org/wiki/Inner_Relationship_Focusing). I can attest to this.
