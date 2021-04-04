@@ -17,7 +17,7 @@ Without putting in any effort, your intuition will come back at you with the ans
 But wait, that gives a total cost of \\$0.10+\\$1.10=\\$1.20, which is wrong!    
 As told in the book, people who give the correct answer do *not* skip the intuitive wrong answer, they're merely better in suppressing this gut feeling momentarily!
 
-There is another interesting point in *Thinking, Fast and Slow*, which remarks how easily the fast system can project answers onto any dimension.
+There is another interesting point in *Thinking, Fast and Slow*, which remarks the ease at which the fast system can answer dimensional questions.
 One example to show the flexibility we have in this regard:    
 
 {: .box-warning}
@@ -39,9 +39,9 @@ No, that seems a bit outlandish,
 *about 195 cm.*  
 
 Yeah, that feels about right.    
-This response happens nearly effortlessly, despite there being no immediately obvious link between these two scales. Certainly not one that you typically encounter.
+This gut-response is entirely effortlessly. Illogical, but effortless.
 
-The key aspect is that we are given a **frame** that the answer should conform to: somewhere on the scale of normal human sizes. And giving such answers is remarkably simple.
+The key aspect is that we are given a **frame** that the answer should conform to: somewhere on the scale of normal human sizes. And giving such answers is remarkably simple for our minds.
 
 In the same way, answering the question "how happy are you these days" is pretty hard. But if you had to give an answer to the question "how happy am I at this very moment, *on a scale of 0 to 10*", you would get an immediate response quickly and intuitively. The answer probably won't surprise you ("*that feels about right!*"), but certainly reveals more about your mood than you knew about yourself before you answered it, nonetheless.
 Our exact emotional state may only be revealed to us when we interrogate ourselves. *(Note that I don't claim that you cannot be aware of feeling good or bad without these steps. Merely, knowing "exactly" how you feel is not something that happens automatically. Only by supplying a mental framework (e.g., testing for specific emotions, rating them from 0 to 10, ...) can we start to understand how we actually feel.)*
