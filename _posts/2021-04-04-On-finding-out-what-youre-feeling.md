@@ -69,7 +69,7 @@ or
 {: .box-note}
 *"how do I feel X right now, if it were a person?"*.    
 
-The fact that people can answer these questions at all is the magic of how the intuitive mind can produce answers in arbitrary dimensions. Despite the lack of logic in the questions, there is a gut response. An answer.
+The fact that people can answer these questions at all shows the magic of the intuitive mind. We can produce answers quickly, projected onto arbitrary dimensions. Despite the lack of logic in the questions, there is a gut response. An answer. One that feels right (although it can take a moment to become clear entirely).
 
 The key aspect of the latter two questions is two-fold. 
 
