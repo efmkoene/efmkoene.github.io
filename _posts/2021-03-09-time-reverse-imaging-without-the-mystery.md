@@ -128,7 +128,7 @@ for
 
 $$ \mathbf{r} =  \left( \mathbf{I} - \frac{\partial \mathbf{F}}{\partial \mathbf{p}} \right)^{-T}(\mathbf{p} - \mathbf{p}^\text{obs})\delta(x-x_r). $$
 
-We can rewrite this relation a little bit by pre-multiplying the inverse transpose product, and then writing down a recursive identity for $\mathbf{r}$,
+We can rewrite this relation a little bit by pre-multiplying the equation on both sides with the transpose term on the right-hand side, and then writing down a recursive identity for $\mathbf{r}$,
 
 $$ \mathbf{r} = \left( \frac{\partial \mathbf{F}}{\partial \mathbf{p}}\right)^T \mathbf{r} + (\mathbf{p} - \mathbf{p}^\text{obs})\delta(x-x_r).$$
 
