@@ -23,7 +23,7 @@ What you need is:
 5. A sieve
 6. A bowl
 
-I found that, in Switzerland, it's not easy to find the required special ingredients (rennet and a cheese cloth). They can only be bought in two places, as far as I know: [faie.ch](faie.ch) and [winklerag.ch](winklerag.ch). 
+I found that, in Switzerland, it's not easy to find the required special ingredients (rennet and a cheese cloth). They can only be bought in two places, as far as I know: [faie.ch](http://faie.ch) and [winklerag.ch](http://winklerag.ch). 
 Note that rennet and the cheese cloth can also be used for making other cheeses at home, e.g., [halloumi](https://www.youtube.com/watch?v=PPNQmV7roos).
 You can thus use these products for other home-made dairy products!
 
