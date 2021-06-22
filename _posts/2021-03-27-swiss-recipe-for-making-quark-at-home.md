@@ -43,7 +43,7 @@ Close the pack of milk again, by putting the lid back on.
 
 ![step2b](../assets/img/quark_close_milk_again.jpg)
 
-Wait for 12-24 hours.
+Wait for 12-24 hours (at room temperature!).
 
 ## 3. Add rennet (start cheese-making)
 ![step3](../assets/img/quark_add_renet.jpg)
