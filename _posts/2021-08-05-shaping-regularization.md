@@ -38,3 +38,20 @@ $$ \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A}\right) \vec{x} = \ma
 
 In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same solution! This formulation shows that the regularization may vary along the entire matrix, as $\mathbf{S}$ or $\mathbf{S}^{-1}$ is not forced to be diagonal or unitary.
 
+Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. That means that we can manipulate the above equation, where the left-hand side becomes:
+
+$$ \left( \lambda^2\mathbf{H}^{-T}\mathbf{H}^{-1} + \mathbf{A}^T\mathbf{A}\right) \vec{x} = \mathbf{A}^T\vec{b},  $$
+
+We can pre-multiply with $\mathbf{H}^T$ to find...
+
+$$ \left( \lambda^2\mathbf{H}^{-1} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\right) \vec{x} = \mathbf{H}^T\mathbf{A}^T\vec{b},  $$
+
+and we may re-write the terms in the brackets as
+
+$$ \left( \lambda^2\mathbf{I} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\mathbf{H}\right) \mathbf{H}^{-1} \vec{x} = \mathbf{H}^T\mathbf{A}^T\vec{b}.  $$
+
+That gives the final equation that is inverted to find a solution, where we use $(M H^{-1})^{-1}=H M^{-1}$,
+
+$$ \hat{\vec{x}} = \mathbf{H}\left( \lambda^2\mathbf{I} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\mathbf{H}\right)^{-1}\mathbf{H}^T\mathbf{A}^T\vec{b}. $$
+
+So, that shows how the equation (may be) derived!
