@@ -34,25 +34,25 @@ The addition of values along the diagonal ($\lambda^2$ is a scalar) has the effe
 #### Shaping regularization solution
 In the linked paper, eq. (12) corresponds to wanting to solve the following problem, and corresponding solution:
 
-$$ \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b} \Longrightarrow \hat{\mathbf{x}} = \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A}\right)^{-1} \mathbf{A}^T\mathbf{b}. $$
+$$ \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b} \Longrightarrow \hat{\mathbf{x}} = \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right)^{-1} \mathbf{A}^T\mathbf{b}. $$
 
 In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same solution! This formulation shows that the regularization may vary along the entire matrix, as $\mathbf{S}$ or $\mathbf{S}^{-1}$ is not forced to be diagonal or unitary.
 
-Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. That means that we can manipulate the above equation, where the left-hand side becomes:
+Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. That means that we can rewrite the system as
 
-$$ \left( \lambda^2\mathbf{H}^{-T}\mathbf{H}^{-1} + \mathbf{A}^T\mathbf{A}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b},  $$
+$$ \left( \lambda^2\mathbf{H}^{-T}\mathbf{H}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b},  $$
 
-We can pre-multiply with $\mathbf{H}^T$ to find...
+and pre-multiply with $\mathbf{H}^T$ to find
 
-$$ \left( \lambda^2\mathbf{H}^{-1} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\right) \mathbf{x} = \mathbf{H}^T\mathbf{A}^T\mathbf{b},  $$
+$$ \left( \lambda^2\mathbf{H}^{-1} + \mathbf{H}^T\left( \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right)\right) \mathbf{x} = \mathbf{H}^T\mathbf{A}^T\mathbf{b},  $$
 
 and we may re-write the terms in the brackets as
 
-$$ \left( \lambda^2\mathbf{I} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\mathbf{H}\right) \mathbf{H}^{-1} \mathbf{x} = \mathbf{H}^T\mathbf{A}^T\mathbf{b}.  $$
+$$ \left( \lambda^2\mathbf{I} + \mathbf{H}^T\left(\mathbf{A}^T\mathbf{A}- \lambda^2\mathbf{I}\right)\mathbf{H}\right) \mathbf{H}^{-1} \mathbf{x} = \mathbf{H}^T\mathbf{A}^T\mathbf{b}.  $$
 
 That gives the final equation that is inverted to find a solution, where we use $(M H^{-1})^{-1}=H M^{-1}$,
 
-$$ \hat{\mathbf{x}} = \mathbf{H}\left( \lambda^2\mathbf{I} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\mathbf{H}\right)^{-1}\mathbf{H}^T\mathbf{A}^T\mathbf{b}. $$
+$$ \hat{\mathbf{x}} = \mathbf{H}\left( \lambda^2\mathbf{I} + \mathbf{H}^T\left(\mathbf{A}^T\mathbf{A}- \lambda^2\mathbf{I}\right)\mathbf{H}\right)^{-1}\mathbf{H}^T\mathbf{A}^T\mathbf{b}. $$
 
 So, that shows how the equation in the paper may be derived.
 
