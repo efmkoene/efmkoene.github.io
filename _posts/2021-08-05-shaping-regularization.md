@@ -65,7 +65,12 @@ import numpy
 def norm(a):
     return a.T @ a
  
-def conj_grad_shaping(L,H,d,lambd,tol=1e-20,N=500):
+def conj_grad_shaping(L,H,d,lambd,tol=1e-20,N=500,mode=None):
+    if mode is not None: # Allow quick access to the least-squares or Tikhonov solutions
+        if mode=="ls":
+            H = np.eye(L.shape[1])
+        elif mode=="tik"
+            H = np.eye(L.shape[1])/np.sqrt(2)
     p = np.zeros(L.shape[1])
     m = np.zeros(L.shape[1])
     r = -d
