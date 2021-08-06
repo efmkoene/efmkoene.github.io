@@ -54,4 +54,65 @@ That gives the final equation that is inverted to find a solution, where we use 
 
 $$ \hat{\vec{x}} = \mathbf{H}\left( \lambda^2\mathbf{I} + \mathbf{H}^T\mathbf{A}^T\mathbf{A}\mathbf{H}\right)^{-1}\mathbf{H}^T\mathbf{A}^T\vec{b}. $$
 
-So, that shows how the equation (may be) derived!
+So, that shows how the equation in the paper may be derived.
+
+#### Implementation
+The paper, additionally, provides a conjugate gradient algorithm to compute the shaping regularized solution. Unfortunately, the algorithm is erroneous. The good news is that the fix is simple: every occurrence of $\lambda$ should be replaced with $\lambda^2$, to be in line with the mathematical notation in the paper. A Python implementation is
+
+````python
+import numpy
+ 
+def norm(a):
+    return a.T @ a
+ 
+def conj_grad_shaping(L,H,d,lambd,tol=1e-20,N=500):
+    p = np.zeros(L.shape[1])
+    m = np.zeros(L.shape[1])
+    r = -d
+    for n in range(N):
+        gm = L.T @ r  - lambd**2 * m
+        gp = H.T @ gm + lambd**2 * p
+        gm = H @ gp
+        gr = L @ gm
+        rho = norm(gp)
+        if n==0:
+            beta = 0
+            rho0 = rho
+            sp = gp
+            sm = gm
+            sr = gr
+        else:
+            beta = rho/rhocur
+            if beta < tol or rho/rho0 < tol:
+                return m
+            sp = gp + beta*sp
+            sm = gm + beta*sm
+            sr = gr + beta*sr
+        alpha = rho/( norm(sr) + lambd**2*( norm(sp)  - norm(sm) ))
+        p = p - alpha*sp
+        m = m - alpha*sm
+        r = r - alpha*sr
+        rhocur = rho
+    return m
+ 
+L = np.array([[1, 3 ],
+              [2, 4 ],
+              [1, 6 ]])
+H = np.array([[1  ,0.2],
+              [0.2,1  ]])
+d = np.array([4, 1, 3])
+lambd = 1.9
+ 
+S = H @ H.T
+   
+m_est_cg = conj_grad_shaping(L,H,d,lambd)
+print("conjug grad result=", m_est_cg )
+print("error...", norm(  (lambd**2 * np.eye(L.shape[1]) + S@(norm(L) - lambd**2*np.eye(L.shape[1])))@m_est_cg  - S@L.T@d ) )
+
+# The following is only to compare it against a built-in linear algebra solver
+from numpy.linalg import inv, solve
+m_est_las = solve( lambd**2 * inv(S) + norm(L) - lambd**2 * np.eye(L.shape[1]), L.T @ d )
+print("full solver result=", m_est_las )
+print("error...", norm(  (lambd**2 * np.eye(L.shape[1]) + S@(norm(L) - lambd**2*np.eye(L.shape[1])))@m_est_las - S@L.T@d ) )
+```
+
