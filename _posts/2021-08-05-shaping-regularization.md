@@ -32,11 +32,11 @@ $$ \left( \lambda^2\mathbf{I} + \mathbf{A}^T\mathbf{A}\right) \mathbf{x} = \math
 The addition of values along the diagonal ($\lambda^2$ is a scalar) has the effect of dampening the final solution, and making the inverse a lot more stable.
 
 #### Shaping regularization solution
-In the linked paper, eq. (12) corresponds to wanting to solve the following problem, and corresponding solution:
+In the linked paper, eq. (12) corresponds to another stabilized solution, of the following form:
 
-$$ \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b} \Longrightarrow \hat{\mathbf{x}} = \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right)^{-1} \mathbf{A}^T\mathbf{b}. $$
+$$ \left( \lambda^2(\mathbf{S}^{-1}-\mathbf{I}) + \mathbf{A}^T\mathbf{A} \right) \mathbf{x} = \mathbf{A}^T\mathbf{b} \Longrightarrow \hat{\mathbf{x}} = \left( \lambda^2(\mathbf{S}^{-1}-\mathbf{I}) + \mathbf{A}^T\mathbf{A} \right)^{-1} \mathbf{A}^T\mathbf{b}. $$
 
-In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same solution! This formulation shows that the regularization may vary along the entire matrix, as $\mathbf{S}$ or $\mathbf{S}^{-1}$ is not forced to be diagonal or unitary. Note that for $\mathbf{S}^{-1}=2\mathbf{I}$ we recover the Tikhonov solution.
+In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same case/solution. This formulation allows regularization along the entire solution space, not just along the diagonal. Note that for $\mathbf{S}^{-1}=\mathbf{I}$ we retrieve the least-squares solution, and that for $\mathbf{S}^{-1}=2\mathbf{I}$ we recover the Tikhonov solution.
 
 Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. That means that we can rewrite the system as
 
