@@ -57,7 +57,7 @@ $$ \hat{\mathbf{x}} = \mathbf{H}\left( \lambda^2\mathbf{I} + \mathbf{H}^T\left(\
 So, that shows how the equation in the paper may be derived. Note, again, that the Tikhonov solution is recovered for $\mathbf{H}=\mathbf{I}/\sqrt{2}$.
 
 #### Implementation
-The paper, additionally, provides a conjugate gradient algorithm to compute the shaping regularized solution. Unfortunately, the algorithm is erroneous. The good news is that the fix is simple: every occurrence of $\lambda$ should be replaced with $\lambda^2$, to be in line with the mathematical notation in the paper. A Python implementation is
+The paper, additionally, provides a conjugate gradient algorithm to compute the shaping regularized solution. Unfortunately, the algorithm is erroneous. The good news is that the fix is simple: every occurrence of $\lambda$ should be replaced with $\lambda^2$, to be in line with the mathematical notation in the paper. A Python implementation is given below.
 
 ````python
 import numpy
