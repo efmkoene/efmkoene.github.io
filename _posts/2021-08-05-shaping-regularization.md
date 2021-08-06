@@ -36,7 +36,7 @@ In the linked paper, eq. (12) corresponds to wanting to solve the following prob
 
 $$ \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b} \Longrightarrow \hat{\mathbf{x}} = \left( \lambda^2\mathbf{S}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right)^{-1} \mathbf{A}^T\mathbf{b}. $$
 
-In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same solution! This formulation shows that the regularization may vary along the entire matrix, as $\mathbf{S}$ or $\mathbf{S}^{-1}$ is not forced to be diagonal or unitary.
+In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same solution! This formulation shows that the regularization may vary along the entire matrix, as $\mathbf{S}$ or $\mathbf{S}^{-1}$ is not forced to be diagonal or unitary. Note that for $\mathbf{S}^{-1}=2\mathbf{I}$ we recover the Tikhonov solution.
 
 Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. That means that we can rewrite the system as
 
@@ -54,7 +54,7 @@ That gives the final equation that is inverted to find a solution, where we use 
 
 $$ \hat{\mathbf{x}} = \mathbf{H}\left( \lambda^2\mathbf{I} + \mathbf{H}^T\left(\mathbf{A}^T\mathbf{A}- \lambda^2\mathbf{I}\right)\mathbf{H}\right)^{-1}\mathbf{H}^T\mathbf{A}^T\mathbf{b}. $$
 
-So, that shows how the equation in the paper may be derived.
+So, that shows how the equation in the paper may be derived. Note, again, that the Tikhonov solution is recovered for $\mathbf{H}=\mathbf{I}/\sqrt{2}$.
 
 #### Implementation
 The paper, additionally, provides a conjugate gradient algorithm to compute the shaping regularized solution. Unfortunately, the algorithm is erroneous. The good news is that the fix is simple: every occurrence of $\lambda$ should be replaced with $\lambda^2$, to be in line with the mathematical notation in the paper. A Python implementation is
