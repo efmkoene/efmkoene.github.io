@@ -38,7 +38,7 @@ $$ \left( \lambda^2(\mathbf{S}^{-1}-\mathbf{I}) + \mathbf{A}^T\mathbf{A} \right)
 
 In the paper, they consider the case where the equation is pre-multiplied with $\mathbf{S}$ on both sides, which yields the same case/solution. This formulation allows regularization along the entire solution space, not just along the diagonal. Note that for $\mathbf{S}^{-1}=\mathbf{I}$ we retrieve the least-squares solution, and that for $\mathbf{S}^{-1}=2\mathbf{I}$ we recover the Tikhonov solution.
 
-Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. The decomposition may be found using [Cholesky decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition). The positive-definiteness is required for the conjugate gradient method to work. We can rewrite the system as:
+Then, the assumption is made that $\mathbf{S}=\mathbf{S}^{T} = \mathbf{H}\mathbf{H}^T$, i.e., that $\mathbf{S}$ is symmetric. The decomposition may be found using [Cholesky decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition) -- though, alternatively, in the paper a method is described to find a triangle shaper in a $\mathbf{B}^T\mathbf{B}=\mathbf{H}\mathbf{H}^T$ form in eq. (20). The positive-definiteness is required for the conjugate gradient method to work. We can rewrite the system as:
 
 $$ \left( \lambda^2\mathbf{H}^{-T}\mathbf{H}^{-1} + \mathbf{A}^T\mathbf{A} - \lambda^2\mathbf{I}\right) \mathbf{x} = \mathbf{A}^T\mathbf{b},  $$
 
