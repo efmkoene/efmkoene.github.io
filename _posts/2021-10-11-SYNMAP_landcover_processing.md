@@ -6,11 +6,11 @@ tags: [atmospheric modeling, python]
 ---
 
 The [SYNMAP](https://www.bgc-jena.mpg.de/bgi/uploads/Publ/Publications/Jung_et_al_2006.pdf) dataset by Martin Jung is a land-cover dataset with a horizontal resolution of about 1 km. It can be used, for example, to estimate the ecosystem exchange between the atmosphere on the one hand, and vegetation processes on the other. 
-An example of this is the VPRM preprocessing for WRF or STILT, which can be found here https://www.bgc-jena.mpg.de/bgc-systems/pmwiki2/pmwiki.php/Download/VPRMpreproc.
+An example of this is the VPRM preprocessing for WRF or STILT, which can be found here [https://www.bgc-jena.mpg.de/bgc-systems/pmwiki2/pmwiki.php/Download/VPRMpreproc](https://www.bgc-jena.mpg.de/bgc-systems/pmwiki2/pmwiki.php/Download/VPRMpreproc).
 
 I wanted to obtain this entire map in its full resolution with Python, and found this process not entirely straightforward. However, I have figured it out, and share the dataset below accordingly.
 
-It is generated as follows. The first step is to download the full SYNMAP binary file at https://www.bgc-jena.mpg.de/bgc-systems/pmwiki2/pmwiki.php/Download/VPRMpreproc under the text "*Original binary file of SYNMAP. It covers the whole globe.*" 
+It is generated as follows. The first step is to download the full SYNMAP binary file at [https://www.bgc-jena.mpg.de/bgc-systems/pmwiki2/pmwiki.php/Download/VPRMpreproc](https://www.bgc-jena.mpg.de/bgc-systems/pmwiki2/pmwiki.php/Download/VPRMpreproc) under the text "*Original binary file of SYNMAP. It covers the whole globe.*" 
 
 Then a Python script that processes this data is the following:
 
@@ -45,7 +45,7 @@ with rasterio.Env():
         dst.write(D.astype(rasterio.uint8), 1)
 ```
 
-This creates a reasonably small GeoTIFF file (32MB, instead of the original 738+ MB) containing the SYNMAP dataset. You can for example download it here: https://drive.google.com/file/d/1dj0uB5fqunbBoIeVbt-8BFzojqV2Bcbd/view?usp=sharing . Please cite the original authors if you use this dataset!
+This creates a reasonably small GeoTIFF file (32MB, instead of the original 738+ MB) containing the SYNMAP dataset. You can for example download it here: [https://drive.google.com/file/d/1dj0uB5fqunbBoIeVbt-8BFzojqV2Bcbd/view?usp=sharing](https://drive.google.com/file/d/1dj0uB5fqunbBoIeVbt-8BFzojqV2Bcbd/view?usp=sharing). Please cite the original authors if you use this dataset!
 
 Loading it in QGIS (and setting appropriate values in the legend) will show, for example, 
 
