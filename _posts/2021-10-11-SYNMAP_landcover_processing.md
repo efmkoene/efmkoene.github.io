@@ -14,7 +14,7 @@ It is generated as follows. The first step is to download the full SYNMAP binary
 
 Then a Python script that processes this data is the following:
 
-```
+```python
 import numpy as np
 # Import the dataset (consisting of unsigned integers)
 D = np.fromfile('synmap_LC_jan1.bin', dtype=np.uint8)
