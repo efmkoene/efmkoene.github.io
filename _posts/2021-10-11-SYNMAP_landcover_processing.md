@@ -46,7 +46,7 @@ with rasterio.Env():
         dst.write(D.astype(rasterio.uint8), 1)
 ```
 
-This creates a reasonably small GeoTIFF file (32MB, instead of the original 738+ MB) containing the SYNMAP dataset. You can for example download it here https://drive.google.com/file/d/1dj0uB5fqunbBoIeVbt-8BFzojqV2Bcbd/view?usp=sharing . Please cite the original authors if you use this dataset!
+This creates a reasonably small GeoTIFF file (32MB, instead of the original 738+ MB) containing the SYNMAP dataset. You can for example download it here: https://drive.google.com/file/d/1dj0uB5fqunbBoIeVbt-8BFzojqV2Bcbd/view?usp=sharing . Please cite the original authors if you use this dataset!
 
 Loading it in QGIS (and setting appropriate values in the legend) will show, for example, 
 
