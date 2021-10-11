@@ -14,7 +14,6 @@ It is generated as follows. The first step is to download the full SYNMAP binary
 
 Then a Python script that processes this data is the following:
 
-<!-- {% raw %} -->
 ```
 import numpy as np
 # Import the dataset (consisting of unsigned integers)
