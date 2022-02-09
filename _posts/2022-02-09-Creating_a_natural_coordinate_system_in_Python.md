@@ -125,6 +125,6 @@ ax[1].plot(x,y, 'rv')
 ax[1].add_patch(circle1)
 ```
 
-can be used to compute the tangential vector, normal vector, and curvature, for a point `s=0.75`, thus at three-quarters along the line!
+can be used to compute the tangential vector, normal vector, and curvature (i.e., the maximum inscribing circle), for a point `s=0.75`, thus at three-quarters along the line!
 
 ![Natural coordinates Python snippet output](../assets/img/natural_coordinates_curvature.png)
