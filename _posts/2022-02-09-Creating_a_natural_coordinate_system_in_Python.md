@@ -87,7 +87,44 @@ cax1 = divider1.append_axes('right', size='10%', pad=0.1)
 fig.colorbar(im1, cax=cax1, orientation='vertical')
 ```
 
-That results in the following figure
+That results in the following figure, which shows the tangential (x) and **unsigned** (!) normal (y) coordinates.
 
 ![Natural coordinates Python snippet output](../assets/img/natural_coordinates.png)
 
+The Bézier package allows many further nice things, such as evaluating *exactly* the normal and tangential vector components of the flow field. For example 
+```python
+s = 0.75
+x, y = curve.evaluate(0s)
+tangent_vec2 = curve.evaluate_hodograph(0.75)
+tangent_vec = tangent_vec2 / np.linalg.norm(tangent_vec2)
+normal_vec = np.array([tangent_vec[1], -tangent_vec[0]])
+curvature = bezier.hazmat.curve_helpers.get_curvature(nodes, tangent_vec2, s)
+move_distance = normal_vec * 1/(curvature)
+circle1 = plt.Circle((x-move_distance[0], y-move_distance[1]), 1/np.abs(curvature), color='r', fill=False)
+
+# --- The plotting routine...
+fig, ax = plt.subplots(1,2,figsize=(10,4.5))
+im0 = ax[0].pcolor(lon, lat, xn)
+ci0 = curve.plot(num_pts=100, ax=ax[0], color='k')
+ci0.get_lines()[0].set_linewidth(6)
+ax[0].set_title('Natural coordinates (x), with tangential and normal lines')
+im1 = ax[1].pcolor(lon, lat, yn)
+curve.plot(num_pts=100, ax=ax[1])
+ax[1].set_title('Natural coordinates (y), with curvature for the point')
+plt.tight_layout()
+divider0 = make_axes_locatable(ax[0])
+cax0 = divider0.append_axes('right', size='10%', pad=0.1)
+fig.colorbar(im0, cax=cax0, orientation='vertical')
+divider1 = make_axes_locatable(ax[1])
+cax1 = divider1.append_axes('right', size='10%', pad=0.1)
+fig.colorbar(im1, cax=cax1, orientation='vertical')
+ax[0].plot(x,y, 'rv')
+ax[0].plot([x-5*tangent_vec[0], x+5*tangent_vec[0]], [y-5*tangent_vec[1], y+5*tangent_vec[1]], 'r', linewidth=3)
+ax[0].plot([x-2*normal_vec[0], x+2*normal_vec[0]], [y-2*normal_vec[1], y+2*normal_vec[1]], 'w', linewidth=3)
+ax[1].plot(x,y, 'rv')
+ax[1].add_patch(circle1)
+```
+
+can be used to compute the tangential vector, normal vector, and curvature, for a point `s=0.75`, thus at three-quarters along the line!
+
+![Natural coordinates Python snippet output](../assets/img/natural_coordinates_curvature.png)
