@@ -5,9 +5,9 @@ subtitle: ""
 tags: [atmospheric modeling, python]
 ---
 
-According to the divergence theorem (in 2D), the volume integral of $\iint_V \nabla\cdot F \mathrm{d}V$ equals the line integral enclosing the volume of $\oint_{\partial V}F\cdot n \mathrm{d}S=\oint_{\partial V} (F_x dy - F_y dx)$ with $n$ a unit vector.
+According to the divergence theorem (in 2D), the volume integral of the divergence of a 2D vector $\mathbf{F}=(F_x,F_y)^T$ written as $\iint_V \nabla\cdot \mathbf{F} \mathrm{d}V$ equals the line integral enclosing the volume, $\oint_{\partial V}\mathbf{F}\cdot \mathbf{n} \mathrm{d}S=\oint_{\partial V} (F_x dy - F_y dx)$ with $\mathbf{n}$ a unit vector.
 
-I wanted to test this idea in Python, so wrote the following code to compute these two integrals.
+I wanted to test this theorem in Python, so wrote the following code to compute these two integrals. It's fairly general and will allow arbitrary vector fields.
 
 ```python
 # Create a vector field, and a set of points to interpolate over
@@ -24,6 +24,7 @@ def return_closed_curve(pts, k=1, npts=1000):
     k=1 gives a linear interpolation, k=3 a cubic spline (=smoother).
     pts_i = x_i, y_i; i.e., pts=2xN array of 2D points.
     The output is regularly spaced in Euclidean space (i.e. dx^2+dy^2 is constant).
+    Based on https://stackoverflow.com/a/31466013/4591046
     '''
     tck, u = splprep(pts.T, u=None, s=0.0, per=1, k=k)
     u_new = np.linspace(u.min(), u.max(), npts)
