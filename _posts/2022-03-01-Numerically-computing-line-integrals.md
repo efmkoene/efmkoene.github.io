@@ -5,7 +5,7 @@ subtitle: ""
 tags: [atmospheric modeling, python]
 ---
 
-According to the divergence theorem (in 2D), the volume integral of $\iint_V \nabla\cdot F \mathrm{d}V$ equals the line integral enclosing the volume of $\oint_{\partial V}F\cdot n dS=\oint_{\partial V} (F_x dy - F_y dx)$ with $n$ a unit vector.
+According to the divergence theorem (in 2D), the volume integral of $\iint_V \nabla\cdot F \mathrm{d}V$ equals the line integral enclosing the volume of $\oint_{\partial V}F\cdot n \mathrm{d}S=\oint_{\partial V} (F_x dy - F_y dx)$ with $n$ a unit vector.
 
 I wanted to test this idea in Python, so wrote the following code to compute these two integrals.
 
