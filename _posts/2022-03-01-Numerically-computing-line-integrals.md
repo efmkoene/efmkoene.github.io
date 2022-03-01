@@ -172,7 +172,7 @@ x_line, y_line = return_closed_curve(pts, npts=1000, k=1)
 
 # Plot the intermediate results -- starts to be memory intensive for large x/y arrays!
 plt.figure(figsize=(15,15))
-plt.quiver(X, Y, Vx, Vy)
+plt.quiver(X, Y, Vx, Vy, Vx**2+Vy**2, cmap=plt.cm.inferno)
 plt.plot(pts[:,0], pts[:,1], 'ro')
 plt.plot(x_line, y_line, 'b--')
 plt.title('Quiver plot and integration area')
