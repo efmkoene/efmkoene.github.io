@@ -211,4 +211,4 @@ Anyhow, this method easily extends to more complicated shapes for which I wouldn
 
 ![quiver plot and domain](../assets/img/quiver2.png)
 
-giving 0.6022000000000002 for the volume integral, and 0.6182731693440393 for the line integral. When changing the number of `x` and `y` points to `1001`, I find 0.6164499999999999 and 0.617788105206478 respectively, thus with the volume integral solution moving in the direction already obtained with the line integral...indicating again how accurate the line integral is, to my surprise!
+giving `0.6022000000000002` for the volume integral, and `0.6182731693440393` for the line integral. When changing the number of `x` and `y` points from `101` to `1001`, I find `0.6164499999999999` and `0.617788105206478` respectively, thus with the volume integral solution moving in the direction already obtained with the line integral...indicating again how accurate the line integral is, to my surprise!
