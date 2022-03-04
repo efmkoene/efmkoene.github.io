@@ -192,7 +192,7 @@ print("Volume integral of divergence gives: ", DIV_int)
 # This volume integral isn't fully correct, because it doesn't take into account the 'degree of overlap'
 # between the polygon of integration and each 2D surface element. 
 
-############################################## STEP 4: NUMERICALLY COMPUTE THE LINE INTEGRAL \iint V\cdot n dA
+############################################## STEP 4: NUMERICALLY COMPUTE THE LINE INTEGRAL \oint V\cdot n dA
 Vx_itp = NNintp(X, Y, Vx, x_line, y_line, method='NN')
 Vy_itp = NNintp(X, Y, Vy, x_line, y_line, method='NN')
 LIN_int = line_integral(Vx_itp, Vy_itp, x_line, y_line)
@@ -223,7 +223,7 @@ print(2*polygon_area(x_line, y_line))
 ```
 to find the fully correct answer of `0.6177792211167912`. If we change our line integral method to use a linear interpolation rather than nearest neighbours, we get
 ```python
-############################################## STEP 4: NUMERICALLY COMPUTE THE LINE INTEGRAL \iint V\cdot n dA
+############################################## STEP 4: NUMERICALLY COMPUTE THE LINE INTEGRAL \oint V\cdot n dA
 Vx_itp = NNintp(X, Y, Vx, x_line, y_line, method='linear')
 Vy_itp = NNintp(X, Y, Vy, x_line, y_line, method='linear')
 LIN_int = line_integral(Vx_itp, Vy_itp, x_line, y_line)
