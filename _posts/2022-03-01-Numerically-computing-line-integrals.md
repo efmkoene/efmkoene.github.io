@@ -211,4 +211,22 @@ Anyhow, this method easily extends to more complicated shapes for which I wouldn
 
 ![quiver plot and domain](../assets/img/quiver2.png)
 
-giving `0.6022000000000002` for the volume integral, and `0.6182731693440393` for the line integral. When changing the number of `x` and `y` points from `101` to `1001`, I find `0.6164499999999999` and `0.617788105206478` respectively, thus with the volume integral solution moving in the direction already obtained with the line integral...indicating again how accurate the line integral is, to my surprise!
+giving `0.6022000000000002` for the volume integral, and `0.6182731693440393` for the line integral. Well, actually, we know that the 'correct' answer for this particular vector field is twice the 'area' of the defined polygon, which we can compute as
+
+```python
+# based on https://stackoverflow.com/a/49129646/4591046
+def polygon_area(x,y):
+    correction = x[-1] * y[0] - y[-1]* x[0]
+    main_area = np.dot(x[:-1], y[1:]) - np.dot(y[:-1], x[1:])
+    return 0.5*np.abs(main_area + correction)
+print(2*polygon_area(x_line, y_line))
+```
+to find the fully correct answer of `0.6177792211167912`. If we change our line integral method to use a linear interpolation rather than nearest neighbours, we get
+```python
+############################################## STEP 4: NUMERICALLY COMPUTE THE LINE INTEGRAL \iint V\cdot n dA
+Vx_itp = NNintp(X, Y, Vx, x_line, y_line, method='linear')
+Vy_itp = NNintp(X, Y, Vy, x_line, y_line, method='linear')
+LIN_int = line_integral(Vx_itp, Vy_itp, x_line, y_line)
+print("Line integral of the line integral : ", LIN_int)
+```
+with an answer of `0.6177792211168114` which is accurate to 12 digits. Not bad!
