@@ -35,7 +35,7 @@ The pattern that emerges is
 \end{align}
 We can see that the right-hand side simply corresponds to the arithmic mean $(f(x+(N+1)\Delta x)+f(x+N\Delta x))/2)=f(x+(N+1/2)\Delta x)$. So, the pattern is equally
 \begin{align}
-  \sum_{i=0}^N \frac{\mathrm{D}f(x+i\Delta x)}{\mathrm{D}x} \Delta x = f\left( x+\left(N+\frac{1}{2}\right)\Delta x \right) + f\left( x-\left(\frac{1}{2}\right)\Delta x \right).
+  \sum_{i=0}^N \frac{\mathrm{D}f(x+i\Delta x)}{\mathrm{D}x} \Delta x = f\left( x+\left(N+\frac{1}{2}\right)\Delta x \right) - f\left( x-\left(\frac{1}{2}\right)\Delta x \right).
 \end{align}
 This result actually corresponds to one of the two fundamental theorems of calculus,
 \begin{align}
@@ -51,13 +51,17 @@ The divergence is defined as
 \end{equation}
 If we sum this expression in the $x$ direction, we find what we already obtained for the fundamental theorem of algebra,
 \begin{equation}
-  \sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y)}{\mathrm{Di}x} = \frac{f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) + f\left( x-\left(\frac{1}{2}\right)\Delta x,y \right)}{\Delta x} + \frac{f(xx,y+\Delta y)-f(x,y-\Delta y)}{2\Delta y}.
+  \sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y)}{\mathrm{Di}x} = \frac{f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) - f\left( x-\left(\frac{1}{2}\right)\Delta x,y \right)}{\Delta x} - \frac{f(xx,y+\Delta y)-f(x,y-\Delta y)}{2\Delta y}.
 \end{equation}
 And if we do the same in the $y$ direction we obtain
 \begin{equation}
-  \sum_{j=0}^M\sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y+j\Delta y)}{\mathrm{Di}x} = \sum_{j=0}^M\left( \frac{f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) + f\left( x-\left(\frac{1}{2}\right)\Delta x,y+j\Delta y \right)}{\Delta x}\right) + \sum_{i=0}^N \left( \frac{f\left(x+i\Delta x, y+\left(M+\frac{1}{2}\right)\Delta y \right) + f\left( x+i\Delta x, y-\left(\frac{1}{2}\right)\Delta y \right)}{\Delta y} \right).
+  \sum_{j=0}^M\sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y+j\Delta y)}{\mathrm{Di}x} = \sum_{j=0}^M\left( \frac{f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) - f\left( x-\left(\frac{1}{2}\right)\Delta x,y+j\Delta y \right)}{\Delta x}\right) + \sum_{i=0}^N \left( \frac{f\left(x+i\Delta x, y+\left(M+\frac{1}{2}\right)\Delta y \right) - f\left( x+i\Delta x, y-\left(\frac{1}{2}\right)\Delta y \right)}{\Delta y} \right).
 \end{equation}
 Or, rearranging, we find
 \begin{equation}
-  \sum_{j=0}^M\sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y+j\Delta y)}{\mathrm{Di}x} \Delta x \Delta y = \sum_{j=0}^M\left( f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) + f\left( x-\left(\frac{1}{2}\right)\Delta x,y+j\Delta y \right)\right)\Delta y + \sum_{i=0}^N \left( f\left(x+i\Delta x, y+\left(M+\frac{1}{2}\right)\Delta y \right) + f\left( x+i\Delta x, y-\left(\frac{1}{2}\right)\Delta y \right) \right)\Delta x.
+  \sum_{j=0}^M\sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y+j\Delta y)}{\mathrm{Di}x} \Delta x \Delta y = \sum_{j=0}^M\left( f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) - f\left( x-\left(\frac{1}{2}\right)\Delta x,y+j\Delta y \right)\right)\Delta y + \sum_{i=0}^N \left( f\left(x+i\Delta x, y+\left(M+\frac{1}{2}\right)\Delta y \right) - f\left( x+i\Delta x, y-\left(\frac{1}{2}\right)\Delta y \right) \right)\Delta x.
+\end{equation}
+This corresponds to a proof for the divergence theorem for a square area,
+\begin{equation}
+  \iint_V \nabla \cdot \mathrm{F} \di x \di y = \int_{y_0}^{y_1} f(x_1,y)\mathrm{d}y - \int_{y_0}^{y_1} f(x_0,y)\mathrm{d}y + \int_{x_0}^{x_1} f(x,y_1) \mathrm{d}x - \int_{x_0}^{x_1} f(x,y_0) \mathrm{d}x.
 \end{equation}
