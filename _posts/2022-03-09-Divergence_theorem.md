@@ -61,9 +61,9 @@ Or, rearranging, we find
 \begin{equation}
   \sum_{j=0}^M\sum_{i=0}^N \frac{\mathrm{Di}f(x+i\Delta x,y+j\Delta y)}{\mathrm{Di}x} \Delta x \Delta y = \sum_{j=0}^M\left( f\left( x+\left(N+\frac{1}{2}\right)\Delta x,y \right) - f\left( x-\left(\frac{1}{2}\right)\Delta x,y+j\Delta y \right)\right)\Delta y + \sum_{i=0}^N \left( f\left(x+i\Delta x, y+\left(M+\frac{1}{2}\right)\Delta y \right) - f\left( x+i\Delta x, y-\left(\frac{1}{2}\right)\Delta y \right) \right)\Delta x.
 \end{equation}
-This corresponds to a proof for the divergence theorem for a square area,
+This corresponds to a proof for the divergence theorem for a square area $(x,y)\in[(x_0,x_1)\times(y_0,y_1)]$,
 \begin{align}
-  \iint_V \nabla \cdot \mathbf{F} \di x \di y & = \int_{y_0}^{y_1} f(x_1,y)\mathrm{d}y - \int_{y_0}^{y_1} f(x_0,y)\mathrm{d}y + \int_{x_0}^{x_1} f(x,y_1) \mathrm{d}x - \int_{x_0}^{x_1} f(x,y_0) \mathrm{d}x,\\
+  \iint_V \nabla \cdot \mathbf{F} \mathrm{d} x \mathrm{d} y & = \int_{y_0}^{y_1} f(x_1,y)\mathrm{d}y - \int_{y_0}^{y_1} f(x_0,y)\mathrm{d}y + \int_{x_0}^{x_1} f(x,y_1) \mathrm{d}x - \int_{x_0}^{x_1} f(x,y_0) \mathrm{d}x,\\
   & = \oint_{\partial V} \mathbf{F}\cdot\mathbf{n}\mathrm{d}(\partial V).
 \end{align}
 
