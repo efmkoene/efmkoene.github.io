@@ -16,11 +16,11 @@ I'd like to clarify where this value comes from, and see what it's generalizatio
 #### Preliminaries
 To start with, define the image as $f(\mathbf{x})$ with $\mathbf{x}\in\mathbb{R}^2$ to define a 2D image, and define a derivative operation on images [as a convolution with a (similarly) differentiated Gaussian](https://www.crisluengo.net/archives/22/),
 
-$$f_j(\mathbf{x}) \equiv f(\mathbf{x}) * \frac{\partial}{\partial x_j}\frac{e^{-\mathbf{x}^2/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
+$$f_j(\mathbf{x}) \equiv f(\mathbf{x}) * \frac{\partial}{\partial x_j}\frac{e^{-(\mathbf{x}^T\mathbf{x})/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
 
 and
 
-$$f_{ij}(\mathbf{x}) = f(\mathbf{x}) * \frac{\partial}{\partial x_i}\frac{\partial}{\partial x_j}\frac{e^{-\mathbf{x}^2/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
+$$f_{ij}(\mathbf{x}) = f(\mathbf{x}) * \frac{\partial}{\partial x_i}\frac{\partial}{\partial x_j}\frac{e^{-(\mathbf{x}^T\mathbf{x})/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
 
 Furthermore, we define the Hessian of $f$ as
 
