@@ -89,7 +89,7 @@ $$
 
 This has a great significance, because although expanding out the two squared directional derivatives gives a lot of elements, most will be zero. In fact, with some tedious algebra you may find that the solution can be written as
 
-$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = \frac{f(0)}{\sigma^4} 3(\mathbf{v}_i \cdot \mathbf{v}_j) + \frac{1}{2}\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2 \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j, \end{cases}. $$
+$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3(\mathbf{v}_i \cdot \mathbf{v}_j) + \frac{1}{2}\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2}{\sigma^4}= \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j, \end{cases}. $$
 
 which uses the fact that the inner product between $\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$ (thus equals 1 if the two vectors $\mathbf{v}\_{i,j}$ are identical and zero otherwise) and that the partial sums $\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2=1-\delta_{ij}$ (thus equals 1 if the vectors $\mathbf{v}\_{i,j}$ are *not* identical).
 
