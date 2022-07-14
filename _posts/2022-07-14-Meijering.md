@@ -92,4 +92,28 @@ Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\qu
 
 $$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
 
-The resulting terms can be simplified further, because we know that $\mathbf{v}\_i\cdot\mathbf{v}\_j=0$ as the system is orthonormal. For this example, that gives $v_1r_1+v_2r_2=0$, or $(v_1r_1+v_2r_2)^2=v_1^2r_1^2+2v_1v_2r_1r_2+v_2^2r_2^2=0$.
+We now use two results from linear algebra for orthonormal systems of eigenvectors $\mathbf{v}\_i$:
+
+$$ \mathbf{v}_i \left[ \begin{array}{ccc}
+1 & 0 \\
+0 & 1 \end{array} \right] \mathbf{v}_j = \begin{cases} 0 \quad (j\neq i) \\ 1 \quad (j=i) \end{cases} $$
+
+and
+
+$$ \mathbf{v}_i \left[ \begin{array}{ccc}
+0 & 1 \\
+1 & 0 \end{array} \right] \mathbf{v}_j = \pm 1 \quad (j\neq i) $$
+
+In our example that corresponds to the terms $v_1r_1+v_2r_2=0$, or $(v_1r_1+v_2r_2)^2=v_1^2r_1^2+2v_1v_2r_1r_2+v_2^2r_2^2=0$ and $(v_1r_2 - v_2r_1)=\pm 1$, thus $(v_1r_2 - v_2r_1)^2=v_1^2r_2^2 + v_2^2r_1^2 - 2r_1r_2v_1v_2=1$. The sum of these two squared terms corresponds exactly to the terms collected above, thus we find that 
+
+$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{1}{\sigma^4}\quad (j\neq i). $$
+
+Correspondingly, for the other term in the limit, containing the $\alpha$, we obtain for $\mathbf{v}\_j=(r_1\quad r_2)$
+
+$$ \lim_{\mathbf{x}\to 0}\left[ (\alpha(\mathbf{v}_j\cdot\nabla)^4\right]f(\mathbf{x}) = f(0)\frac{3r_1^4 + 6r_1^2r_2^2 + 3r_2^2}{\sigma^2} = f(0)\frac{3}{\sigma^4}, $$
+
+where we used the orthogonality relation as described above. Combining the findings for the two limits, we obtain
+
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(\mathbf{x})\frac{1-3\alpha}{\sigma^4}\quad (j\neq i).$$
+
+It is then easy to see that for $\alpha=-1/3$ we achieve our objective. This is what Meijering et al. (2004) also found.
