@@ -11,7 +11,7 @@ The contribution deals with an implementation of a method proposed by Meijering 
 
 One of the issues was that the tuneable factor $\alpha$ was not chosen perfectly in the previous implementation, because Meijering et al. (2004) show that $\alpha=-1/3$ is the optimal value.
 
-I'd like to clarify where this value comes from.
+I'd like to clarify where this value comes from, and see what it's generalization to n-D is.
 
 #### Preliminaries
 To start with, define the image as $f(\mathbf{x})$ with $\mathbf{x}\in\mathbb{R}^n$ to define an $n$-D image, and define a derivative operation on images [as a convolution with a (similarly) differentiated Gaussian](https://www.crisluengo.net/archives/22/),
@@ -92,7 +92,7 @@ Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\qu
 
 $$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
 
-We now use two results from linear algebra for orthonormal systems of eigenvectors $\mathbf{v}\_i$:
+We now use two results from linear algebra *for orthonormal systems of eigenvectors* (and not otherwise!) $\mathbf{v}\_i$:
 
 $$ \mathbf{v}_i \left[ \begin{array}{ccc}
 1 & 0 \\
@@ -101,7 +101,7 @@ $$ \mathbf{v}_i \left[ \begin{array}{ccc}
 and
 
 $$ \mathbf{v}_i \left[ \begin{array}{ccc}
-0 & 1 \\
+0 & -1 \\
 1 & 0 \end{array} \right] \mathbf{v}_j = \pm 1 \quad (j\neq i) $$
 
 In our example that corresponds to the terms $v_1r_1+v_2r_2=0$, or $(v_1r_1+v_2r_2)^2=v_1^2r_1^2+2v_1v_2r_1r_2+v_2^2r_2^2=0$ and $(v_1r_2 - v_2r_1)=\pm 1$, thus $(v_1r_2 - v_2r_1)^2=v_1^2r_2^2 + v_2^2r_1^2 - 2r_1r_2v_1v_2=1$. The sum of these two squared terms corresponds exactly to the terms collected above, thus we find that 
@@ -163,19 +163,49 @@ f_{xyza}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2 \\ 0 \\ 0\end{array} \right] .
 $$
 
-We find that the limit may be expanded into $n$ terms of multiplications of terms $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case:
+We find that the limit may be expanded into $n$ terms of multiplications of form $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case:
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
 
-For example, in 3-D for vectors $\mathbf{v}\_i^T=(v_1\quad v_2\quad v_3)$ and $\mathbf{v}\_j^T=(r_1\quad r_2\quad r_3)$ we expend the terms to find
-$$ \lim_{\mathbf{x}\to 0} (\left[ \begin{array}{ccc}
-r_1 \\
-r_2 \\
-r_3 \end{array} \right]\cdot\nabla)^2(\left[ \begin{array}{ccc}
-v_1 \\
-v_2 \\
-v_3 \end{array} \right]\cdot\nabla)^2 f(\mathbf{x}) = f(0)\frac{4 r_2 r_3 v_2 v_3 + 4 r_1 v_1 (r_2 v_2 + r_3 v_3) + r_1^2 (3 v_1^2 + v_2^2 + v_3^2) + r_2^2 (v_1^2 + 3 v_2^2 + v_3^2) +  r_3^2 (v_1^2 + v_2^2 + 3 v_3^2)}{\sigma^2} $$
+For example, if you expand out all terms in 3-D you'll find that the terms may be written as a sum of the inner product ($\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$) and a determinant-like sum of all subsets of cross-products between the items of a vector. That this is true is easy to see but I found it not straightforward to proof. However, you can verify it numerically easily. For example, in 3-D we have
 
-We now again look for instances of the positive inner product ($r_1v_1+r_2v_2+r_3v_3=0$) and 
+```python
+import numpy as np
+import numpy.random
+from numpy import linalg as LA
+A = np.random.rand(3,3)
+A = A + A.T # Make symmetric
+w, v = LA.eig(A)
+print((v[[0,1],0] @ np.asarray([[0,1],[-1,0]]) @ v[[0,1],1])**2 + 
+      (v[[0,2],0] @ np.asarray([[0,1],[-1,0]]) @ v[[0,2],1])**2 + 
+      (v[[1,2],0] @ np.asarray([[0,1],[-1,0]]) @ v[[1,2],1])**2 )
+# >>> 1.0
+```
 
-$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha-n\alpha}{\sigma^4}$$
+and in N-D we have that
+
+```python
+from itertools import permutations
+import numpy as np
+import numpy.random
+from numpy import linalg as LA
+N = 5
+A = np.random.rand(N,N)
+A = A + A.T # Make symmetric
+w, v = LA.eig(A)
+perms = list(permutations(np.arange(N), 2))
+perms = list(np.sort(perms))
+perms = list(map(np.asarray, set(map(tuple, perms))))
+res = 0
+for perm in perms:
+    print(perm)
+    res += (v[perm,0] @ np.asarray([[0,1],[-1,0]]) @ v[perm,1])**2
+print(res)
+# >>> 1.0
+```
+
+Once you have worked through all these terms, you'll find that
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha(n+1)}{\sigma^4}$$
+
+Hence, we've reached our conclusion! **The optimal value for $\alpha$ is reached for $\alpha=-1/(n+1)$. Thus, -1/3 for 2D, -1/4 for 3D, etc.**
