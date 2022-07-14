@@ -148,7 +148,7 @@ We find that the limit may be expanded into $n$ terms of multiplications of form
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j. \end{cases}$$
 
-For example, if you expand out all terms in 3-D you'll find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified numerically, e.g. in 3D,
+If you want to see this, you can expand out all terms in 3-D to find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified numerically, e.g. in 3D,
 
 ```python
 import numpy as np
