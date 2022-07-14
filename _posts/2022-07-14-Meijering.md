@@ -14,7 +14,7 @@ One of the issues was that the tuneable factor $\alpha$ was not chosen perfectly
 I'd like to clarify where this value comes from, and see what it's generalization to n-D (n dimensions) is.
 
 #### Preliminaries
-To start with, define the image as $f(\mathbf{x})$ with $\mathbf{x}\in\mathbb{R}^n$ to define an $n$-D image, and define a derivative operation on images [as a convolution with a (similarly) differentiated Gaussian](https://www.crisluengo.net/archives/22/),
+To start with, define the image as $f(\mathbf{x})$ with $\mathbf{x}\in\mathbb{R}^2$ to define a 2D image, and define a derivative operation on images [as a convolution with a (similarly) differentiated Gaussian](https://www.crisluengo.net/archives/22/),
 
 $$f_j(\mathbf{x}) \equiv f(\mathbf{x}) * \frac{\partial}{\partial x_j}\frac{e^{-\mathbf{x}^2/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
 
