@@ -163,9 +163,28 @@ f_{xyza}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2 \\ 0 \\ 0\end{array} \right] .
 $$
 
-We find that the limit may be expanded into $n$ terms of multiplications of form $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case:
+We find that the limit may be expanded into $n$ terms of multiplications of form $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case (see also the next section)
 
-$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
+$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j. \end{cases}$$
+
+Thus,  
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_i\cdot\nabla)^2 + \sum_{j\neq i} \alpha (\mathbf{v}_j \cdot \nabla)^2 \right]f(\mathbf{x})$$
+
+corresponds to
+
+$$ f(0) \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_1\cdot\nabla)^2 + \alpha (\mathbf{v}_2 \cdot \nabla)^2 + \alpha (\mathbf{v}_3 \cdot \nabla)^2  + \dots + \alpha (\mathbf{v}_n \cdot \nabla)^2\right]f(\mathbf{x})$$
+
+which corresponds to
+
+$$ f(0)\frac{1+\alpha+\alpha + \dots + \alpha}{\sigma^4} $$
+
+Thus, once you've worked through all these terms, you'll find that
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha(n+1)}{\sigma^4}$$
+
+Hence, we've reached our conclusion! **The optimal value for $\alpha$ is reached for $\alpha=-1/(n+1)$. Thus, -1/3 for 2D, -1/4 for 3D, etc.**
+
 
 For example, if you expand out all terms in 3-D you'll find that the terms may be written as a sum of the inner product ($\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$) and a determinant-like sum of all subsets of cross-products between the items $k$ and $l$ of two vectors $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified. For example, in 3-D the summation corresponds to
 
@@ -204,8 +223,3 @@ print(res)
 # >>> 1.0
 ```
 
-Once you have worked through all these terms, you'll find that
-
-$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha(n+1)}{\sigma^4}$$
-
-Hence, we've reached our conclusion! **The optimal value for $\alpha$ is reached for $\alpha=-1/(n+1)$. Thus, -1/3 for 2D, -1/4 for 3D, etc.**
