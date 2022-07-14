@@ -25,39 +25,49 @@ $$f_{ij}(\mathbf{x}) = f(\mathbf{x}) * \frac{\partial}{\partial x_i}\frac{\parti
 
 Furthermore, we define the Hessian of $f$ as
 
-$$H_f = \left[ \begin{array}{ccc}
-f_{xx} & f_{xy} \\
-f_{xy} & f_{yy} \end{array} \right].$$
+$$H_f(\mathbf{x}) = \left[ \begin{array}{ccc}
+f_{xx}(\mathbf{x}) & f_{xy}(\mathbf{x}) \\
+f_{xy}(\mathbf{x}) & f_{yy}(\mathbf{x}) \end{array} \right].$$
 
 Because the Hessian is [symmetric and real](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices), it allows an eigendecomposition with $n$ orthonormal eigenvectors $\mathbf{v}\_i$ (that is, $\mathbf{v}\_i^T\mathbf{v}\_j=0$ for $i\neq j$ and each eigenvectors has length 1), with corresponding eigenvalues $\lambda_i$ (which satisfy $H_f \mathbf{v}\_i = \lambda_i \mathbf{v}\_i$). This may be written as
 
 $$
-\mathbf{v}\_i^T H_f \mathbf{v}\_i = \lambda_i.
+\mathbf{v}\_i^T H_f(\mathbf{x}) \mathbf{v}\_i = \lambda_i.
 $$
 
 Interestingly, it also holds that pre- and post-multiplying a Hessian matrix with a vector $d\in\mathbb{R}^n$ of length 1 gives us the second derivative in the direction $d$ (see, e.g., [here](https://math.stackexchange.com/questions/2573376/second-directional-derivative-and-hessian-matrix)),
 
 $$
-\mathbf{d}^T H_f \mathbf{d} = f_{\mathbf{d}\mathbf{d}} = (\mathbf{d}\cdot\nabla)^2 f(\mathbf{x}),
+\mathbf{d}^T H_f(\mathbf{x}) \mathbf{d} = f_{\mathbf{d}\mathbf{d}}(\mathbf{x}) = (\mathbf{d}\cdot\nabla)^2 f(\mathbf{x}),
 $$
 
-where $f_{\mathbf{d}\mathbf{d}}$ is abuse of notation to indicate the second derivative in direction $\mathbf{d}$. We realize that this pre- and post-multiplication pattern could also be seen in the case of the eigendecomposition, and we thus have that:
+where $f_{\mathbf{d}\mathbf{d}}(\mathbf{x})$ is abuse of notation to indicate the second derivative in direction $\mathbf{d}$ at $(\mathbf{x})$. We realize that this pre- and post-multiplication pattern could also be seen in the case of the eigendecomposition, and we thus have that:
 
 $$
-\mathbf{v}\_i^T H_f \mathbf{v}\_i = f_{\mathbf{v}\_i\mathbf{v}\_i} = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \lambda_i.
+\mathbf{v}\_i^T H_f(\mathbf{x}) \mathbf{v}\_i = f_{\mathbf{v}\_i\mathbf{v}\_i}(\mathbf{x}) = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \lambda_i.
 $$
 
-For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{v}\_i\cdot\nabla)^2=v_1^2\partial^2/\partial x_1^2 + 2v_1v_2 \partial^2/(\partial x_1\partial x_2) + v_2^2\partial^2/\partial x_2^2$ and $(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x})=v_1^2 f_{xx} + 2v_1v_y f_{xy} + v_2^2f_{yy}$. And, remarkably, that derivative will be exactly equal to the eigenvalue $\lambda_i$!
+For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{v}\_i\cdot\nabla)^2=v_1^2\partial^2/\partial x_1^2 + 2v_1v_2 \partial^2/(\partial x_1\partial x_2) + v_2^2\partial^2/\partial x_2^2$ and $(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x})=v_1^2 f_{xx} + 2v_1v_y f_{xy} + v_2^2f_{yy}$. And, remarkably, that derivative will be exactly equal to the eigenvalue $\lambda_i$ at $(\mathbf{x})$!
 
 #### An altered Hessian
-Meijering et al. (2004) define an altered Hessian (denoted by a prime $'$), with a tunable parameter $\alpha$,
+Meijering et al. (2004) define an altered Hessian (denoted by a prime $'$), with a tunable parameter $\alpha$ (omitting all $(\mathbf{x})$ dependencies momentarily)
 
-$$H_f' = \left[ \begin{array}{ccc}
+$$H_f'(\mathbf{x}) = \left[ \begin{array}{ccc}
 f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} \\
 (1-\alpha)f_{xy} & f_{yy} + \alpha f_{xx} \end{array} \right].$$
 
-This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are simply related through a simple relation, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. Thus, although we know that the following relation holds,
+This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are simply related through a simple relation, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. Thus, we know that the following eigendecomposition holds,
 
-$$ \mathbf{v}\_i^T H_f' \mathbf{v}\_i = \lambda_i', $$
+$$ \mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i = \lambda_i' = \lambda_i + \alpha \lambda_j,\quad (j\neq i). $$
 
-we may wonder what derivative relation this equation corresponds to.
+From the previous section, we know that $\lambda_i$ is simply the second directional derivative in direction $\mathbf{v}\_i$; and similarly $\alpha\lambda_j$ will be the second directional derivative in direction $\mathbf{v}\_j$ scaled with a parameter $\alpha$. Thus,
+
+$$ \mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i = \lambda_i' = \lambda_i + \alpha \lambda_j = \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x}),\quad (j\neq i). $$
+
+Now comes the step in which we define $\alpha$: we want that the filter is as 'straight' as possible in the orthogonal direction as possible (such that our filter operation resembles a box car) -- which corresponds to setting its second derivative in this orthogonal direction to zero. 
+
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}\_j \cdot \nabla)^2 \left(\mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i\right)\right] = 0 \quad (j\neq i).$$
+
+Then it becomes a matter of linear algebra to work out what that left-hand side corresponds to. Using the $\lambda_i$ and directional derivative relations found above, we find
+
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}\_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}\_i\cdot\nabla)^2(\mathbf{v}\_j\cdot\nabla)^2 +\alpha(\mathbf{v}\_j\cdot\nabla)^4\right]f(\mathbf{x}) \quad (j\neq i).$$
