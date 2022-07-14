@@ -52,11 +52,11 @@ For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{
 #### An altered Hessian
 Meijering et al. (2004) define an altered Hessian (denoted by a prime $'$), with a tunable parameter $\alpha$ (omitting all $(\mathbf{x})$ dependencies momentarily)
 
-$$H_f'(\mathbf{x}) = \left[ \begin{array}{ccc}
+$$H_f'(\mathbf{x}) = H_f(\mathbf(x) + \alpha \underbrace{H_f(\mathbf(x)}_\text{transposed over the other diagonal} = \left[ \begin{array}{ccc}
 f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} \\
 (1-\alpha)f_{xy} & f_{yy} + \alpha f_{xx} \end{array} \right].$$
 
-This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are simply related through a simple relation, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. Thus, we know that the following eigendecomposition holds,
+This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are related through a simple formula, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. Thus, we know that the following eigendecomposition holds,
 
 $$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \alpha \lambda_j,\quad (j\neq i). $$
 
@@ -114,6 +114,14 @@ $$ \lim_{\mathbf{x}\to 0}\left[ (\alpha(\mathbf{v}_j\cdot\nabla)^4\right]f(\math
 
 where we used the orthogonality relation as described above. Combining the findings for the two limits, we obtain
 
-$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(\mathbf{x})\frac{1-3\alpha}{\sigma^4}\quad (j\neq i).$$
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(\mathbf{x})\frac{1-3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
 
-It is then easy to see that for $\alpha=-1/3$ we achieve our objective. This is what Meijering et al. (2004) also found.
+It is then easy to see that for $\alpha=-1/3$ we achieve our objective of setting the term to 0. This is what Meijering et al. (2004) also found (using a similar notation).
+
+
+#### Going to 3-D
+A lot of the above theory is not essentially changed when we go to the 3D case. We establish an augmented Hessian matrix,
+
+$$H_f'(\mathbf{x}) = H_f(\mathbf(x) + \alpha \underbrace{H_f(\mathbf(x)}_\text{transposed over the other diagonal} = \left[ \begin{array}{ccc}
+f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} & (1-\alpha)f_{xy} \\
+(1-\alpha)f_{xy} & f_{yy} + \alpha f_{xx} \end{array} \right].$$
