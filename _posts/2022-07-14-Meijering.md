@@ -31,9 +31,9 @@ Pre- and post-multiplying this Hessian matrix with a vector $d\in\mathbb{R}^n$ o
 \mathbf{d}^T H_f \mathbf{d} = f_{\mathbf{d}\mathbf{d}},
 \end{equation}
 where $f_{\mathbf{d}\mathbf{d}}$ is abuse of notation to indicate the second derivative in direction $\mathbf{d}$. If, for example, $\mathbf{d}^T=[1\quad 0]$, we obtain $\mathbf{d}^TH_f\mathbf{d}=f_xx$, so the 2nd derivative in the $x$ (or '1') direction.
-A special occasian presents itself when the Hessian $H_f$ has an eigenvalue decomposition for $n$ eigenvectors $\mathbf{v}\_i$ and corresponding eigenvalues $\lambda_i$ (which satisfy $H_f \mathbf{v}_i = \lambda_i \mathbf{v}_i$), as in that case we may rewrite the above equation as
+A special occasian presents itself when the Hessian $H_f$ has an eigenvalue decomposition for $n$ eigenvectors $\mathbf{v}\_i$ and corresponding eigenvalues $\lambda_i$ (which satisfy $H_f \mathbf{v}\_i = \lambda_i \mathbf{v}\_i$), as in that case we may rewrite the above equation as
 \begin{equation}
-  \mathbf{v}_i^T H_f \mathbf{v} = \lambda_i = f_{\mathbf{v}_i\mathbf{v}_i},
+  \mathbf{v}\_i^T H_f \mathbf{v} = \lambda_i = f_{\mathbf{v}\_i\mathbf{v}\_i} = (\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}),
 \end{equation}
-where we [made use of the fact that](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices) the Hessian $H_f$ is symmetric and real.
+where we [made use of the fact that](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices) the Hessian $H_f$ is symmetric and real (and we assume that the eigendecomposition exists).
 
