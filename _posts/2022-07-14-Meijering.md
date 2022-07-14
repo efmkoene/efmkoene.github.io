@@ -195,7 +195,7 @@ $$ f(0) \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_1\cdot\nabla)^2 + \a
 
 which corresponds to
 
-$$ f(0)\frac{1+\alpha+\alpha + \dots + \alpha}{\sigma^4} $$
+$$ f(0)\frac{1+\overbrace{\alpha+\alpha + \dots + \alpha}^{n-2\ mathrm{terms}} + 3\alpha}{\sigma^4} $$
 
 Thus, once you've worked through all these terms, you'll find that
 
