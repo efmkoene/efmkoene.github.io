@@ -110,19 +110,19 @@ f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
 
 Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$. Using this identity when multiplying the augmented Hessian with the same eigenvector $\mathbf{v}\_i$ we then find that this eigenvector is also a solution to the augmented system:
 
-$$ H'_f\mathrm{v}\_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}\_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new\ eigenvalues}}\mathrm{v}\_i $$
+$$ H'_f\mathbf{v}_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new\ eigenvalues}}\mathrm{v}_i $$
 
-From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues are described by a similar rule as in the 2-D case:
+From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues can be written as:
 
 $$ \lambda_i' = \lambda_i + \sum_{j\neq i} \alpha \lambda_j. $$
 
-**Just to re-cap what we found so far**: the eigenvalues that satisfy $H_f(\mathbf{x})$ also satisfied the augmented Hessian $H_f'$, and the eigenvalues are described as $\lambda_i=\lambda_i+\sum_{j\neq i}\alpha \lambda_j$. This generalizes the 2-D case to $n$ dimensions.
+This generalizes the 2D case to n dimensions in a straightforward manner.
 
 As previously done, we can ascribe a meaning to each un-primed eigenvalue, $\lambda_i=f_{\mathbf{v}\_i\mathbf{v}\_i}$, that is, the eigenvalue corresponds to the second derivative in the corresponding eigenvector direction. That means that we have
 
 $$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \sum_{j\neq i}\alpha \lambda_j = \left[(\mathbf{v}_i\cdot\nabla)^2 + \sum_{j\neq i} \alpha (\mathbf{v}_j \cdot \nabla)^2 \right]f(\mathbf{x}). $$
 
-In words, thus, we have that the *primed* $\lambda_i'$ corresponds to the directional derivative in direction $\mathbf{v}\_i$ as well as the sum of directional derivatives in the other orthonormal directions, scaled by $\alpha$. If we want to minimize this term, we want that the filter is maximally 'straight' in the direction corresponding to the smallest eigenvalue. Say, the eigenvalues are ordered from largest to smallest, then $\mathbf{v}\_n$ is the smallest eigenvector (note that the next part of the derivation does not in any way depend on this ordering; I suspect that we just want maximum 'straightness' in all directions...), and we want
+In words, thus, we have that the *primed* $\lambda_i'$ corresponds to the directional derivative in direction $\mathbf{v}\_i$ as well as the sum of directional derivatives in the other orthonormal directions, scaled by $\alpha$. We want that this filter/$\lambda$ value is maximally 'straight' in the direction corresponding to the smallest eigenvalue. Say, the eigenvalues are ordered from largest to smallest, then $\mathbf{v}\_n$ is the smallest eigenvector (note that the next part of the derivation does not in any way depend on this ordering; I suspect that we just want maximum 'straightness' in all directions...), and we want
 
 $$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = 0$$
 
@@ -148,7 +148,7 @@ We find that the limit may be expanded into $n$ terms of multiplications of form
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j. \end{cases}$$
 
-For example, if you expand out all terms in 3-D you'll find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and two determinant-like sums of all subsets of cross-products between the items $k$ and $l$ of two different vectors $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified. For example, in 3-D the summation corresponds to
+For example, if you expand out all terms in 3-D you'll find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified numerically, e.g. in 3D,
 
 ```python
 import numpy as np
@@ -163,7 +163,7 @@ print((v[[0,1],0] @ np.asarray([[0,1],[-1,0]]) @ v[[0,1],1])**2 +
 # >>> 1.0
 ```
 
-and in N-D we have that
+or in N-D,
 
 ```python
 from itertools import permutations
