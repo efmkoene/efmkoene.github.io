@@ -88,6 +88,8 @@ f_{yyyy}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2\end{array} \right] .
 $$
 
-Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\quad v_2)$ and $\mathbf{v}\_j=(r_1\quad r_2)$,
+Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\quad v_2)$ and $\mathbf{v}\_j=(r_1\quad r_2)$ and simply computing each term and evaluating the derivatives at zero,
 
 $$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
+
+The resulting terms can be simplified further, because we know that $\mathbf{v}\_i\cdot\mathbf{v}\_j=0$ as the system is orthonormal. For this example, that gives $v_1r_1+v_2r_2=0$, or $(v_1r_1+v_2r_2)^2=v_1^2r_1^2+2v_1v_2r_1r_2+v_2^2r_2^2=0$.
