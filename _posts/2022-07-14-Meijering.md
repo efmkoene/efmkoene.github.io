@@ -13,6 +13,7 @@ One of the issues was that the tuneable factor $\alpha$ was not chosen perfectly
 
 I'd like to clarify where this value comes from.
 
+#### Preliminaries
 To start with, define the image as $f(\mathbf{x})$ with $\mathbf{x}\in\mathbb{R}^n$ to define an $n$-D image, and define any derivative operations [as a convolution with a (similarly) differentiated Gaussian](https://www.crisluengo.net/archives/22/),
 
 $$f_j(\mathbf{x}) = f(\mathbf{x}) * \frac{\partial}{\partial x_j}\frac{e^{-\mathbf{x}^2/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
@@ -38,9 +39,10 @@ where $f_{\mathbf{d}\mathbf{d}}$ is abuse of notation to indicate the second der
 A special occasian presents itself when the Hessian $H_f$ has an eigenvalue decomposition for $n$ orthonormal eigenvectors $\mathbf{v}\_i$ (that is, $\mathbf{v}\_i^T\mathbf{v}\_j=0$ for $i\neq j$ and each eigenvectors has length 1), with corresponding eigenvalues $\lambda_i$ (which satisfy $H_f \mathbf{v}\_i = \lambda_i \mathbf{v}\_i$), as in that case we may rewrite the above equation as
 
 $$
-\mathbf{v}\_i^T H_f \mathbf{v} = \lambda_i = f_{\mathbf{v}\_i\mathbf{v}\_i} = (\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}),
+\mathbf{v}\_i^T H_f \mathbf{v}\_i = \lambda_i = f_{\mathbf{v}\_i\mathbf{v}\_i} = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}),
 $$
 
-where we [made use of the fact that](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices) the Hessian $H_f$ is symmetric and real (and we assume that the eigendecomposition exists).
+where we [made use of the fact that](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices) the Hessian $H_f$ is symmetric and real (and we assume that the eigendecomposition exists). For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{v}\_i\cdot\nabla)^2=v_1^2\partial^2/\partial x_1^2 + 2v_1v_2 \partial^2/(\partial x_1\partial x_2) + v_2^2\partial^2/\partial x_2^2$.
 
+#### An altered Hessian
 
