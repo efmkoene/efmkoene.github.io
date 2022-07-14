@@ -44,7 +44,7 @@ $$
 where $f_{\mathbf{d}\mathbf{d}}(\mathbf{x})$ is abuse of notation to indicate the second derivative in direction $\mathbf{d}$ at $(\mathbf{x})$. We realize that this pre- and post-multiplication pattern could also be seen in the case of the eigendecomposition, and we thus have that:
 
 $$
-\mathbf{v}\_i^T H_f(\mathbf{x}) \mathbf{v}\_i = f_{\mathbf{v}\_i\mathbf{v}\_i}(\mathbf{x}) = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \lambda_i.
+\mathbf{v}_i^T H_f(\mathbf{x}) \mathbf{v}_i = f_{\mathbf{v}_i\mathbf{v}\_i}(\mathbf{x}) = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \lambda_i.
 $$
 
 For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{v}\_i\cdot\nabla)^2=v_1^2\partial^2/\partial x_1^2 + 2v_1v_2 \partial^2/(\partial x_1\partial x_2) + v_2^2\partial^2/\partial x_2^2$ and $(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x})=v_1^2 f_{xx} + 2v_1v_y f_{xy} + v_2^2f_{yy}$. And, remarkably, that derivative will be exactly equal to the eigenvalue $\lambda_i$ at $(\mathbf{x})$!
@@ -58,7 +58,7 @@ f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} \\
 
 This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are simply related through a simple relation, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. Thus, we know that the following eigendecomposition holds,
 
-$$ \mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i = \lambda_i' = \lambda_i + \alpha \lambda_j,\quad (j\neq i). $$
+$$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \alpha \lambda_j,\quad (j\neq i). $$
 
 From the previous section, we know that $\lambda_i$ is simply the second directional derivative in direction $\mathbf{v}\_i$; and similarly $\alpha\lambda_j$ will be the second directional derivative in direction $\mathbf{v}\_j$ scaled with a parameter $\alpha$. Thus,
 
@@ -66,8 +66,10 @@ $$ \mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i = \lambda_i' = \lambda_i + \al
 
 Now comes the step in which we define $\alpha$: we want that the filter is as 'straight' as possible in the orthogonal direction as possible (such that our filter operation resembles a box car) -- which corresponds to setting its second derivative in this orthogonal direction to zero. 
 
-$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}\_j \cdot \nabla)^2 \left(\mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i\right)\right] = 0 \quad (j\neq i).$$
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i\right)\right] = 0 \quad (j\neq i).$$
 
-Then it becomes a matter of linear algebra to work out what that left-hand side corresponds to. Using the $\lambda_i$ and directional derivative relations found above, we find
+Then it becomes a matter of linear algebra and differentiating Gaussians, to work out what that left-hand side corresponds to. Using the $\lambda_i$ and directional derivative relations found above, we find
 
-$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}\_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}\_i\cdot\nabla)^2(\mathbf{v}\_j\cdot\nabla)^2 +\alpha(\mathbf{v}\_j\cdot\nabla)^4\right]f(\mathbf{x}) \quad (j\neq i).$$
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 +\alpha(\mathbf{v}_j\cdot\nabla)^4\right]f(\mathbf{x}) \quad (j\neq i).$$
+
+
