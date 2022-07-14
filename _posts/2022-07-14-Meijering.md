@@ -95,7 +95,7 @@ which uses the fact that the inner product between $\mathbf{v}\_i\cdot\mathbf{v}
 
 Thus, we obtain
 
-$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(\mathbf{x})\frac{1-3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(0)\frac{1-3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
 
 It is then easy to see that for $\alpha=-1/3$ we achieve our objective of setting the term to 0. This is what Meijering et al. (2004) also found (using a similar notation).
 
