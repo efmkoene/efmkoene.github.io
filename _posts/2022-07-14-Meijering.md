@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Meijering method in 3D"
+title: "The Meijering method in n-D"
 subtitle: ""
 tags: [python]
 ---
@@ -11,7 +11,7 @@ The contribution deals with an implementation of a method proposed by Meijering 
 
 One of the issues was that the tuneable factor $\alpha$ was not chosen perfectly in the previous implementation, because Meijering et al. (2004) show that $\alpha=-1/3$ is the optimal value.
 
-I'd like to clarify where this value comes from, and see what it's generalization to n-D is.
+I'd like to clarify where this value comes from, and see what it's generalization to n-D (n dimensions) is.
 
 #### Preliminaries
 To start with, define the image as $f(\mathbf{x})$ with $\mathbf{x}\in\mathbb{R}^n$ to define an $n$-D image, and define a derivative operation on images [as a convolution with a (similarly) differentiated Gaussian](https://www.crisluengo.net/archives/22/),
