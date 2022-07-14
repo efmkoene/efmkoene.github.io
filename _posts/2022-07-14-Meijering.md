@@ -92,13 +92,13 @@ Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\qu
 
 $$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
 
-We now use two results from linear algebra *for orthonormal systems of eigenvectors* (and not otherwise!) $\mathbf{v}\_i$:
+We now use a result from linear algebra *for orthonormal systems of eigenvectors* (and not otherwise!) $\mathbf{v}\_i$:
 
 $$ \mathbf{v}_i \left[ \begin{array}{ccc}
 1 & 0 \\
 0 & 1 \end{array} \right] \mathbf{v}_j = \begin{cases} 0 \quad (j\neq i) \\ 1 \quad (j=i) \end{cases} $$
 
-and
+and in this 2-D case the following quantity is also known (which is the determinant of the eigenvector matrix),
 
 $$ \mathbf{v}_i \left[ \begin{array}{ccc}
 0 & -1 \\
@@ -167,7 +167,7 @@ We find that the limit may be expanded into $n$ terms of multiplications of form
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
 
-For example, if you expand out all terms in 3-D you'll find that the terms may be written as a sum of the inner product ($\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$) and a determinant-like sum of all subsets of cross-products between the items of a vector. That this is true is easy to see but I found it not straightforward to proof. However, you can verify it numerically easily. For example, in 3-D we have
+For example, if you expand out all terms in 3-D you'll find that the terms may be written as a sum of the inner product ($\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$) and a determinant-like sum of all subsets of cross-products between the items $k$ and $l$ of two vectors $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified. For example, in 3-D the summation corresponds to
 
 ```python
 import numpy as np
