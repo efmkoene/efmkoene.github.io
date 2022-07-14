@@ -72,4 +72,18 @@ Then it becomes a matter of linear algebra and differentiating Gaussians, to wor
 
 $$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 +\alpha(\mathbf{v}_j\cdot\nabla)^4\right]f(\mathbf{x}) \quad (j\neq i).$$
 
+Before we work out all the terms in brackets, we establish that every term will correspond to some fourth derivative $f_{ijkl}(\mathbf{x})$, so it is helpful to see what limits we will find. Note that the derivative of a Gaussian is typically also a Gaussian, multiplied with some terms, and the Gaussian evaluated at $\mathbf{x}=0$ equals $G(0)=1$. We know that the order of differentiation doesn't matter, thus $f_{xxxy}=f_{xxyx}=f_{xyxx}=f_{yxxx}$ etc. We thus need to establish these five possible variations (use, e.g., [WolframAlpha](https://www.wolframalpha.com/input?i=Lim%5B+D%5BD%5Be%5E%28-%28x%5E2%2By%5E2%29%2F%282*s%5E2%29%29%2C+%7Bx%2C2%7D%5D%2C+%7By%2C2%7D%5D+%2C+%7Bx-%3E0%2C+y-%3E0%7D%5D))
 
+$$
+\lim_{\mathbf{x}\to 0}  \left[ \begin{array}{ccc}
+f_{xxxx} \\
+f_{xxxy} \\
+f_{xxyy} \\
+f_{xyyy} \\
+f_{yyyy}\end{array} \right] = \left[ \begin{array}{ccc}
+3/\sigma^2 \\
+0 \\
+1/\sigma^2 \\
+0 \\
+3/\sigma^2\end{array} \right] .
+$$
