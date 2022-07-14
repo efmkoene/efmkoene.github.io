@@ -165,7 +165,7 @@ $$
 
 We find that the limit may be expanded into $n$ terms of multiplications of form $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case:
 
-$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
+$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
 
 For example, if you expand out all terms in 3-D you'll find that the terms may be written as a sum of the inner product ($\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$) and a determinant-like sum of all subsets of cross-products between the items $k$ and $l$ of two vectors $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified. For example, in 3-D the summation corresponds to
 
