@@ -141,11 +141,11 @@ As previously done, we can ascribe a meaning to each un-primed eigenvalue, $\lam
 
 $$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \sum_{j\neq i}\alpha \lambda_j = \left[(\mathbf{v}_i\cdot\nabla)^2 + \sum_{j\neq i} \alpha (\mathbf{v}_j \cdot \nabla)^2 \right]f(\mathbf{x}). $$
 
-In words, thus, we have that the *primed* $\lambda_i'$ corresponds to the directional derivative in direction $\mathbf{v}\_i$ as well as the sum of directional derivatives in the other orthonormal directions, scaled by $\alpha$. If we want to minimize this term, we want that the filter is maximally 'straight' in the direction corresponding to the smallest eigenvalue. Say we have three vectors for $\mathbf{v}\_i$ (i.e., we consider an $n=3$-D field), defined as $\mathbf{v}\_1=(v_1\quad v_2\quad v_3)$, $\mathbf{v}\_2=(r_1\quad r_2\quad r_3)$ and $\mathbf{v}\_3=(k_1\quad k_2\quad k_3)$ where $\mathbf{v}\_3$ corresponds to the smallest eigenvalue. Then we want
+In words, thus, we have that the *primed* $\lambda_i'$ corresponds to the directional derivative in direction $\mathbf{v}\_i$ as well as the sum of directional derivatives in the other orthonormal directions, scaled by $\alpha$. If we want to minimize this term, we want that the filter is maximally 'straight' in the direction corresponding to the smallest eigenvalue. Say, the eigenvalues are ordered from largest to smallest, then $\mathbf{v}\_n$ is the smallest eigenvector (note that the next part of the derivation does not in any way depend on this ordering; I suspect that we just want maximum 'straightness' in all directions...), and we want
 
 $$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = 0$$
 
-Then we end up doing the same kind of calculations as we did in the 2-D case. We expand the expressions, and use the derivative relations [following derivative relations](https://www.wolframalpha.com/input?i=Lim%5B+D%5BD%5BD%5Be%5E%28-%28x%5E2%2By%5E2%2Bz%5E2%29%2F%282*s%5E2%29%29%2C+%7Bx%2C0%7D%5D%2C+%7By%2C3%7D%5D%2C+%7Bz%2C1%7D%5D+%2C+%7Bx-%3E0%2C+y-%3E0%2C+z-%3E0%7D%5D) (realize that at the limit of $\mathbf{x}\to 0$ we have $f_{xxyy}=f_{xxzz}=f_{yyxx}$ etc., so the actual indices are not what's relevant, only the relative occurence of any given derivative relation):
+We end up doing the same kind of calculations as we did in the 2-D case. We expand the expressions, and [use the following derivative relations](https://www.wolframalpha.com/input?i=Lim%5B+D%5BD%5BD%5BD%5Be%5E%28-%28x%5E2%2By%5E2%2Bz%5E2%2Ba%5E2%29%2F%282*s%5E2%29%29%2C+%7Bx%2C1%7D%5D%2C+%7By%2C1%7D%5D%2C+%7Bz%2C1%7D%5D%2C%7Ba%2C1%7D%5D+%2C+%7Bx-%3E0%2C+y-%3E0%2C+z-%3E0%7D%5D) (realize that at the limit of $\mathbf{x}\to 0$ we have $f_{xxyy}=f_{xxzz}=f_{yyxx}$ etc., so the actual indices are not what's relevant, only the relative occurence of any given derivative relation):
 
 $$
 \lim_{\mathbf{x}\to 0}  \left[ \begin{array}{ccc}
@@ -154,14 +154,28 @@ f_{xxxy} \\
 f_{xxyy} \\
 f_{xyyy} \\
 f_{yyyy} \\
-f_{xxyz}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
+f_{xxyz} \\
+f_{xyza}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2 \\
 0 \\
 1/\sigma^2 \\
 0 \\
-3/\sigma^2 \\ 0\end{array} \right] .
+3/\sigma^2 \\ 0 \\ 0\end{array} \right] .
 $$
 
 We find that the limit may be expanded into $n$ terms of multiplications of terms $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case:
 
-$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{1}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
+$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
+
+For example, in 3-D for vectors $\mathbf{v}\_i^T=(v_1\quad v_2\quad v_3)$ and $\mathbf{v}\_j^T=(r_1\quad r_2\quad r_3)$ we expend the terms to find
+$$ \lim_{\mathbf{x}\to 0} (\left[ \begin{array}{ccc}
+r_1 \\
+r_2 \\
+r_3 \end{array} \right]\cdot\nabla)^2(\left[ \begin{array}{ccc}
+v_1 \\
+v_2 \\
+v_3 \end{array} \right]\cdot\nabla)^2 f(\mathbf{x}) = f(0)\frac{4 r_2 r_3 v_2 v_3 + 4 r_1 v_1 (r_2 v_2 + r_3 v_3) + r_1^2 (3 v_1^2 + v_2^2 + v_3^2) + r_2^2 (v_1^2 + 3 v_2^2 + v_3^2) +  r_3^2 (v_1^2 + v_2^2 + 3 v_3^2)}{\sigma^2} $$
+
+We now again look for instances of the positive inner product ($r_1v_1+r_2v_2+r_3v_3=0$) and 
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha-n\alpha}{\sigma^4}$$
