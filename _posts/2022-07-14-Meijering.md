@@ -87,7 +87,7 @@ f_{yyyy}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2\end{array} \right] .
 $$
 
-This has a great significance, because although expanding out the two squared directional derivatives gives a lot of elements, most will be zero. In fact, with some tedious algebra you may find that the solution can be written as
+This has a great significance, because although expanding out the two squared directional derivatives gives a lot of elements, most will be zero. In fact, with some tedious algebra you may find that any combination of these directional derivatives can be written as
 
 $$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3(\mathbf{v}_i \cdot \mathbf{v}_j)^2 + \frac{1}{2}\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2}{\sigma^4}= \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j, \end{cases}. $$
 
