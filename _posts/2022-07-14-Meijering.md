@@ -52,7 +52,7 @@ For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{
 #### An altered Hessian
 Meijering et al. (2004) define an altered Hessian (denoted by a prime $'$), with a tunable parameter $\alpha$ (omitting all $(\mathbf{x})$ dependencies momentarily)
 
-$$H_f'(\mathbf{x}) = H_f(\mathbf(x) + \alpha \underbrace{H_f(\mathbf(x)}_\text{transposed over the other diagonal} = \left[ \begin{array}{ccc}
+$$H_f'(\mathbf{x}) = \left[ \begin{array}{ccc}
 f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} \\
 (1-\alpha)f_{xy} & f_{yy} + \alpha f_{xx} \end{array} \right].$$
 
@@ -120,8 +120,9 @@ It is then easy to see that for $\alpha=-1/3$ we achieve our objective of settin
 
 
 #### Going to 3-D
-A lot of the above theory is not essentially changed when we go to the 3D case. We establish an augmented Hessian matrix,
+A lot of the above theory is not essentially changed when we go to the 3D case. We establish an augmented Hessian matrix: subtracted $\alpha$ times the off-diagonal entries from the Hessian matrix, and subtract the other diagonal terms at each diagonal position. Well, the pattern is easy to see in this figure:
 
-$$H_f'(\mathbf{x}) = H_f(\mathbf(x) + \alpha \underbrace{H_f(\mathbf(x)}_\text{transposed over the other diagonal} = \left[ \begin{array}{ccc}
-f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} & (1-\alpha)f_{xy} \\
-(1-\alpha)f_{xy} & f_{yy} + \alpha f_{xx} \end{array} \right].$$
+$$H_f'(\mathbf{x}) =  \left[ \begin{array}{ccc}
+f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
+(1-\alpha)f_{xy} & f_{yy}+\alpha(f_{xx}+f_{zz}) & (1-\alpha)f_{yz} \\
+(1-\alpha)f_{yz} & (1-\alpha)f_{xz} & f_{zz}+\alpha(f_{xx}+f_{yy}) \end{array} \right].$$
