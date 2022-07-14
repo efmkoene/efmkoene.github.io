@@ -91,9 +91,9 @@ This has a great significance, because although expanding out the two squared di
 
 $$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = \frac{f(0)}{\sigma^4} 3(\mathbf{v}_i \cdot \mathbf{v}_j) + \frac{1}{2}\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2 \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j, \end{cases}. $$
 
-which uses the fact that the inner product between $\mathbf{v}\_i\cdot\mathbf{v}_j=\delta_{ij}$ (thus equals 1 if the two vectors $\mathbf{v}$ are identical and zero otherwise) and that the partial sums $\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2=1-\delta_{ij}$ (thus equals 1 if the vectors $\mathbf{v}$ are *not* identical).
+which uses the fact that the inner product between $\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$ (thus equals 1 if the two vectors $\mathbf{v}\_{i,j}$ are identical and zero otherwise) and that the partial sums $\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2=1-\delta_{ij}$ (thus equals 1 if the vectors $\mathbf{v}\_{i,j}$ are *not* identical).
 
-Correspondingly, we obtain
+Thus, we obtain
 
 $$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(\mathbf{x})\frac{1-3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
 
@@ -110,7 +110,7 @@ f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
 
 Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$. Using this identity when multiplying the augmented Hessian with the same eigenvector $\mathbf{v}\_i$ we then find that this eigenvector is also a solution to the augmented system:
 
-$$ H'_f\mathrm{v}\_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}\_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new eigenvalues}}\mathrm{v}\_i $$
+$$ H'_f\mathrm{v}\_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}\_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new\ eigenvalues}}\mathrm{v}\_i $$
 
 From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues are described by a similar rule as in the 2-D case:
 
