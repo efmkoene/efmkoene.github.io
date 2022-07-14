@@ -34,7 +34,7 @@ $$
 \mathbf{v}_i^T H_f(\mathbf{x}) \mathbf{v}_i = \lambda_i.
 $$
 
-Interestingly, it also holds that pre- and post-multiplying a Hessian matrix with a vector $d\in\mathbb{R}^n$ of length 1 gives us the second derivative in the direction $d$ (see, e.g., [here](https://math.stackexchange.com/questions/2573376/second-directional-derivative-and-hessian-matrix)),
+Interestingly, it also holds that pre- and post-multiplying a Hessian matrix with a vector $\mathbf{d}\in\mathbb{R}^n$ of length 1 gives us the second derivative in the direction $\mathbf{d}$ (see, e.g., [here](https://math.stackexchange.com/questions/2573376/second-directional-derivative-and-hessian-matrix)),
 
 $$
 \mathbf{d}^T H_f(\mathbf{x}) \mathbf{d} = f_{\mathbf{d}\mathbf{d}}(\mathbf{x}) = (\mathbf{d}\cdot\nabla)^2 f(\mathbf{x}),
@@ -43,7 +43,7 @@ $$
 where $f_{\mathbf{d}\mathbf{d}}(\mathbf{x})$ is abuse of notation to indicate the second derivative in direction $\mathbf{d}$ at $(\mathbf{x})$. We realize that this pre- and post-multiplication pattern could also be seen in the case of the eigendecomposition, and we thus have that:
 
 $$
-\mathbf{v}_i^T H_f(\mathbf{x}) \mathbf{v}_i = f_{\mathbf{v}_i\mathbf{v}\_i}(\mathbf{x}) = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \lambda_i.
+\mathbf{v}_i^T H_f(\mathbf{x}) \mathbf{v}_i = f_{\mathbf{v}_i\mathbf{v}_i}(\mathbf{x}) = (\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \lambda_i.
 $$
 
 For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{v}\_i\cdot\nabla)^2=v_1^2\partial^2/\partial x_1^2 + 2v_1v_2 \partial^2/(\partial x_1\partial x_2) + v_2^2\partial^2/\partial x_2^2$ and $(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x})=v_1^2 f_{xx} + 2v_1v_y f_{xy} + v_2^2f_{yy}$. And, remarkably, that derivative will be exactly equal to the eigenvalue $\lambda_i$ at $(\mathbf{x})$!
@@ -110,7 +110,7 @@ f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
 
 Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$. Using this identity when multiplying the augmented Hessian with the same eigenvector $\mathbf{v}\_i$ we then find that this eigenvector is also a solution to the augmented system:
 
-$$ H'_f\mathbf{v}_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new\ eigenvalues}}\mathrm{v}_i $$
+$$ H'_f\mathbf{v}_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new\ eigenvalues}}\mathbf{v}_i $$
 
 From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues can be written as:
 
@@ -144,11 +144,11 @@ f_{xyza}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2 \\ 0 \\ 0\end{array} \right] .
 $$
 
-We find that the limit may be expanded into $n$ terms of multiplications of form $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case (see also the next section)
+We find that the limit may be expanded into $n$ terms of multiplications of form $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case,
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j. \end{cases}$$
 
-If you want to see this, you can expand out all terms in 3-D to find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified numerically, e.g. in 3D,
+If you want to confirm this, you can expand out all terms in 3-D for two arbbitrary vectors $\mathbf{v}\_i^T=(v_1\quad v_2\quad v_3)$ and $\mathbf{v}\_j^T=(r_1\quad r_2\quad r_3)$, to find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this latter thing, but it is easily verified numerically, e.g. in 3D,
 
 ```python
 import numpy as np
