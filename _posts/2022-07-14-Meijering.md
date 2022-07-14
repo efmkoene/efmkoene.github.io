@@ -22,7 +22,6 @@ and
 
 $$f_{ij}(\mathbf{x}) = f(\mathbf{x}) * \frac{\partial}{\partial x_i}\frac{\partial}{\partial x_j}\frac{e^{-\mathbf{x}^2/(2\sigma^2)}}{(\sqrt{2\pi}\sigma)^n}.$$
 
-
 Furthermore, we define the Hessian of $f$ as
 
 $$H_f(\mathbf{x}) = \left[ \begin{array}{ccc}
@@ -49,14 +48,14 @@ $$
 
 For example, for a 2D image if $\mathbf{v}\_i^T=(v_1\quad v_2)$, then $(\mathbf{v}\_i\cdot\nabla)^2=v_1^2\partial^2/\partial x_1^2 + 2v_1v_2 \partial^2/(\partial x_1\partial x_2) + v_2^2\partial^2/\partial x_2^2$ and $(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x})=v_1^2 f_{xx} + 2v_1v_y f_{xy} + v_2^2f_{yy}$. And, remarkably, that derivative will be exactly equal to the eigenvalue $\lambda_i$ at $(\mathbf{x})$!
 
-#### An altered Hessian
-Meijering et al. (2004) define an altered Hessian (denoted by a prime $'$), with a tunable parameter $\alpha$ (omitting all $(\mathbf{x})$ dependencies momentarily)
+#### An augmented Hessian
+Meijering et al. (2004) define an augmented Hessian (denoted by a prime $'$), with a tunable parameter $\alpha$ (omitting all $(\mathbf{x})$ dependencies momentarily)
 
 $$H_f'(\mathbf{x}) = \left[ \begin{array}{ccc}
 f_{xx}+\alpha f_{yy} & (1-\alpha)f_{xy} \\
 (1-\alpha)f_{xy} & f_{yy} + \alpha f_{xx} \end{array} \right].$$
 
-This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are related through a simple formula, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. Thus, we know that the following eigendecomposition holds,
+This Hessian also allows an eigendecomposition with normalized eigenvectors $\mathbf{v}\_i'$ and corresponding eigenvalues $\lambda_i'$. It turns out that, neatly, the eigenvalues of this system are not altered at all ($\mathbf{v}\_i'=\mathbf{v}\_i$), and that the eigenvalues are related through a simple formula, $\lambda_1'=\lambda_1+\alpha\lambda_2$ and $\lambda_2'=\lambda_2+\alpha\lambda_1$. For a proof, see the next section. Thus, we know that the following eigendecomposition holds,
 
 $$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \alpha \lambda_j,\quad (j\neq i). $$
 
@@ -64,7 +63,7 @@ From the previous section, we know that $\lambda_i$ is simply the second directi
 
 $$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \alpha \lambda_j = \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x}),\quad (j\neq i). $$
 
-Now comes the step in which we define $\alpha$: we want that the filter is as 'straight' as possible in the orthogonal direction as possible (such that our filter operation resembles a box car) -- which corresponds to setting its second derivative in this orthogonal direction to zero. 
+Now comes the step in which we define $\alpha$: we want that the filter is as 'straight' as possible in the direction of the smallest eigenvalue (such that our filter operation resembles a box car or table top) -- which corresponds to setting its second derivative in this orthogonal direction to zero. 
 
 $$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i\right)\right] = 0 \quad (j\neq i).$$
 
@@ -88,31 +87,13 @@ f_{yyyy}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 3/\sigma^2\end{array} \right] .
 $$
 
-Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\quad v_2)$ and $\mathbf{v}\_j=(r_1\quad r_2)$ and simply computing each term and evaluating the derivatives at zero,
+This has a great significance, because although expanding out the two squared directional derivatives gives a lot of elements, most will be zero. In fact, with some tedious algebra you may find that the solution can be written as
 
-$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
+$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = \frac{f(0)}{\sigma^4} 3(\mathbf{v}_i \cdot \mathbf{v}_j) + \frac{1}{2}\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2 \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j, \end{cases}. $$
 
-We now use a result from linear algebra *for orthonormal systems of eigenvectors* (and not otherwise!) $\mathbf{v}\_i$:
+which uses the fact that the inner product between $\mathbf{v}\_i\cdot\mathbf{v}_j=\delta_{ij}$ (thus equals 1 if the two vectors $\mathbf{v}$ are identical and zero otherwise) and that the partial sums $\sum_k \sum_l (v_{ik}v_{jl} - v_{il}v_{jk})^2=1-\delta_{ij}$ (thus equals 1 if the vectors $\mathbf{v}$ are *not* identical).
 
-$$ \mathbf{v}_i \left[ \begin{array}{ccc}
-1 & 0 \\
-0 & 1 \end{array} \right] \mathbf{v}_j = \begin{cases} 0 \quad (j\neq i) \\ 1 \quad (j=i) \end{cases} $$
-
-and in this 2-D case the following quantity is also known (which is the determinant of the eigenvector matrix),
-
-$$ \mathbf{v}_i \left[ \begin{array}{ccc}
-0 & -1 \\
-1 & 0 \end{array} \right] \mathbf{v}_j = \pm 1 \quad (j\neq i) $$
-
-In our example that corresponds to the terms $v_1r_1+v_2r_2=0$, or $(v_1r_1+v_2r_2)^2=v_1^2r_1^2+2v_1v_2r_1r_2+v_2^2r_2^2=0$ and $(v_1r_2 - v_2r_1)=\pm 1$, thus $(v_1r_2 - v_2r_1)^2=v_1^2r_2^2 + v_2^2r_1^2 - 2r_1r_2v_1v_2=1$. The sum of these two squared terms corresponds exactly to the terms collected above, thus we find that 
-
-$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{1}{\sigma^4}\quad (j\neq i). $$
-
-Correspondingly, for the other term in the limit, containing the $\alpha$, we obtain for $\mathbf{v}\_j=(r_1\quad r_2)$
-
-$$ \lim_{\mathbf{x}\to 0}\left[ (\alpha(\mathbf{v}_j\cdot\nabla)^4\right]f(\mathbf{x}) = f(0)\frac{3r_1^4 + 6r_1^2r_2^2 + 3r_2^2}{\sigma^2} = f(0)\frac{3}{\sigma^4}, $$
-
-where we used the orthogonality relation as described above. Combining the findings for the two limits, we obtain
+Correspondingly, we obtain
 
 $$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(\mathbf{x})\frac{1-3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
 
@@ -167,26 +148,7 @@ We find that the limit may be expanded into $n$ terms of multiplications of form
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j. \end{cases}$$
 
-Thus,  
-
-$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_i\cdot\nabla)^2 + \sum_{j\neq i} \alpha (\mathbf{v}_j \cdot \nabla)^2 \right]f(\mathbf{x})$$
-
-corresponds to
-
-$$ f(0) \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_1\cdot\nabla)^2 + \alpha (\mathbf{v}_2 \cdot \nabla)^2 + \alpha (\mathbf{v}_3 \cdot \nabla)^2  + \dots + \alpha (\mathbf{v}_n \cdot \nabla)^2\right]f(\mathbf{x})$$
-
-which corresponds to
-
-$$ f(0)\frac{1+\alpha+\alpha + \dots + \alpha}{\sigma^4} $$
-
-Thus, once you've worked through all these terms, you'll find that
-
-$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha(n+1)}{\sigma^4}$$
-
-Hence, we've reached our conclusion! **The optimal value for $\alpha$ is reached for $\alpha=-1/(n+1)$. Thus, -1/3 for 2D, -1/4 for 3D, etc.**
-
-
-For example, if you expand out all terms in 3-D you'll find that the terms may be written as a sum of the inner product ($\mathbf{v}\_i\cdot\mathbf{v}\_j=\delta_{ij}$) and a determinant-like sum of all subsets of cross-products between the items $k$ and $l$ of two vectors $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified. For example, in 3-D the summation corresponds to
+For example, if you expand out all terms in 3-D you'll find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and two determinant-like sums of all subsets of cross-products between the items $k$ and $l$ of two different vectors $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this, but it is easily verified. For example, in 3-D the summation corresponds to
 
 ```python
 import numpy as np
@@ -222,4 +184,22 @@ for perm in perms:
 print(res)
 # >>> 1.0
 ```
+
+Thus,  
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_i\cdot\nabla)^2 + \sum_{j\neq i} \alpha (\mathbf{v}_j \cdot \nabla)^2 \right]f(\mathbf{x})\right]$$
+
+corresponds to
+
+$$ f(0) \left[ (\mathbf{v}_n\cdot\nabla)^2\left[(\mathbf{v}_1\cdot\nabla)^2 + \alpha (\mathbf{v}_2 \cdot \nabla)^2 + \alpha (\mathbf{v}_3 \cdot \nabla)^2  + \dots + \alpha (\mathbf{v}_n \cdot \nabla)^2\right]f(\mathbf{x})\right]$$
+
+which corresponds to
+
+$$ f(0)\frac{1+\alpha+\alpha + \dots + \alpha}{\sigma^4} $$
+
+Thus, once you've worked through all these terms, you'll find that
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = f(0)\frac{1+\alpha(n+1)}{\sigma^4}$$
+
+Hence, we've reached our conclusion! **The optimal value for $\alpha$ is reached for $\alpha=-1/(n+1)$. Thus, -1/3 for 2D, -1/4 for 3D, etc.**
 
