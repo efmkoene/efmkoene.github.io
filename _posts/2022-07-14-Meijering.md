@@ -89,4 +89,5 @@ f_{yyyy}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
 $$
 
 Hence, we find that e.g. the first term equals (setting $\mathbf{v}\_i^T=(v_1\quad v_2)$ and $\mathbf{v}\_j=(r_1\quad r_2)$,
-$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) = f(0)\frac{3}{\sigma^2} = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
+
+$$ \lim_{\mathbf{x}\to 0}\left[ (\mathbf{v}_i\cdot\nabla)^2(\mathbf{v}_j\cdot\nabla)^2 f(\mathbf{x}) \right] = f(0) \frac{3v_1^2 r_1^2 + v_1^2r_2^2 + v_2^2r_1^2 + 3v_2r^2 + 4r_1r_2v_1v_2}{\sigma^4}. $$
