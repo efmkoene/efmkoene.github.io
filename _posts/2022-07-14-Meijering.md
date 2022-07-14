@@ -120,9 +120,17 @@ It is then easy to see that for $\alpha=-1/3$ we achieve our objective of settin
 
 
 #### Going to 3-D
-A lot of the above theory is not essentially changed when we go to the 3D case. We establish an augmented Hessian matrix: subtracted $\alpha$ times the off-diagonal entries from the Hessian matrix, and subtract the other diagonal terms at each diagonal position. Well, the pattern is easy to see in the actual formula:
+A lot of the above theory is not essentially changed when we go to the 3D and higher-order case. We establish an augmented Hessian matrix as follows. Define $H_f(\mathbf{x})$ as the standard Hessian matrix, then the augmented form is created by computing $H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I$ where $\mathrm{Tr}$ is the trace of the matrix, and $I$ is the identity matrix. In 3D that gives the following matrix,
 
-$$H_f'(\mathbf{x}) =  \left[ \begin{array}{ccc}
+$$H_f'(\mathbf{x}) = H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I = \left[ \begin{array}{ccc}
 f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
 (1-\alpha)f_{xy} & f_{yy}+\alpha(f_{xx}+f_{zz}) & (1-\alpha)f_{yz} \\
 (1-\alpha)f_{yz} & (1-\alpha)f_{xz} & f_{zz}+\alpha(f_{xx}+f_{yy}) \end{array} \right].$$
+
+Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$, then for the above matrix we have for the same orthornomal eigenvectors that
+
+$$ H'_f\mathrm{v}\_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}\_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new eigenvalues}}\mathrm{v}\_i $$
+
+From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues are described by a similar rule as in the 2-D case:
+
+$$ \lambda_i' = \lambda_i - \sum_{j\neq i} \alpha \lambda_j. $$
