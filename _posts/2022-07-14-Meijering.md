@@ -32,7 +32,7 @@ f_{xy}(\mathbf{x}) & f_{yy}(\mathbf{x}) \end{array} \right].$$
 Because the Hessian is [symmetric and real](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices), it allows an eigendecomposition with $n$ orthonormal eigenvectors $\mathbf{v}\_i$ (that is, $\mathbf{v}\_i^T\mathbf{v}\_j=0$ for $i\neq j$ and each eigenvectors has length 1), with corresponding eigenvalues $\lambda_i$ (which satisfy $H_f \mathbf{v}\_i = \lambda_i \mathbf{v}\_i$). This may be written as
 
 $$
-\mathbf{v}\_i^T H_f(\mathbf{x}) \mathbf{v}\_i = \lambda_i.
+\mathbf{v}_i^T H_f(\mathbf{x}) \mathbf{v}_i = \lambda_i.
 $$
 
 Interestingly, it also holds that pre- and post-multiplying a Hessian matrix with a vector $d\in\mathbb{R}^n$ of length 1 gives us the second derivative in the direction $d$ (see, e.g., [here](https://math.stackexchange.com/questions/2573376/second-directional-derivative-and-hessian-matrix)),
@@ -62,7 +62,7 @@ $$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \alph
 
 From the previous section, we know that $\lambda_i$ is simply the second directional derivative in direction $\mathbf{v}\_i$; and similarly $\alpha\lambda_j$ will be the second directional derivative in direction $\mathbf{v}\_j$ scaled with a parameter $\alpha$. Thus,
 
-$$ \mathbf{v}\_i^T H_f'(\mathbf{x}) \mathbf{v}\_i = \lambda_i' = \lambda_i + \alpha \lambda_j = \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x}),\quad (j\neq i). $$
+$$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \alpha \lambda_j = \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x}),\quad (j\neq i). $$
 
 Now comes the step in which we define $\alpha$: we want that the filter is as 'straight' as possible in the orthogonal direction as possible (such that our filter operation resembles a box car) -- which corresponds to setting its second derivative in this orthogonal direction to zero. 
 
@@ -119,18 +119,49 @@ $$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_
 It is then easy to see that for $\alpha=-1/3$ we achieve our objective of setting the term to 0. This is what Meijering et al. (2004) also found (using a similar notation).
 
 
-#### Going to 3-D
-A lot of the above theory is not essentially changed when we go to the 3D and higher-order case. We establish an augmented Hessian matrix as follows. Define $H_f(\mathbf{x})$ as the standard Hessian matrix, then the augmented form is created by computing $H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I$ where $\mathrm{Tr}$ is the trace of the matrix, and $I$ is the identity matrix. In 3D that gives the following matrix,
+#### Going to n-D
+We establish an augmented Hessian matrix in any dimension as follows. Define $H_f(\mathbf{x})$ as the standard Hessian matrix, then the augmented form is created by computing $H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I$ where $\mathrm{Tr}$ is the trace of the matrix, and $I$ is the identity matrix. In 3D that gives the following matrix,
 
 $$H_f'(\mathbf{x}) = H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I = \left[ \begin{array}{ccc}
 f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
 (1-\alpha)f_{xy} & f_{yy}+\alpha(f_{xx}+f_{zz}) & (1-\alpha)f_{yz} \\
 (1-\alpha)f_{yz} & (1-\alpha)f_{xz} & f_{zz}+\alpha(f_{xx}+f_{yy}) \end{array} \right].$$
 
-Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$, then for the above matrix we have for the same orthornomal eigenvectors that
+Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$. Using this identity when multiplying the augmented Hessian with the same eigenvector $\mathbf{v}\_i$ we then find that this eigenvector is also a solution to the augmented system:
 
 $$ H'_f\mathrm{v}\_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}\_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new eigenvalues}}\mathrm{v}\_i $$
 
 From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues are described by a similar rule as in the 2-D case:
 
-$$ \lambda_i' = \lambda_i - \sum_{j\neq i} \alpha \lambda_j. $$
+$$ \lambda_i' = \lambda_i + \sum_{j\neq i} \alpha \lambda_j. $$
+
+**Just to re-cap what we found so far**: the eigenvalues that satisfy $H_f(\mathbf{x})$ also satisfied the augmented Hessian $H_f'$, and the eigenvalues are described as $\lambda_i=\lambda_i+\sum_{j\neq i}\alpha \lambda_j$. This generalizes the 2-D case to $n$ dimensions.
+
+As previously done, we can ascribe a meaning to each un-primed eigenvalue, $\lambda_i=f_{\mathbf{v}\_i\mathbf{v}\_i}$, that is, the eigenvalue corresponds to the second derivative in the corresponding eigenvector direction. That means that we have
+
+$$ \mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i = \lambda_i' = \lambda_i + \sum_{j\neq i}\alpha \lambda_j = \left[(\mathbf{v}_i\cdot\nabla)^2 + \sum_{j\neq i} \alpha (\mathbf{v}_j \cdot \nabla)^2 \right]f(\mathbf{x}). $$
+
+In words, thus, we have that the *primed* $\lambda_i'$ corresponds to the directional derivative in direction $\mathbf{v}\_i$ as well as the sum of directional derivatives in the other orthonormal directions, scaled by $\alpha$. If we want to minimize this term, we want that the filter is maximally 'straight' in the direction corresponding to the smallest eigenvalue. Say we have three vectors for $\mathbf{v}\_i$ (i.e., we consider an $n=3$-D field), defined as $\mathbf{v}\_1=(v_1\quad v_2\quad v_3)$, $\mathbf{v}\_2=(r_1\quad r_2\quad r_3)$ and $\mathbf{v}\_3=(k_1\quad k_2\quad k_3)$ where $\mathbf{v}\_3$ corresponds to the smallest eigenvalue. Then we want
+
+$$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = 0$$
+
+Then we end up doing the same kind of calculations as we did in the 2-D case. We expand the expressions, and use the derivative relations [following derivative relations](https://www.wolframalpha.com/input?i=Lim%5B+D%5BD%5BD%5Be%5E%28-%28x%5E2%2By%5E2%2Bz%5E2%29%2F%282*s%5E2%29%29%2C+%7Bx%2C0%7D%5D%2C+%7By%2C3%7D%5D%2C+%7Bz%2C1%7D%5D+%2C+%7Bx-%3E0%2C+y-%3E0%2C+z-%3E0%7D%5D) (realize that at the limit of $\mathbf{x}\to 0$ we have $f_{xxyy}=f_{xxzz}=f_{yyxx}$ etc., so the actual indices are not what's relevant, only the relative occurence of any given derivative relation):
+
+$$
+\lim_{\mathbf{x}\to 0}  \left[ \begin{array}{ccc}
+f_{xxxx} \\
+f_{xxxy} \\
+f_{xxyy} \\
+f_{xyyy} \\
+f_{yyyy} \\
+f_{xxyz}\end{array} \right] = f(0)\left[ \begin{array}{ccc}
+3/\sigma^2 \\
+0 \\
+1/\sigma^2 \\
+0 \\
+3/\sigma^2 \\ 0\end{array} \right] .
+$$
+
+We find that the limit may be expanded into $n$ terms of multiplications of terms $(\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2f(\mathbf{x})$, which follow the same relation as found in the 2-D case:
+
+$$ \lim_{\mathbf{x}\to 0} (\mathbf{v}\_j\cdot\nabla)^2(\mathbf{v}\_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{1}{\sigma} &\mathrm{if}\ i\neq j, \\ \frac{3}{\sigma}&\mathrm{if}\ i=j. \end{cases}$$
