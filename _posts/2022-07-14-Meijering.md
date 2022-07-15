@@ -95,7 +95,7 @@ which uses the fact that the inner product between $\mathbf{v}\_i\cdot\mathbf{v}
 
 Thus, we obtain
 
-$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(0)\frac{1-3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
+$$\lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_j \cdot \nabla)^2 \left((\mathbf{v}_i\cdot\nabla)^2 + \alpha(\mathbf{v}_j\cdot\nabla)^2\right) f(\mathbf{x})\right] = f(0)\frac{1+3\alpha}{\sigma^4}\equiv 0\quad (j\neq i).$$
 
 It is then easy to see that for $\alpha=-1/3$ we achieve our objective of setting the term to 0. This is what Meijering et al. (2004) also found (using a similar notation).
 
@@ -110,7 +110,7 @@ f_{xx}+\alpha (f_{yy}+ f_{zz}) & (1-\alpha)f_{xy} & (1-\alpha)f_{xz} \\
 
 Assume that the original Hessian $H_f(\mathbf{x})$ allowed the eigendecomposition into orthonormal eigenvectors $\mathbf{v}\_i$ with corresponding eigenvalues $\lambda_i$ such that $H_f\mathbf{v}\_i=\lambda_i\mathbf{v}\_i$. Using this identity when multiplying the augmented Hessian with the same eigenvector $\mathbf{v}\_i$ we then find that this eigenvector is also a solution to the augmented system:
 
-$$ H'_f\mathbf{v}_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{new\ eigenvalues}}\mathbf{v}_i $$
+$$ H'_f\mathbf{v}_i = \left(H_f-\alpha H_f + \alpha \mathrm{Tr}(H_f)I\right)\mathbf{v}_i = \underbrace{\left( \lambda_i - \alpha\lambda_i + \alpha\mathrm{Tr}(H_f)\lambda_i \right)}_{\mathrm{the\ new\ eigenvalue}}\mathbf{v}_i $$
 
 From linear algebra, we know that [the trace of a matrix equals the sum of its eigenvalues](https://en.wikipedia.org/wiki/Trace_(linear_algebra)#Trace_as_the_sum_of_eigenvalues), $\mathrm{Tr}(H_f)=\sum_i \lambda_i$, thus we can find that the new eigenvalues can be written as:
 
@@ -126,7 +126,7 @@ In words, thus, we have that the *primed* $\lambda_i'$ corresponds to the direct
 
 $$ \lim_{\mathbf{x}\to 0} \left[ (\mathbf{v}_n\cdot\nabla)^2(\mathbf{v}_i^T H_f'(\mathbf{x}) \mathbf{v}_i) \right]f(\mathbf{x}) = 0$$
 
-We end up doing the same kind of calculations as we did in the 2-D case. We expand the expressions, and [use the following derivative relations](https://www.wolframalpha.com/input?i=Lim%5B+D%5BD%5BD%5BD%5Be%5E%28-%28x%5E2%2By%5E2%2Bz%5E2%2Ba%5E2%29%2F%282*s%5E2%29%29%2C+%7Bx%2C1%7D%5D%2C+%7By%2C1%7D%5D%2C+%7Bz%2C1%7D%5D%2C%7Ba%2C1%7D%5D+%2C+%7Bx-%3E0%2C+y-%3E0%2C+z-%3E0%7D%5D) (realize that at the limit of $\mathbf{x}\to 0$ we have $f_{xxyy}=f_{xxzz}=f_{yyxx}$ etc., so the actual indices are not what's relevant, only the relative occurence of any given derivative relation):
+We end up doing the same kind of calculations as we did in the 2-D case. We expand the expressions, and [use the following derivative relations](https://www.wolframalpha.com/input?i=Lim%5B+D%5BD%5BD%5BD%5Be%5E%28-%28x%5E2%2By%5E2%2Bz%5E2%2Ba%5E2%29%2F%282*s%5E2%29%29%2C+%7Bx%2C1%7D%5D%2C+%7By%2C1%7D%5D%2C+%7Bz%2C1%7D%5D%2C%7Ba%2C1%7D%5D+%2C+%7Bx-%3E0%2C+y-%3E0%2C+z-%3E0%7D%5D) (realize that at the limit of $\mathbf{x}\to 0$ we have $f_{xxyy}=f_{xxzz}=f_{yyxx}$ etc., so the actual indices are not what's relevant, only the relative occurence of any given derivative direction):
 
 $$
 \lim_{\mathbf{x}\to 0}  \left[ \begin{array}{ccc}
@@ -148,7 +148,7 @@ We find that the limit may be expanded into $n$ terms of multiplications of form
 
 $$ \lim_{\mathbf{x}\to 0} (\mathbf{v}_j\cdot\nabla)^2(\mathbf{v}_i\cdot\nabla)^2 f(\mathbf{x}) = \begin{cases} \frac{f(0)}{\sigma^4} &\mathrm{if}\ i\neq j, \\ \frac{3f(0)}{\sigma^4}&\mathrm{if}\ i=j. \end{cases}$$
 
-If you want to confirm this, you can expand out all terms in 3-D for two arbbitrary vectors $\mathbf{v}\_i^T=(v_1\quad v_2\quad v_3)$ and $\mathbf{v}\_j^T=(r_1\quad r_2\quad r_3)$, to find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$). I did not find a nice proof for this latter thing, but it is easily verified numerically, e.g. in 3D,
+If you want to confirm this, you can expand out all terms in 3-D for two arbbitrary vectors $\mathbf{v}\_i^T=(v_1\quad v_2\quad v_3)$ and $\mathbf{v}\_j^T=(r_1\quad r_2\quad r_3)$, to find that any of the products may be written as a sum of 3 times an inner product ($3(\mathbf{v}\_i\cdot\mathbf{v}\_j)^2=3\delta_{ij}$) and one determinant-like sum of all subsets of cross-products between the elements $k$ and $l$ of  $\mathbf{v}\_i$ and $\mathbf{v}\_j$ to give the relation $\sum_{k,l}(v_{ik}v_{jl}-v_{il}v{jk})^2=1-\delta_{ij}$. I did not find a nice proof for this latter thing, but it is easily verified numerically, e.g. in 3D,
 
 ```python
 import numpy as np
@@ -179,7 +179,6 @@ perms = list(np.sort(perms))
 perms = list(map(np.asarray, set(map(tuple, perms))))
 res = 0
 for perm in perms:
-    print(perm)
     res += (v[perm,0] @ np.asarray([[0,1],[-1,0]]) @ v[perm,1])**2
 print(res)
 # >>> 1.0
