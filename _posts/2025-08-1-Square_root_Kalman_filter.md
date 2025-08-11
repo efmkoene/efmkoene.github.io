@@ -93,7 +93,7 @@ Hence, $\mathbf{x}_b$ is a rank-reduced square root approximation of $\mathbf{P}
     \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}},
 \end{equation}
 
-and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.<sup name="a1">[1](#myfootnote1)</sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
+and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.<sup a name="a1">[1](#myfootnote1)</sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
 
 $$
 \begin{aligned}
@@ -142,7 +142,18 @@ The sequential update scheme is efficient when many observations are assimilated
 \begin{equation}
     \sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs} = \sqrt{\mathbf{R}}^{-1}\mathbf{H}\mathbf{x}\_\mathrm{true} +\sqrt{\mathbf{R}}^{-1}\mathbf{e}.
 \end{equation}
-The expectation of this noise model remains $\mathbb{E}[\sqrt{\mathbf{R}}^{-1}\mathbf{e}]=0$ while $$\mathbb{E}[\sqrt{\mathbf{R}}^{-1}\mathbf{e}\mathbf{e}^{\mathsf{T}}\sqrt{\mathbf{R}}^{-1}]=\sqrt{\mathbf{R}}^{-1}\mathbb{E}[\mathbf{e}\mathbf{e}^T]\sqrt{\mathbf{R}}^{-T}=\sqrt{\mathbf{R}}^{-1}\mathbf{R}\sqrt{\mathbf{R}}^{-T}=\sqrt{\mathbf{R}}^{-1}\sqrt{\mathbf{R}}\sqrt{\mathbf{R}}^{\mathsf{T}}\sqrt{\mathbf{R}}^{-T}=\mathbf{I}.$$ Hence, this pre-multiplication of the data makes the noise uncorrelated and of uniform variance. We can, therefore, simply change our algorithm into the following form
+The expectation of this noise model remains $\mathbb{E}[\sqrt{\mathbf{R}}^{-1}\mathbf{e}]=0$ while 
+
+$$
+\begin{align}
+\mathbb{E}[\sqrt{\mathbf{R}}^{-1}\mathbf{e}\mathbf{e}^{\mathsf{T}}\sqrt{\mathbf{R}}^{-1}]&=\sqrt{\mathbf{R}}^{-1}\mathbb{E}[\mathbf{e}\mathbf{e}^T]\sqrt{\mathbf{R}}^{-T}, \\
+&=\sqrt{\mathbf{R}}^{-1}\mathbf{R}\sqrt{\mathbf{R}}^{-T}, \\
+& =\sqrt{\mathbf{R}}^{-1}\sqrt{\mathbf{R}}\sqrt{\mathbf{R}}^{\mathsf{T}}\sqrt{\mathbf{R}}^{-T}, \\
+&=\mathbf{I}.
+\end{align}
+$$ 
+
+Hence, this pre-multiplication of the data makes the noise uncorrelated and of uniform variance. We can, therefore, simply change our algorithm into the following form
 
 $$
 \begin{aligned}
@@ -150,7 +161,7 @@ $$
     b & = \mathbf{a}\mathbf{a}^{\mathsf{T}}+ 1 && \in\mathbb{R},\\
     \alpha & = \left(1+\sqrt{\frac{1}{b}}\right)^{-1} &&\in\mathbb{R}, \\
     \mathbf{K} & = \frac{\mathbf{Z}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
-    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs}]_i - [\sqrt{\mathbf{R}}^{-1}\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\sqrt{\mathbf{R}}^{-1}\mathbf{y}_\mathrm{obs}]_i - [\sqrt{\mathbf{R}}^{-1}\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
     \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}.
 \end{aligned}
 $$
@@ -168,9 +179,9 @@ $$
     \alpha & = \left(1+\sqrt{\frac{[\mathbf{R}]_{ii}}{b}}\right)^{-1} &&\in\mathbb{R}, \\
     \mathbf{K} & = \frac{\mathbf{Z}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
     \mathbf{V} & = \frac{\mathbf{Y}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{m\times 1}\\
-    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}\_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
     \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}, \\
-    \mathbf{y}^{(i)} & = \mathbf{y}^{(i-1)} + \mathbf{V}([\mathbf{y}\_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
+    \mathbf{y}^{(i)} & = \mathbf{y}^{(i-1)} + \mathbf{V}([\mathbf{y}_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
     \mathbf{Y}^{(i)} & = \mathbf{Y}^{(i-1)} - \alpha \mathbf{V} \mathbf{a}&& \in\mathbb{R}^{m\times n}.
 \end{aligned}
 $$
@@ -192,9 +203,9 @@ $$
     \alpha & = \left(1+\sqrt{\frac{[\mathbf{R}]_{ii}}{b}}\right)^{-1} &&\in\mathbb{R}, \\
     \mathbf{K}' & = \frac{1}{N}\frac{\mathbf{x}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
     \mathbf{V}' & = \frac{1}{N}\frac{\mathbf{Y}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{m\times 1}\\
-    \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' +\mathbf{K}'([\mathbf{y}\_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' +\mathbf{K}'([\mathbf{y}_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
     \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' - \alpha \mathbf{K}' \mathbf{a} && \in\mathbb{R}^{n\times M}, \\
-    \mathbf{y}^{(i)}{}' & = \mathbf{y}^{(i-1)}{}' + \mathbf{V}'([\mathbf{y}\_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
+    \mathbf{y}^{(i)}{}' & = \mathbf{y}^{(i-1)}{}' + \mathbf{V}'([\mathbf{y}_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
     \mathbf{Y}^{(i)}{}' & = \mathbf{Y}^{(i-1)}{}' - \alpha \mathbf{V}' \mathbf{a}&& \in\mathbb{R}^{m\times N}.
 \end{aligned}
 $$
@@ -204,9 +215,11 @@ At the final iteration, then, $\mathbf{x}^{(m)}{}'\approx \mathbf{x}_b$ and $\ma
 ## Appendix: Square root formulation of the covariance update
 The definition of the Kalman filter gives the update of the prior covariance matrix 
 
+$$
 \begin{equation}
     \mathbf{P}_a = (\mathbf{I} - \overbrace{\mathbf{P}_b\mathbf{H}^T\underbrace{(\mathbf{H}\mathbf{P}_b\mathbf{H}^T+\mathbf{R})^{-1}}_{\mathbf{D}^{-1}}}^{\mathbf{K}}\mathbf{H})\mathbf{P}_b,\tag{A1}\label{eq:firstkalman}
 \end{equation}
+$$
 
 where $\mathbf{K}$ is the Kalman gain and $\mathbf{D}$ is the innovation covariance matrix. We want to find a square root decomposition of the above expression, making an ansatz
 
