@@ -45,7 +45,7 @@ In short, the square root of a matrix is any matrix $\mathbf{Z}$ for which $\mat
 
 $$
 \begin{align}
-    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}\_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
+    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
     \mathbf{K} &= \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \mathbf{H}^{\mathsf{T}} (\mathbf{H} \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \mathbf{H}^{\mathsf{T}} + \mathbf{R})^{-1}, \\
     \mathbf{Z}_a\mathbf{Z}_a^{\mathsf{T}} &= (\mathbf{I} - \mathbf{K} \mathbf{H}) \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}.\tag{4}\label{eq:kalgain_notyet}
 \end{align}
@@ -66,7 +66,7 @@ This square root formulation was given by Andrews (1968, *'A square root formula
 
 $$
 \begin{align}
-    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}\_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{3}\label{eq:squaremean} \\
+    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{5}\label{eq:squaremean} \\
     \mathbf{K} &= \mathbf{Z}_b\mathbf{Y}_b^{\mathsf{T}} (\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}} + \mathbf{R})^{-1}, \\
     \mathbf{Z}_a &= \mathbf{Z}_b\left(\mathbf{I} - \mathbf{Y}_b^{\mathsf{T}}\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}_b\right).\tag{6}\label{eq:squareZa}
 \end{align}
@@ -93,28 +93,30 @@ Hence, $\mathbf{x}_b$ is a rank-reduced square root approximation of $\mathbf{P}
     \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}},
 \end{equation}
 
-and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.\footnote{In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the \textit{unbiased} estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.} Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
+and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.[^1] Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
 
 $$
 \begin{aligned}
     \mathbf{x}_b' &= \mathbf{Z}_b\mathbf{G},\\
     \mathbf{Y}' &= \mathbf{H} \mathbf{x}_b', \\
     \mathbf{K}' &= \frac{1}{N} \mathbf{x}_b' \mathbf{Y}'{}^{\mathsf{T}} \left( \frac{1}{N} \mathbf{Y}' \mathbf{Y}'{}^{\mathsf{T}} + \mathbf{R} \right)^{-1}, \\
-    \mathbf{x}'_a &= \mathbf{x}_b + \mathbf{K}'(\mathbf{y}\_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
+    \mathbf{x}'_a &= \mathbf{x}_b + \mathbf{K}'(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
     \mathbf{x}'_a &= \mathbf{x}_b'\left(\mathbf{I} - \frac{1}{N}\mathbf{Y}'{}^{\mathsf{T}}\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}'\right).
 \end{aligned}\tag{7}\label{eq:bulkensupdate}
 $$
 
-It is worth considering for a moment what is required to implement the ensemble square root Kalman filter as described here (whether through a bulk or sequential implementation). We first build the full error covariance matrix $\mathbf{P}_b$. We compute its square root $\mathbf{Z}_b$ and multiply it with a Gaussian random matrix of reduced shape, $\mathbf{x}=\mathbf{Z}_b\mathbf{G}$. We then compute $\mathbf{H}\mathbf{x}$ which yields $N$ (rather than $n$) `ensemble' realizations, i.e., all equally plausible model realizations. Essentially, our computations are cheaper by a factor $N/n$. If $N$ is chosen too small, however, $\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}}/N$ does not tend to $\mathbf{P}_b$ very well, so $N$ must be small-but-not-too-small. If $\mathbf{P}_b$ is purely diagonal, this strategy will not work, because we cannot rank-reduce it. Therefore, we assume (or must make sure) that $\mathbf{P}_b$ exhibits considerable covariance between the various state vector elements to make a rank reduction possible. Finally, once $\mathbf{H}\mathbf{x}_b$ and $\mathbf{H}\mathbf{x}_b$ are computed, we have all the ingredients to compute the (square root form of the) Kalman filter which we compute by computing eq. \eqref{eq:bulkensupdate}.
+It is worth considering for a moment what is required to implement the ensemble square root Kalman filter as described here (whether through a bulk or sequential implementation). We first build the full error covariance matrix $\mathbf{P}_b$. We compute its square root $\mathbf{Z}_b$ and multiply it with a Gaussian random matrix of reduced shape, $\mathbf{x}=\mathbf{Z}_b\mathbf{G}$. We then compute $\mathbf{H}\mathbf{x}$ which yields $N$ (rather than $n$) 'ensemble' realizations, i.e., all equally plausible model realizations. Essentially, our computations are cheaper by a factor $N/n$. If $N$ is chosen too small, however, $\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}}/N$ does not tend to $\mathbf{P}_b$ very well, so $N$ must be small-but-not-too-small. If $\mathbf{P}_b$ is purely diagonal, this strategy will not work, because we cannot rank-reduce it. Therefore, we assume (or must make sure) that $\mathbf{P}_b$ exhibits considerable covariance between the various state vector elements to make a rank reduction possible. Finally, once $\mathbf{H}\mathbf{x}_b$ and $\mathbf{H}\mathbf{x}_b$ are computed, we have all the ingredients to compute the (square root form of the) Kalman filter which we compute by computing eq. \eqref{eq:bulkensupdate}.
 
 
 ## Implementations
 ### Square root filter}
 #### Bulk implementation square root filter
-This algorithm can be implemented in `bulk' mode (i.e., assimilating all $\mathbf{y}\_\mathrm{obs}$ at once) through a direct implementation of eqs. \eqref{eq:squaremean}--\eqref{eq:square\mathbf{Z}a}. That is, one formulates $\mathbf{P}_b$ and using its Cholesky decomposition $\mathbf{P}_b=\mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}$ and then computing $\mathbf{Y}_b=\mathbf{H}\mathbf{Z}_b$ one can compute all the relevant parameters. We can construct the posterior covariance (if needed) by computing $\mathbf{Z}_a\mathbf{Z}_a^{\mathsf{T}}$.
+This algorithm can be implemented in 'bulk' mode (i.e., assimilating all $\mathbf{y}\_\mathrm{obs}$ at once) through a direct implementation of eqs. \eqref{eq:squaremean}--\eqref{eq:squareZa}. That is, one formulates $\mathbf{P}_b$ and using its Cholesky decomposition $\mathbf{P}_b=\mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}$ and then computing $\mathbf{Y}_b=\mathbf{H}\mathbf{Z}_b$ one can compute all the relevant parameters. We can construct the posterior covariance (if needed) by computing $\mathbf{Z}_a\mathbf{Z}_a^{\mathsf{T}}$.
 
 #### Sequential implementation of square root filter I
-If $\mathbf{R}$ is a diagonal matrix (i.e., all measurements are independent) we can assimilate the observations one-by-one (i.e., sequentially). We then take $[\mathbf{y}\_\mathrm{obs}]_i$ for observation $i$, $[\mathbf{H}]_i$ to select row $i$, $[\mathbf{R}]_{ii}$ as the diagonal observation error component, we get the following algorithm. Starting with $\mathbf{Z}^{(0)} = \mathbf{Z}_b$ and $\mathbf{x}^{(0)}=\mathbf{x}_b$ we compute
+If $\mathbf{R}$ is a diagonal matrix (i.e., all measurements are independent) we can assimilate the observations one-by-one (i.e., sequentially). 
+We then take $\[\mathbf{y}\_\mathrm{obs}\]_i$ for observation $i$, $\[\mathbf{H}\]_i$ to select row $i$, $\[\mathbf{R}\]_{ii}$ as the diagonal observation error component, we get the following algorithm. 
+Starting with $\mathbf{Z}^{(0)} = \mathbf{Z}_b$ and $\mathbf{x}^{(0)}=\mathbf{x}_b$ we compute
 
 $$
 \begin{aligned}
@@ -122,9 +124,13 @@ $$
     b & = \mathbf{a}\mathbf{a}^{\mathsf{T}}+ [\mathbf{R}]_{ii} && \in\mathbb{R},\\
     \alpha & = \left(1+\sqrt{\frac{[\mathbf{R}]_{ii}}{b}}\right)^{-1} &&\in\mathbb{R}, \\
     \mathbf{K} & = \frac{\mathbf{Z}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
-    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}\_\mathrm{obs}]_i - [\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}_\mathrm{obs}]_i - [\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
     \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}.
 \end{aligned}
 \tag{11}\label{eq:\mathbf{Z}update}
 $$
 After all $m$ observations are assimilated, $\mathbf{x}^{(m)}=\mathbf{x}_a$ and $\mathbf{Z}^{(m)}=\mathbf{Z}_a$. Note how we substituted the Kalman gain into the expression for the square root of the error covariance matrix. This was possible because terms like $\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}$ are simple scalars when considering single updates.
+
+
+
+[^1] In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the *unbiased* estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.
