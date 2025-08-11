@@ -115,7 +115,12 @@ This algorithm can be implemented in 'bulk' mode (i.e., assimilating all $\mathb
 
 #### Sequential implementation of square root filter I
 If $\mathbf{R}$ is a diagonal matrix (i.e., all measurements are independent) we can assimilate the observations one-by-one (i.e., sequentially). 
-We then take $\left[\mathbf{y}\_\mathrm{obs}\right]_i$ for observation $i$, $\[\mathbf{H}\]_i$ to select row $i$, $\[\mathbf{R}\]_{ii}$ as the diagonal observation error component, we get the following algorithm. 
+We then take 
+$\left[\mathbf{y}\_\mathrm{obs}\right]\_i$
+for observation $i$, 
+$[\mathbf{H}]\_i$ 
+to select row $i$, 
+$\[\mathbf{R}\]\_{ii}$ as the diagonal observation error component, we get the following algorithm. 
 Starting with $\mathbf{Z}^{(0)} = \mathbf{Z}_b$ and $\mathbf{x}^{(0)}=\mathbf{x}_b$ we compute
 
 $$
