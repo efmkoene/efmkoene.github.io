@@ -77,7 +77,7 @@ The square root Kalman filter in \eqref{eq:squaremean}--\eqref{eq:squareZa} work
 ## Ensemble square root approach
 Using the square root form of the Kalman filter improves numerical stability and reduces issues with limited precision. However, when the state vector is very large, computations like $\mathbf{H}\mathbf{Z}_b$ become expensive. The Ensemble Kalman Filter (EnKF), particularly in its square root form, addresses this by approximating $\mathbf{Z}_b$ using a reduced-rank representation.
 
-We define $\mathbf{x}_b = \mathbf{Z}_b \mathbf{G}$, where $\mathbf{G} \in \mathbb{R}^{n \times N}$ is a random Gaussian matrix with zero mean and unit variance (e.g., as produced by `randn` in MATLAB or `numpy.random.randn` in Python), and $N<n$, often $N \ll n$. Since $\mathbb{E}[\mathbf{G}\mathbf{G}^{\mathsf{T}}] = \mathbf{I}$, we have:
+We define $\mathbf{X}_b = \mathbf{Z}_b \mathbf{G}$, where $\mathbf{G} \in \mathbb{R}^{n \times N}$ is a random Gaussian matrix with zero mean and unit variance (e.g., as produced by `randn` in MATLAB or `numpy.random.randn` in Python), and $N<n$, often $N \ll n$. Since $\mathbb{E}[\mathbf{G}\mathbf{G}^{\mathsf{T}}] = \mathbf{I}$, we have:
 
 $$
 \begin{align}
@@ -87,25 +87,25 @@ $$
 \end{align}
 $$
 
-Hence, $\mathbf{x}_b$ is a rank-reduced square root approximation of $\mathbf{P}_b$, with shape $\mathbb{R}^{n \times N}$. We then approximate:
+Hence, $\mathbf{X}_b$ is a rank-reduced square root approximation of $\mathbf{P}_b$, with shape $\mathbb{R}^{n \times N}$. We then approximate:
 
 \begin{equation}
     \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}},
 \end{equation}
 
-and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.<sup><a name="a1">[1](#myfootnote1)</a></sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
+and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{X}/\sqrt{N}$, knowing that we are making an approximation.<a name="a1"></a><sup>[1](#myfootnote1)</sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
 
 $$
 \begin{aligned}
-    \mathbf{x}_b' &= \mathbf{Z}_b\mathbf{G},\\
+    \mathbf{X}_b' &= \mathbf{Z}_b\mathbf{G},\\
     \mathbf{Y}' &= \mathbf{H} \mathbf{x}_b', \\
     \mathbf{K}' &= \frac{1}{N} \mathbf{x}_b' \mathbf{Y}'{}^{\mathsf{T}} \left( \frac{1}{N} \mathbf{Y}' \mathbf{Y}'{}^{\mathsf{T}} + \mathbf{R} \right)^{-1}, \\
     \mathbf{x}'_a &= \mathbf{x}_b + \mathbf{K}'(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
-    \mathbf{x}'_a &= \mathbf{x}_b'\left(\mathbf{I} - \frac{1}{N}\mathbf{Y}'{}^{\mathsf{T}}\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}'\right).
+    \mathbf{X}'_a &= \mathbf{X}_b'\left(\mathbf{I} - \frac{1}{N}\mathbf{Y}'{}^{\mathsf{T}}\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}'\right).
 \end{aligned}\tag{7}\label{eq:bulkensupdate}
 $$
 
-It is worth considering for a moment what is required to implement the ensemble square root Kalman filter as described here (whether through a bulk or sequential implementation). We first build the full error covariance matrix $\mathbf{P}_b$. We compute its square root $\mathbf{Z}_b$ and multiply it with a Gaussian random matrix of reduced shape, $\mathbf{x}=\mathbf{Z}_b\mathbf{G}$. We then compute $\mathbf{H}\mathbf{x}$ which yields $N$ (rather than $n$) 'ensemble' realizations, i.e., all equally plausible model realizations. Essentially, our computations are cheaper by a factor $N/n$. If $N$ is chosen too small, however, $\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}}/N$ does not tend to $\mathbf{P}_b$ very well, so $N$ must be small-but-not-too-small. If $\mathbf{P}_b$ is purely diagonal, this strategy will not work, because we cannot rank-reduce it. Therefore, we assume (or must make sure) that $\mathbf{P}_b$ exhibits considerable covariance between the various state vector elements to make a rank reduction possible. Finally, once $\mathbf{H}\mathbf{x}_b$ and $\mathbf{H}\mathbf{x}_b$ are computed, we have all the ingredients to compute the (square root form of the) Kalman filter which we compute by computing eq. \eqref{eq:bulkensupdate}.
+It is worth considering for a moment what is required to implement the ensemble square root Kalman filter as described here (whether through a bulk or sequential implementation). We first build the full error covariance matrix $\mathbf{P}_b$. We compute its square root $\mathbf{Z}_b$ and multiply it with a Gaussian random matrix of reduced shape, $\mathbf{X}_b=\mathbf{Z}_b\mathbf{G}$. We then compute $\mathbf{H}\mathbf{X}_b$ which yields $N$ (rather than $n$) 'ensemble' realizations, i.e., all equally plausible model realizations. Essentially, our computations are cheaper by a factor $N/n$. If $N$ is chosen too small, however, $\mathbf{X}_b\mathbf{X}_b^{\mathsf{T}}/N$ does not tend to $\mathbf{P}_b$ very well, so $N$ must be small-but-not-too-small. If $\mathbf{P}_b$ is purely diagonal, this strategy will not work, because we cannot rank-reduce it. Therefore, we assume (or must make sure) that $\mathbf{P}_b$ exhibits considerable covariance between the various state vector elements to make a rank reduction possible. Finally, once $\mathbf{H}\mathbf{X}_b$ and $\mathbf{H}\mathbf{x}_b$ are computed, we have all the ingredients to compute the (square root form of the) Kalman filter which we compute by computing eq. \eqref{eq:bulkensupdate}.
 
 
 ## Implementations
@@ -193,7 +193,7 @@ $\mathbf{y}\_\mathrm{obs}\to \sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs}$.
 ### Ensemble square root filter
 
 #### Serial implementation of ensemble square root filter
-It is clear how the various serial schemes generalize to the ensemble case, we will just cover serial implementation III from above, which was the scheme that does  not re-apply $\mathbf{H}$ within the scheme. We start with $\mathbf{x}^{(0)}{}'=\mathbf{x}_b=\mathbf{Z}_b\mathbf{G}$, and $\mathbf{x}^{(0)}{}'=\mathbf{x}_b$, along with $\mathbf{Y}^{(0)}{}'=\mathbf{H}\mathbf{x}$ and $\mathbf{y}^{(0)}{}'=\mathbf{H}\mathbf{x}_b$. Then, the serial scheme requires one to iterate over the scheme below for each observation:
+It is clear how the various serial schemes generalize to the ensemble case, we will just cover serial implementation III from above, which was the scheme that does  not re-apply $\mathbf{H}$ within the scheme. We start with $\mathbf{X}^{(0)}{}'=\mathbf{X}_b=\mathbf{Z}_b\mathbf{G}$, and $\mathbf{x}^{(0)}{}'=\mathbf{x}_b$, along with $\mathbf{Y}^{(0)}{}'=\mathbf{H}\mathbf{X}_b$ and $\mathbf{y}^{(0)}{}'=\mathbf{H}\mathbf{x}_b$. Then, the serial scheme requires one to iterate over the scheme below for each observation:
 
 $$
 \begin{aligned}
@@ -201,16 +201,16 @@ $$
     \mathbf{a} &= [\mathbf{Y}^{(i-1)}{}']_{i} &&\in\mathbb{R}^{1\times N}, \\
     b & = \frac{1}{N}\mathbf{a}\mathbf{a}^{\mathsf{T}}+ [\mathbf{R}]_{ii} && \in\mathbb{R},\\
     \alpha & = \left(1+\sqrt{\frac{[\mathbf{R}]_{ii}}{b}}\right)^{-1} &&\in\mathbb{R}, \\
-    \mathbf{K}' & = \frac{1}{N}\frac{\mathbf{x}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
+    \mathbf{K}' & = \frac{1}{N}\frac{\mathbf{X}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
     \mathbf{V}' & = \frac{1}{N}\frac{\mathbf{Y}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{m\times 1}\\
     \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' +\mathbf{K}'([\mathbf{y}_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
-    \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' - \alpha \mathbf{K}' \mathbf{a} && \in\mathbb{R}^{n\times M}, \\
+    \mathbf{X}^{(i)}{}' & = \mathbf{X}^{(i-1)}{}' - \alpha \mathbf{K}' \mathbf{a} && \in\mathbb{R}^{n\times M}, \\
     \mathbf{y}^{(i)}{}' & = \mathbf{y}^{(i-1)}{}' + \mathbf{V}'([\mathbf{y}_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
     \mathbf{Y}^{(i)}{}' & = \mathbf{Y}^{(i-1)}{}' - \alpha \mathbf{V}' \mathbf{a}&& \in\mathbb{R}^{m\times N}.
 \end{aligned}
 $$
 
-At the final iteration, then, $\mathbf{x}^{(m)}{}'\approx \mathbf{x}_b$ and $\mathbf{x}^{(i)}{}'\mathbf{x}^{(i)}{}'{}^{\mathsf{T}}\approx \mathbf{P}_a$. The extension to the pre-whitened case is identical to what was described in the square root Kalman filter section. Note how some of the shapes of variables are now $N$ instead of $n$.
+At the final iteration, then, $\mathbf{x}^{(m)}{}'\approx \mathbf{x}_b$ and $\mathbf{X}^{(i)}{}'\mathbf{X}^{(i)}{}'{}^{\mathsf{T}}\approx \mathbf{P}_a$. The extension to the pre-whitened case is identical to what was described in the square root Kalman filter section. Note how some of the shapes of variables are now $N$ instead of $n$.
 
 ## Appendix: Square root formulation of the covariance update
 The definition of the Kalman filter gives the update of the prior covariance matrix 
