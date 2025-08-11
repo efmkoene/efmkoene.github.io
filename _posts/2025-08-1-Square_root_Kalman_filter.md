@@ -13,21 +13,29 @@ Consider we have access to observations $\mathbf{y}\_\mathrm{obs} \in \mathbb{R}
 where $\mathbf{H} \in \mathbb{R}^{n\times m}$, and the error has zero mean $\mathbb{E}[\mathbf{e}]=0$ but a covariance structure like $\mathbb{E}[\mathbf{e}\mathbf{e}^{\mathsf{T}}]=\mathbf{R}$ which we call the *observation error covariance*. For example, if $\mathbf{R}$ is diagonal, its entries simply correspond to the variance (typically denoted as $\sigma^2$) of each measurement.
 
 Typically, we don't know $\mathbf{x}\_\mathrm{true}$ and want to estimate it based on the data. Assuming Gaussian distributed errors we find that we need to minimize a cost function of the form 
+
 \begin{align}
 J(\mathbf{x}) = (\mathbf{x} - \mathbf{x}_b) \mathbf{P}_b^{-1}(\mathbf{x} - \mathbf{x}_b)^{\mathsf{T}} + (\mathbf{y}\_\mathrm{obs}-\mathbf{H}\mathbf{x})\mathbf{R}^{-1}(\mathbf{y}\_\mathrm{obs}-\mathbf{H}\mathbf{x})^{\mathsf{T}},\tag{1}\label{eq:costfunction}
 \end{align}
+
 where $\mathbf{x}_b$ is a prior model (''background''), $\mathbf{P}_b$ is the *error covariance model* or *background covariance model*, i.e., the uncertainty about the prior model. The minimizer of $J(x)$ in eq. \eqref{eq:costfunction} gives the optimal estimate, also known as the 'posterior' or 'analysis' mean (see, e.g., Fichtner 2021, *Lecture Notes on Inverse Theory*),
+
 \begin{equation}
-\mathbf{x}_a = \mathbf{x}_b + \mathbf{K} (\mathbf{y}_{\text{obs}} - \mathbf{H} \mathbf{x}_b),\tag{2}\label{eq:mean_update}
+\mathbf{x}_a = \mathbf{x}_b + \mathbf{K} (\mathbf{y}\_{\mathrm{obs}} - \mathbf{H} \mathbf{x}_b),\tag{2}\label{eq:mean_update}
 \end{equation}
+
 where the optimal Kalman gain $\mathbf{K}$ is:
+
 \begin{equation}
 \mathbf{K} = \mathbf{P}_b \mathbf{H}^{\mathsf{T}} (\mathbf{H} \mathbf{P}_b \mathbf{H}^{\mathsf{T}} + \mathbf{R})^{-1},\label{eq:kalman_gain}
 \end{equation}
+
 and the analysis covariance is
+
 \begin{equation}
 \mathbf{P}_a = (\mathbf{I} - \mathbf{K} \mathbf{H}) \mathbf{P}_b.\tag{3}\label{eq:cov_update}
 \end{equation}
+
 Equations (\ref{eq:mean_update})--(\ref{eq:cov_update}) form the foundation of the stationary Kalman filter (i.e., those without state-space propagation), but also of analytical inversions or variational approaches.
 
 ## Square root approach
@@ -51,9 +59,9 @@ This square root formulation was given by Andrews (1968, *'A square root formula
 \begin{align}
     \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}\_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{3}\label{eq:squaremean} \\
     \mathbf{K} &= \mathbf{Z}_b\mathbf{Y}_b^{\mathsf{T}} (\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}} + \mathbf{R})^{-1}, \\
-    \mathbf{Z}_a &= \mathbf{Z}_b\left(\mathbf{I} - \mathbf{Y}_b^{\mathsf{T}}\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}_b\right).\tag{6}\label{eq:square\mathbf{Z}a}
+    \mathbf{Z}_a &= \mathbf{Z}_b\left(\mathbf{I} - \mathbf{Y}_b^{\mathsf{T}}\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}_b\right).\tag{6}\label{eq:squareZa}
 \end{align}
-The square root Kalman filter in \eqref{eq:squaremean}--\eqref{eq:square\mathbf{Z}a} works exclusively with the square roots of (combinations of) the covariance matrices, which means this system overcomes the main limitations of the 'word length' indicated above.
+The square root Kalman filter in \eqref{eq:squaremean}--\eqref{eq:squareZa} works exclusively with the square roots of (combinations of) the covariance matrices, which means this system overcomes the main limitations of the 'word length' indicated above.
 
 ## Ensemble square root approach
 Using the square root form of the Kalman filter improves numerical stability and reduces issues with limited precision. However, when the state vector is very large, computations like $\mathbf{H}\mathbf{Z}_b$ become expensive. The Ensemble Kalman Filter (EnKF), particularly in its square root form, addresses this by approximating $\mathbf{Z}_b$ using a reduced-rank representation.
