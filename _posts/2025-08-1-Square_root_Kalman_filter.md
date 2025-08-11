@@ -132,9 +132,143 @@ $$
     \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}_\mathrm{obs}]_i - [\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
     \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}.
 \end{aligned}
-\tag{11}\label{eq:\mathbf{Z}update}
+\tag{11}\label{eq:Zupdate}
 $$
 After all $m$ observations are assimilated, $\mathbf{x}^{(m)}=\mathbf{x}_a$ and $\mathbf{Z}^{(m)}=\mathbf{Z}_a$. Note how we substituted the Kalman gain into the expression for the square root of the error covariance matrix. This was possible because terms like $\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}$ are simple scalars when considering single updates.
+
+
+#### Sequential implementation of square root filter II
+The sequential update scheme is efficient when many observations are assimilated at once, but it requires the observations to be independent, which is a stringent requirement. We can get around this by `whitening' the observations such that they are guaranteed to be independent. We do this by pre-multiplying our measurement model by $\sqrt{\mathbf{R}}^{-1}$ such that
+\begin{equation}
+    \sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs} = \sqrt{\mathbf{R}}^{-1}\mathbf{H}\mathbf{x}\_\mathrm{true} +\sqrt{\mathbf{R}}^{-1}\mathbf{e}.
+\end{equation}
+The expectation of this noise model remains $\mathbb{E}[\sqrt{\mathbf{R}}^{-1}\mathbf{e}]=0$ while $$\mathbb{E}[\sqrt{\mathbf{R}}^{-1}\mathbf{e}\mathbf{e}^{\mathsf{T}}\sqrt{\mathbf{R}}^{-1}]=\sqrt{\mathbf{R}}^{-1}\mathbb{E}[\mathbf{e}\mathbf{e}^T]\sqrt{\mathbf{R}}^{-T}=\sqrt{\mathbf{R}}^{-1}\mathbf{R}\sqrt{\mathbf{R}}^{-T}=\sqrt{\mathbf{R}}^{-1}\sqrt{\mathbf{R}}\sqrt{\mathbf{R}}^{\mathsf{T}}\sqrt{\mathbf{R}}^{-T}=\mathbf{I}.$$ Hence, this pre-multiplication of the data makes the noise uncorrelated and of uniform variance. We can, therefore, simply change our algorithm into the following form
+
+$$
+\begin{aligned}
+    \mathbf{a} &= [\sqrt{\mathbf{R}}^{-1}\mathbf{H}]_{i} \mathbf{Z}^{(i-1)}&&\in\mathbb{R}^{1\times n}, \\
+    b & = \mathbf{a}\mathbf{a}^{\mathsf{T}}+ 1 && \in\mathbb{R},\\
+    \alpha & = \left(1+\sqrt{\frac{1}{b}}\right)^{-1} &&\in\mathbb{R}, \\
+    \mathbf{K} & = \frac{\mathbf{Z}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
+    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs}]_i - [\sqrt{\mathbf{R}}^{-1}\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}.
+\end{aligned}
+$$
+
+### Sequential implementation of square root filter III
+In the two sequential schemes, we have to re-apply $\mathbf{H}$ to the updated mean and covariance matrix. We can consider an alternative scheme that is free of such re-application of $\mathbf{H}$ which is, for example, of interest when $\mathbf{H}$ is expensive to re-compute. The scheme rests on the observation that 
+$[\mathbf{H}]_i\mathbf{Z}^{(i-1)}=[\mathbf{H}\mathbf{Z}^{(i-1)}]_i$, 
+and that by applying $\mathbf{H}$ to eq. \eqref{eq:Zupdate} we have an expression depending only on factors including $\mathbf{H}\mathbf{Z}^{(i-1)}$. The same holds for the mean update. We again start with $\mathbf{Z}^{(0)}=\mathbf{Z}_b$, $\mathbf{x}^{(0)}=\mathbf{x}_b$ but now also write $\mathbf{Y}^{(0)}=\mathbf{H}\mathbf{Z}_b$ and $\mathbf{y}^{(0)}=\mathbf{H}\mathbf{x}_b$. Then,
+
+$$
+\begin{aligned}
+    y & = [\mathbf{y}^{(i-1)}]_{i} &&\in\mathbb{R},\\
+    \mathbf{a} &= [\mathbf{Y}^{(i-1)}]_{i} &&\in\mathbb{R}^{1\times n}, \\
+    b & = \mathbf{a}\mathbf{a}^{\mathsf{T}}+ [\mathbf{R}]_{ii} && \in\mathbb{R},\\
+    \alpha & = \left(1+\sqrt{\frac{[\mathbf{R}]_{ii}}{b}}\right)^{-1} &&\in\mathbb{R}, \\
+    \mathbf{K} & = \frac{\mathbf{Z}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
+    \mathbf{V} & = \frac{\mathbf{Y}_b^{(i-1)}\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{m\times 1}\\
+    \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}\_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}, \\
+    \mathbf{y}^{(i)} & = \mathbf{y}^{(i-1)} + \mathbf{V}([\mathbf{y}\_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
+    \mathbf{Y}^{(i)} & = \mathbf{Y}^{(i-1)} - \alpha \mathbf{V} \mathbf{a}&& \in\mathbb{R}^{m\times n}.
+\end{aligned}
+$$
+
+We note here that $\mathbf{V}=\mathbf{H}\mathbf{K}$, $\mathbf{y}^{(i)}=\mathbf{H}\mathbf{x}^{(i)}$ and $\mathbf{Y}^{(i)}=\mathbf{H}\mathbf{x}^{(i)}$. The pre-whitening trick (sequential scheme II) applies just as well in this scheme for the case of correlated errors. In that case, we simply change $\mathbf{Y}^{(0)}\to \sqrt{\mathbf{R}}^{-1}\mathbf{Y}^{(0)}$ and $\mathbf{y}^{(0)}\to\sqrt{\mathbf{R}}^{-1}\mathbf{y}^{(0)}$, along with 
+$[\mathbf{R}]_{ii} \to 1$ and 
+$\mathbf{y}\_\mathrm{obs}\to \sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs}$.
+
+### Ensemble square root filter
+
+#### Serial implementation of ensemble square root filter
+It is clear how the various serial schemes generalize to the ensemble case, we will just cover serial implementation III from above, which was the scheme that does  not re-apply $\mathbf{H}$ within the scheme. We start with $\mathbf{x}^{(0)}{}'=\mathbf{x}_b=\mathbf{Z}_b\mathbf{G}$, and $\mathbf{x}^{(0)}{}'=\mathbf{x}_b$, along with $\mathbf{Y}^{(0)}{}'=\mathbf{H}\mathbf{x}$ and $\mathbf{y}^{(0)}{}'=\mathbf{H}\mathbf{x}_b$. Then, the serial scheme requires one to iterate over the scheme below for each observation:
+
+$$
+\begin{aligned}
+    y & = [\mathbf{y}^{(i-1)}{}']_{i} &&\in\mathbb{R},\\
+    \mathbf{a} &= [\mathbf{Y}^{(i-1)}{}']_{i} &&\in\mathbb{R}^{1\times N}, \\
+    b & = \frac{1}{N}\mathbf{a}\mathbf{a}^{\mathsf{T}}+ [\mathbf{R}]_{ii} && \in\mathbb{R},\\
+    \alpha & = \left(1+\sqrt{\frac{[\mathbf{R}]_{ii}}{b}}\right)^{-1} &&\in\mathbb{R}, \\
+    \mathbf{K}' & = \frac{1}{N}\frac{\mathbf{x}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{n\times 1},\\
+    \mathbf{V}' & = \frac{1}{N}\frac{\mathbf{Y}_b^{(i-1)}{}'\mathbf{a}^{\mathsf{T}}}{b} &&\in \mathbb{R}^{m\times 1}\\
+    \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' +\mathbf{K}'([\mathbf{y}\_\mathrm{obs}]_i - y) && \in\mathbb{R}^{n\times 1}, \\
+    \mathbf{x}^{(i)}{}' & = \mathbf{x}^{(i-1)}{}' - \alpha \mathbf{K}' \mathbf{a} && \in\mathbb{R}^{n\times M}, \\
+    \mathbf{y}^{(i)}{}' & = \mathbf{y}^{(i-1)}{}' + \mathbf{V}'([\mathbf{y}\_\mathrm{obs}]_i - y)&&\in\mathbb{R}^{m\times 1},\\
+    \mathbf{Y}^{(i)}{}' & = \mathbf{Y}^{(i-1)}{}' - \alpha \mathbf{V}' \mathbf{a}&& \in\mathbb{R}^{m\times N}.
+\end{aligned}
+$$
+
+At the final iteration, then, $\mathbf{x}^{(m)}{}'\approx \mathbf{x}_b$ and $\mathbf{x}^{(i)}{}'\mathbf{x}^{(i)}{}'{}^{\mathsf{T}}\approx \mathbf{P}_a$. The extension to the pre-whitened case is identical to what was described in the square root Kalman filter section. Note how some of the shapes of variables are now $N$ instead of $n$.
+
+## Appendix: Square root formulation of the covariance update
+The definition of the Kalman filter gives the update of the prior covariance matrix 
+
+\begin{equation}
+    \mathbf{P}_a = (\mathbf{I} - \overbrace{\mathbf{P}_b\mathbf{H}^T\underbrace{(\mathbf{H}\mathbf{P}_b\mathbf{H}^T+\mathbf{R})^{-1}}_{\mathbf{D}^{-1}}}^{\mathbf{K}}\mathbf{H})\mathbf{P}_b,\tag{A1}\label{eq:firstkalman}
+\end{equation}
+
+where $\mathbf{K}$ is the Kalman gain and $\mathbf{D}$ is the innovation covariance matrix. We want to find a square root decomposition of the above expression, making an ansatz
+
+\begin{equation}
+    \mathbf{P}_a = (\mathbf{I} - \mathbf{P}_b\mathbf{H}^T\mathbf{W}\mathbf{H})\mathbf{P}_b(\mathbf{I} - \mathbf{P}_b\mathbf{H}^T\mathbf{W}\mathbf{H})^T,\tag{A2}\label{eq:ansatz}
+\end{equation}
+
+for an as-of-yet unspecified $\mathbf{W}$ value. Expanding the previous expression yields
+
+$$
+\begin{align}
+    \mathbf{P}_a = \left(\mathbf{I} - \mathbf{P}_b\mathbf{H}^T\left(\mathbf{W} + \mathbf{W}^T - \mathbf{W}\mathbf{H}\mathbf{P}_b\mathbf{H}^T\mathbf{W}^T\right)\mathbf{H}\right)\mathbf{P}_b.\tag{A3}\label{eq:secondkalman}
+\end{align}
+$$
+
+Comparing eqs. \eqref{eq:firstkalman} and \eqref{eq:secondkalman} shows we need to solve for a $\mathbf{W}$ that satisfies
+
+$$
+\begin{align}
+    \mathbf{D}^{-1} & = \mathbf{W} + \mathbf{W}^T -\mathbf{W}\mathbf{H}\mathbf{P}_b\mathbf{H}^T\mathbf{W}^T, \\
+    & = \mathbf{W}\left(\mathbf{W}^{-T} + \mathbf{W}^{-1} -\left(\mathbf{D}-\mathbf{R}\right)\right)\mathbf{W}^T,\tag{A4}\label{eq:target}
+\end{align}
+$$
+
+(recalling innovation covariance matrix $\mathbf{D}=\mathbf{H}\mathbf{P}_b\mathbf{H}^T+\mathbf{R}$, thus $\mathbf{D}-\mathbf{R}=\mathbf{H}\mathbf{P}_b\mathbf{H}^T$). We derive a matrix inverse identity for $\mathbf{D}^{-1}$ using its matrix square root $\mathbf{A}=\sqrt{\mathbf{D}}$,
+
+$$
+\begin{align}
+    \mathbf{D}^{-1} &= (\mathbf{A}\mathbf{A}^T)^{-1}, \\
+    & = \mathbf{A}^{-T} \mathbf{A}^{-1},\\
+    &= \mathbf{A}^{-T}(\mathbf{A}+\mathbf{B})^{-1}\left[(\mathbf{A}+\mathbf{B})(\mathbf{A}+\mathbf{B})^T \right](\mathbf{A}+\mathbf{B})^{-T}\mathbf{A}^{-1}, \\
+    & = \mathbf{A}^{-T}(\mathbf{A}+\mathbf{B})^{-1}\left[\mathbf{A}(\mathbf{A}+\mathbf{B})^T + (\mathbf{A}+\mathbf{B})\mathbf{A}^T - (\mathbf{A}\mathbf{A}^T-\mathbf{B}\mathbf{B}^T) \right](\mathbf{A}+\mathbf{B})^{-T}\mathbf{A}^{-1}, \\
+    & = \mathbf{C}\left[\mathbf{C}^{-T} +\mathbf{C}^{-1} - (\mathbf{A}\mathbf{A}^T - \mathbf{B}\mathbf{B}^T)\right]\mathbf{C}^T,\label{eq:targetfound}
+\end{align}
+$$
+
+for $\mathbf{C}=\mathbf{A}^{-T}(\mathbf{A}+\mathbf{B})^{-1}$, using an arbitrary extra matrix $\mathbf{B}$ (where we assume the inverse $\mathbf{A}+\mathbf{B}$ exists), where it still holds that $\mathbf{A}\mathbf{A}^T=\mathbf{D}$. Comparing eqs. \eqref{eq:target} and \eqref{eq:targetfound}, we can see that for $\mathbf{B}\mathbf{B}^T=\mathbf{R}$ we obtain $\mathbf{W}$ by inspection as
+
+$$
+\begin{equation}
+    \mathbf{W}=\mathbf{A}^{-T}(\mathbf{A}+\mathbf{B}) = \sqrt{\mathbf{D}}^{-T}(\sqrt{\mathbf{D}}+\sqrt{\mathbf{R}})^{-1}.
+\end{equation}
+$$
+
+Substituting this form for $\mathbf{W}$ into eq. \eqref{eq:ansatz} gives us
+
+$$
+\begin{equation}
+    \mathbf{P}_a = \left(\mathbf{I} - \mathbf{P}_b\mathbf{H}^T\sqrt{\mathbf{D}}^{-T}(\sqrt{\mathbf{D}}+\sqrt{\mathbf{R}})^{-1}\mathbf{H}\right)\mathbf{P}_b\left(\mathbf{I} - \mathbf{P}_b\mathbf{H}^T\sqrt{\mathbf{D}}^{-T}(\sqrt{\mathbf{D}}+\sqrt{\mathbf{R}})^{-1}\mathbf{H}\right)^T,
+\end{equation}
+$$
+
+thus, the square root of the covariance update may be written as
+
+$$
+\begin{equation}
+    \sqrt{\mathbf{P}_a} = \left(\mathbf{I} - \mathbf{P}_b\mathbf{H}^T\sqrt{\mathbf{D}}^{-T}(\sqrt{\mathbf{D}}+\sqrt{\mathbf{R}})^{-1}\mathbf{H}\right)\sqrt{\mathbf{P}_b}\label{eq:endofderivation}
+\end{equation}
+$$
+
+(as, then $\sqrt{\mathbf{P}_a}\sqrt{\mathbf{P}_a}^T=\mathbf{P}_a$).
+
 
 
 <a name="myfootnote1">1</a>: [↩](#a1) In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the *unbiased* estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.
