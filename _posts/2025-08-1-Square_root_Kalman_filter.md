@@ -63,11 +63,13 @@ Although this form is mathematically valid, it still requires us to explicitly c
 
 This square root formulation was given by Andrews (1968, *'A square root formulation of the Kalman covariance equations'*), and a derivation is given in the appendix here. Thus, the square root formulation of the Kalman filter is
 
+$$
 \begin{align}
-    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}\_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{3}\label{eq:squaremean} \\\\
-    \mathbf{K} &= \mathbf{Z}_b\mathbf{Y}_b^{\mathsf{T}} (\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}} + \mathbf{R})^{-1}, \\\\
+    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}\_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{3}\label{eq:squaremean} \\
+    \mathbf{K} &= \mathbf{Z}_b\mathbf{Y}_b^{\mathsf{T}} (\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}} + \mathbf{R})^{-1}, \\
     \mathbf{Z}_a &= \mathbf{Z}_b\left(\mathbf{I} - \mathbf{Y}_b^{\mathsf{T}}\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}_b\right).\tag{6}\label{eq:squareZa}
 \end{align}
+$$
 
 The square root Kalman filter in \eqref{eq:squaremean}--\eqref{eq:squareZa} works exclusively with the square roots of (combinations of) the covariance matrices, which means this system overcomes the main limitations of the 'word length' indicated above.
 
