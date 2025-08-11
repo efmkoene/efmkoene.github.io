@@ -5,7 +5,7 @@ subtitle: ""
 tags: [atmospheric modeling, kalman filter]
 ---
 
-## Introduction
+## Introduction -- the Kalman Filter without update model
 Consider we have access to observations $\mathbf{y}\_\mathrm{obs} \in \mathbb{R}^{m}$ and they are due to some linear operator acting on a 'hidden state' $\mathbf{x}\_\mathrm{true}\in\mathbb{R}^{n}$ with added noise $\mathbf{e}$ like
 \begin{align}
     \mathbf{y}\_\mathrm{obs} = \mathbf{H}\mathbf{x}\_\mathrm{true} + \mathbf{e},
