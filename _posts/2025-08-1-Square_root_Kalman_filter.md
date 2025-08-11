@@ -93,7 +93,7 @@ Hence, $\mathbf{X}_b$ is a rank-reduced square root approximation of $\mathbf{P}
     \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}},
 \end{equation}
 
-and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{X}/\sqrt{N}$, knowing that we are making an approximation.<a name="a1"></a><sup>[1](#myfootnote1)</sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
+and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{X}/\sqrt{N}$, knowing that we are making an approximation.<span><a name="a1"></a><sup>[1](#myfootnote1)</sup></span> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
 
 $$
 \begin{aligned}
