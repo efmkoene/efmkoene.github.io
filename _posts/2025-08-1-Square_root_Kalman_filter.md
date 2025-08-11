@@ -10,7 +10,7 @@ Consider we have access to observations $\mathbf{y}\_\mathrm{obs} \in \mathbb{R}
 \begin{align}
     \mathbf{y}\_\mathrm{obs} = \mathbf{H}\mathbf{x}\_\mathrm{true} + \mathbf{e},
 \end{align}
-where $\mathbf{H} \in \mathbb{R}^{n\times m}$, and the error has zero mean $\mathbb{E}[\mathbf{e}]=0$ but a covariance structure like $\mathbb{E}[\mathbf{e}\mathbf{e}^{\mathsf{T}}]=\mathbf{R}$ which we call the *observation error covariance*. For example, if $\mathbf{R}$ is diagonal, its entries simply correspond to the variance (typically denoted as $\sigma^2$) of each measurement.
+where $\mathbf{H} \in \mathbb{R}^{n\times m}$ is the so-called 'observation operator', while the error has zero mean $\mathbb{E}[\mathbf{e}]=0$ and a covariance structure like $\mathbb{E}[\mathbf{e}\mathbf{e}^{\mathsf{T}}]=\mathbf{R}$ which we call the *observation error covariance*. For example, if $\mathbf{R}$ is diagonal, its entries simply correspond to the variance (typically denoted as $\sigma^2$) of each measurement.
 
 Typically, we don't know $\mathbf{x}\_\mathrm{true}$ and want to estimate it based on the data. Assuming Gaussian distributed errors we find that we need to minimize a cost function of the form 
 
@@ -93,7 +93,7 @@ Hence, $\mathbf{x}_b$ is a rank-reduced square root approximation of $\mathbf{P}
     \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}},
 \end{equation}
 
-and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.<sup a name="a1">[1](#myfootnote1)</sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
+and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{x}/\sqrt{N}$, knowing that we are making an approximation.<sup><a name="a1">[1](#myfootnote1)</a></sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
 
 $$
 \begin{aligned}
@@ -109,11 +109,11 @@ It is worth considering for a moment what is required to implement the ensemble 
 
 
 ## Implementations
-### Square root filter}
+### Square root filter
 #### Bulk implementation square root filter
 This algorithm can be implemented in 'bulk' mode (i.e., assimilating all $\mathbf{y}\_\mathrm{obs}$ at once) through a direct implementation of eqs. \eqref{eq:squaremean}--\eqref{eq:squareZa}. That is, one formulates $\mathbf{P}_b$ and using its Cholesky decomposition $\mathbf{P}_b=\mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}$ and then computing $\mathbf{Y}_b=\mathbf{H}\mathbf{Z}_b$ one can compute all the relevant parameters. We can construct the posterior covariance (if needed) by computing $\mathbf{Z}_a\mathbf{Z}_a^{\mathsf{T}}$.
 
-#### Sequential implementation of square root filter I
+#### Sequential implementation of square root filter I -- basic implementation
 If $\mathbf{R}$ is a diagonal matrix (i.e., all measurements are independent) we can assimilate the observations one-by-one (i.e., sequentially). 
 We then take 
 $\left[\mathbf{y}\_\mathrm{obs}\right]\_i$
@@ -137,7 +137,7 @@ $$
 After all $m$ observations are assimilated, $\mathbf{x}^{(m)}=\mathbf{x}_a$ and $\mathbf{Z}^{(m)}=\mathbf{Z}_a$. Note how we substituted the Kalman gain into the expression for the square root of the error covariance matrix. This was possible because terms like $\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}$ are simple scalars when considering single updates.
 
 
-#### Sequential implementation of square root filter II
+#### Sequential implementation of square root filter II -- pre-whitening the observations
 The sequential update scheme is efficient when many observations are assimilated at once, but it requires the observations to be independent, which is a stringent requirement. We can get around this by `whitening' the observations such that they are guaranteed to be independent. We do this by pre-multiplying our measurement model by $\sqrt{\mathbf{R}}^{-1}$ such that
 \begin{equation}
     \sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs} = \sqrt{\mathbf{R}}^{-1}\mathbf{H}\mathbf{x}\_\mathrm{true} +\sqrt{\mathbf{R}}^{-1}\mathbf{e}.
@@ -166,7 +166,7 @@ $$
 \end{aligned}
 $$
 
-### Sequential implementation of square root filter III
+### Sequential implementation of square root filter III -- independent of H
 In the two sequential schemes, we have to re-apply $\mathbf{H}$ to the updated mean and covariance matrix. We can consider an alternative scheme that is free of such re-application of $\mathbf{H}$ which is, for example, of interest when $\mathbf{H}$ is expensive to re-compute. The scheme rests on the observation that 
 $[\mathbf{H}]_i\mathbf{Z}^{(i-1)}=[\mathbf{H}\mathbf{Z}^{(i-1)}]_i$, 
 and that by applying $\mathbf{H}$ to eq. \eqref{eq:Zupdate} we have an expression depending only on factors including $\mathbf{H}\mathbf{Z}^{(i-1)}$. The same holds for the mean update. We again start with $\mathbf{Z}^{(0)}=\mathbf{Z}_b$, $\mathbf{x}^{(0)}=\mathbf{x}_b$ but now also write $\mathbf{Y}^{(0)}=\mathbf{H}\mathbf{Z}_b$ and $\mathbf{y}^{(0)}=\mathbf{H}\mathbf{x}_b$. Then,
@@ -252,7 +252,7 @@ $$
     & = \mathbf{A}^{-T} \mathbf{A}^{-1},\\
     &= \mathbf{A}^{-T}(\mathbf{A}+\mathbf{B})^{-1}\left[(\mathbf{A}+\mathbf{B})(\mathbf{A}+\mathbf{B})^T \right](\mathbf{A}+\mathbf{B})^{-T}\mathbf{A}^{-1}, \\
     & = \mathbf{A}^{-T}(\mathbf{A}+\mathbf{B})^{-1}\left[\mathbf{A}(\mathbf{A}+\mathbf{B})^T + (\mathbf{A}+\mathbf{B})\mathbf{A}^T - (\mathbf{A}\mathbf{A}^T-\mathbf{B}\mathbf{B}^T) \right](\mathbf{A}+\mathbf{B})^{-T}\mathbf{A}^{-1}, \\
-    & = \mathbf{C}\left[\mathbf{C}^{-T} +\mathbf{C}^{-1} - (\mathbf{A}\mathbf{A}^T - \mathbf{B}\mathbf{B}^T)\right]\mathbf{C}^T,\label{eq:targetfound}
+    & = \mathbf{C}\left[\mathbf{C}^{-T} +\mathbf{C}^{-1} - (\mathbf{A}\mathbf{A}^T - \mathbf{B}\mathbf{B}^T)\right]\mathbf{C}^T,\tag{A5}\label{eq:targetfound}
 \end{align}
 $$
 
@@ -284,4 +284,4 @@ $$
 
 
 
-<a name="myfootnote1">1</a>: [↩](#a1) In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the *unbiased* estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.
+<a name="myfootnote1">[1]</a>: [↩](#a1) In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the *unbiased* estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.
