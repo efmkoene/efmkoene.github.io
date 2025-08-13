@@ -167,7 +167,7 @@ $$
 $$
 
 ### Sequential implementation of square root filter III -- independent of H
-In the two sequential schemes, we have to re-apply $\mathbf{H}$ to the updated mean and covariance matrix. We can consider an alternative scheme that is free of such re-application of $\mathbf{H}$ which is, for example, of interest when $\mathbf{H}$ is expensive to re-compute. The scheme rests on the observation that 
+In the two sequential schemes, we have to apply $\mathbf{H}$ to the updated mean and covariance matrix as each measurement comes in, so $m$ times in serial. We can consider an alternative scheme that is free of such re-application of $\mathbf{H}$ which is, for example, of interest when $\mathbf{H}$ is expensive to compute in serial but cheap(er) to compute in parallel. The scheme rests on the fact that 
 $[\mathbf{H}]_i\mathbf{Z}^{(i-1)}=[\mathbf{H}\mathbf{Z}^{(i-1)}]_i$, 
 and that by applying $\mathbf{H}$ to eq. \eqref{eq:Zupdate} we have an expression depending only on factors including $\mathbf{H}\mathbf{Z}^{(i-1)}$. The same holds for the mean update. We again start with $\mathbf{Z}^{(0)}=\mathbf{Z}_b$, $\mathbf{x}^{(0)}=\mathbf{x}_b$ but now also write $\mathbf{Y}^{(0)}=\mathbf{H}\mathbf{Z}_b$ and $\mathbf{y}^{(0)}=\mathbf{H}\mathbf{x}_b$. Then,
 
@@ -193,7 +193,7 @@ $\mathbf{y}\_\mathrm{obs}\to \sqrt{\mathbf{R}}^{-1}\mathbf{y}\_\mathrm{obs}$.
 ### Ensemble square root filter
 
 #### Serial implementation of ensemble square root filter
-It is clear how the various serial schemes generalize to the ensemble case, we will just cover serial implementation III from above, which was the scheme that does  not re-apply $\mathbf{H}$ within the scheme. We start with $\mathbf{X}^{(0)}{}'=\mathbf{X}_b=\mathbf{Z}_b\mathbf{G}$, and $\mathbf{x}^{(0)}{}'=\mathbf{x}_b$, along with $\mathbf{Y}^{(0)}{}'=\mathbf{H}\mathbf{X}_b$ and $\mathbf{y}^{(0)}{}'=\mathbf{H}\mathbf{x}_b$. Then, the serial scheme requires one to iterate over the scheme below for each observation:
+It is clear how the various serial schemes generalize to the ensemble case, we will just cover serial implementation III from above, which was the variation where we do not re-apply $\mathbf{H}$ within the scheme but compute all observations ahead of computing the updates. We start with $\mathbf{X}^{(0)}{}'=\mathbf{X}_b=\mathbf{Z}_b\mathbf{G}$, and $\mathbf{x}^{(0)}{}'=\mathbf{x}_b$, along with $\mathbf{Y}^{(0)}{}'=\mathbf{H}\mathbf{X}_b$ and $\mathbf{y}^{(0)}{}'=\mathbf{H}\mathbf{x}_b$. Then, the serial scheme requires one to iterate over the scheme below for each observation:
 
 $$
 \begin{aligned}
