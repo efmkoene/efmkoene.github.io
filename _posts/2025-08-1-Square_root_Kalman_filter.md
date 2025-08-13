@@ -90,10 +90,10 @@ $$
 Hence, $\mathbf{X}_b$ is a rank-reduced square root approximation of $\mathbf{P}_b$, with shape $\mathbb{R}^{n \times N}$. We then approximate:
 
 \begin{equation}
-    \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{x}_b\mathbf{x}_b^{\mathsf{T}},
+    \mathbf{P}_b = \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \approx \frac{1}{N}\mathbf{X}_b\mathbf{X}_b^{\mathsf{T}},
 \end{equation}
 
-and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{X}/\sqrt{N}$, knowing that we are making an approximation.<span><a name="a1"></a><sup>[1](#myfootnote1)</sup></span> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
+and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF by replacing all occurences of $\mathbf{Z}$ in the square root formulation of the Kalman filter with $\mathbf{X}/\sqrt{N}$, knowing that we are making an approximation.<sup id="fnref-1">[1](#fn-1)</sup> Thus the bulk implementation of the square root EnKF becomes (using an apostrophe [$'$] to indicate we are approximating the quantities):
 
 $$
 \begin{aligned}
@@ -283,5 +283,4 @@ $$
 (as, then $\sqrt{\mathbf{P}_a}\sqrt{\mathbf{P}_a}^T=\mathbf{P}_a$).
 
 
-
-<a name="myfootnote1">[1]</a>: [↩](#a1) In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the *unbiased* estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.
+<a id="fn-1">[1]</a>: [↩](#fnref-1) In the literature, the factor $\mathbf{G}\mathbf{G}^{\mathsf{T}}/(N-1)$ is often used as the *unbiased* estimator of the covariance of $\mathbf{G}$, which tends to the identity matrix for large $N$ (often only when $N\gg n$). However, since $\mathbf{G}$ has zero mean, no degree of freedom is used up, and in my view, from the derivation presented here, the correct factor is $1/N$; the literature is simply mistaken. Rather, the other literature starts off by drawing $N$ members first, subtracting their mean from each member to get to 'state vector deviations'. We skipped any such a step here, although our equations are now identical save for the factor $N-1$. We are not doing a statistical trick and merely approximate one quantity in the Kalman filter. Of course, the practical difference is negligible for $N > 100$.
