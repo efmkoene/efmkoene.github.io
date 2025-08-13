@@ -8,20 +8,20 @@ tags: [atmospheric modeling, kalman filter]
 ## Introduction -- the Kalman Filter without update model
 Consider we have access to observations $\mathbf{y}\_\mathrm{obs} \in \mathbb{R}^{m}$ and they are due to some linear operator acting on a 'hidden state' $\mathbf{x}\_\mathrm{true}\in\mathbb{R}^{n}$ with added noise $\mathbf{e}$ like
 \begin{align}
-    \mathbf{y}\_\mathrm{obs} = \mathbf{H}\mathbf{x}\_\mathrm{true} + \mathbf{e},
+    \mathbf{y}\_\mathrm{obs} = \mathbf{H}\mathbf{x}\_\mathrm{true} + \mathbf{e},\tag{1}\label{eq:obsmodel}
 \end{align}
 where $\mathbf{H} \in \mathbb{R}^{n\times m}$ is the so-called 'observation operator', while the error has zero mean $\mathbb{E}[\mathbf{e}]=0$ and a covariance structure like $\mathbb{E}[\mathbf{e}\mathbf{e}^{\mathsf{T}}]=\mathbf{R}$ which we call the *observation error covariance*. For example, if $\mathbf{R}$ is diagonal, its entries simply correspond to the variance (typically denoted as $\sigma^2$) of each measurement.
 
 Typically, we don't know $\mathbf{x}\_\mathrm{true}$ and want to estimate it based on the data. Assuming Gaussian distributed errors we find that we need to minimize a cost function of the form 
 
 \begin{align}
-J(\mathbf{x}) = (\mathbf{x} - \mathbf{x}_b) \mathbf{P}_b^{-1}(\mathbf{x} - \mathbf{x}_b)^{\mathsf{T}} + (\mathbf{y}\_\mathrm{obs}-\mathbf{H}\mathbf{x})\mathbf{R}^{-1}(\mathbf{y}\_\mathrm{obs}-\mathbf{H}\mathbf{x})^{\mathsf{T}},\tag{1}\label{eq:costfunction}
+J(\mathbf{x}) = (\mathbf{x} - \mathbf{x}_b) \mathbf{P}_b^{-1}(\mathbf{x} - \mathbf{x}_b)^{\mathsf{T}} + (\mathbf{y}\_\mathrm{obs}-\mathbf{H}\mathbf{x})\mathbf{R}^{-1}(\mathbf{y}\_\mathrm{obs}-\mathbf{H}\mathbf{x})^{\mathsf{T}},\tag{2}\label{eq:costfunction}
 \end{align}
 
 where $\mathbf{x}_b$ is a prior model (''background''), $\mathbf{P}_b$ is the *error covariance model* or *background covariance model*, i.e., the uncertainty about the prior model. The minimizer of $J(x)$ in eq. \eqref{eq:costfunction} gives the optimal estimate, also known as the 'posterior' or 'analysis' mean (see, e.g., Fichtner 2021, *Lecture Notes on Inverse Theory*),
 
 \begin{equation}
-\mathbf{x}_a = \mathbf{x}_b + \mathbf{K} (\mathbf{y}\_{\mathrm{obs}} - \mathbf{H} \mathbf{x}_b),\tag{2}\label{eq:mean_update}
+\mathbf{x}_a = \mathbf{x}_b + \mathbf{K} (\mathbf{y}\_{\mathrm{obs}} - \mathbf{H} \mathbf{x}_b),\tag{3}\label{eq:mean_update}
 \end{equation}
 
 where the optimal Kalman gain $\mathbf{K}$ is:
@@ -33,24 +33,24 @@ where the optimal Kalman gain $\mathbf{K}$ is:
 and the analysis covariance is
 
 \begin{equation}
-\mathbf{P}_a = (\mathbf{I} - \mathbf{K} \mathbf{H}) \mathbf{P}_b.\tag{3}\label{eq:cov_update}
+\mathbf{P}_a = (\mathbf{I} - \mathbf{K} \mathbf{H}) \mathbf{P}_b.\tag{4}\label{eq:cov_update}
 \end{equation}
 
 Equations (\ref{eq:mean_update})--(\ref{eq:cov_update}) form the foundation of the stationary Kalman filter (i.e., those without state-space propagation), but also of analytical inversions or variational approaches.
 
 ## Square root approach
-The original *square root* formulation of the Kalman filter, attributed to J. Potter, was developed in the context of the Apollo mission to minimize the 'word length' (i.e., the number of bits that a computer could process simultaneously). For instance, if the matrix $\mathbf{R}$ is diagonal with entries $\sigma_i^2$ along the diagonal, and certain measurements possess significantly higher precision than others, then the variations between $\sigma_i^2$ values necessitate greater word lengths compared to the variations between $\sigma_i$ values. However, it was later discovered that the square root formulation is typically also more stable and often the appropriate way to implement a Kalman filter in practice. In particular, we are talking about the square root of the $\mathbf{P}_b$ and $\mathbf{P}_a$ matrices here. 
+The original *square-root* formulation of the Kalman filter -- attributed to J. Potter -- was [developed during the Apollo program](https://ntrs.nasa.gov/api/citations/19860003843/downloads/19860003843.pdf) to address hardware limitations, specifically the *word length* of onboard computers (i.e., the number of bits processed in parallel). The motivation was that numerical ranges arising from covariance values could require more bits for accurate representation than their square roots. For example, if the measurement noise covariance matrix $\mathbf{R}$ is diagonal with entries $\sigma_i^2$ on the diagonal, and certain measurements are orders of magnitude more precise than others, then the spread in $\sigma_i^2$ values can be far larger than the spread in $\sigma_i$ values. Working with the latter therefore reduces the required word length. Although originally a hardware-oriented optimization, the square-root formulation was later found to have a significant numerical advantage: it is inherently more stable and better conditioned (i.e., tends to be more stable in finite-precision arithmetic, and has a better  less prone to round-off errors). As a result, it is now often the preferred way to implement the Kalman filter in practice.
 
-In short, the square root of a matrix is any matrix $\mathbf{Z}$ for which $\mathbf{Z}\mathbf{Z}^{\mathsf{T}}$ forms that matrix. So, if we can write $\mathbf{P}_b=\mathbf{Z}\mathbf{Z}^{\mathsf{T}}$ then $\sqrt{\mathbf{P}_b}=\mathbf{Z}$. (Square root matrices are not necessarily unique). We can thus re-write the Kalman equations using this substitution,
+In short, the square root of a matrix is any matrix $\mathbf{Z}$ for which $\mathbf{Z}\mathbf{Z}^{\mathsf{T}}$ forms that matrix. So, if we can write $\mathbf{P}_b=\mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}$ then $\sqrt{\mathbf{P}_b}=\mathbf{Z}_b$. (Square root matrices are not necessarily unique). We can thus re-write the Kalman equations using this substitution,
 
 $$
 \begin{align}
     \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
     \mathbf{K} &= \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \mathbf{H}^{\mathsf{T}} (\mathbf{H} \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}} \mathbf{H}^{\mathsf{T}} + \mathbf{R})^{-1}, \\
-    \mathbf{Z}_a\mathbf{Z}_a^{\mathsf{T}} &= (\mathbf{I} - \mathbf{K} \mathbf{H}) \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}.\tag{4}\label{eq:kalgain_notyet}
+    \mathbf{Z}_a\mathbf{Z}_a^{\mathsf{T}} &= (\mathbf{I} - \mathbf{K} \mathbf{H}) \mathbf{Z}_b\mathbf{Z}_b^{\mathsf{T}}.\tag{5}\label{eq:kalgain_notyet}
 \end{align}
 $$
-The advantage is not immediately clear, but we can make a substitution $\mathbf{Y}_b=\mathbf{H}\mathbf{Z}_b$ to find
+The advantage is not immediately clear, but we can make a substitution $\mathbf{Y}_b=\mathbf{H}\mathbf{Z}_b$ (compare to eq. \eqref{eq:obsmodel}) to find
 
 \begin{align}
     \mathbf{K} &= \mathbf{Z}_b\mathbf{Y}_b^{\mathsf{T}} (\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}} + \mathbf{R})^{-1},
@@ -66,9 +66,9 @@ This square root formulation was given by Andrews (1968, *'A square root formula
 
 $$
 \begin{align}
-    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{5}\label{eq:squaremean} \\
+    \mathbf{x}_a &= \mathbf{x}_b + \mathbf{K}(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b),\tag{6}\label{eq:squaremean} \\
     \mathbf{K} &= \mathbf{Z}_b\mathbf{Y}_b^{\mathsf{T}} (\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}} + \mathbf{R})^{-1}, \\
-    \mathbf{Z}_a &= \mathbf{Z}_b\left(\mathbf{I} - \mathbf{Y}_b^{\mathsf{T}}\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}_b\right).\tag{6}\label{eq:squareZa}
+    \mathbf{Z}_a &= \mathbf{Z}_b\left(\mathbf{I} - \mathbf{Y}_b^{\mathsf{T}}\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}_b\right).\tag{7}\label{eq:squareZa}
 \end{align}
 $$
 
@@ -102,7 +102,7 @@ $$
     \mathbf{K}' &= \frac{1}{N} \mathbf{x}_b' \mathbf{Y}'{}^{\mathsf{T}} \left( \frac{1}{N} \mathbf{Y}' \mathbf{Y}'{}^{\mathsf{T}} + \mathbf{R} \right)^{-1}, \\
     \mathbf{x}'_a &= \mathbf{x}_b + \mathbf{K}'(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
     \mathbf{X}'_a &= \mathbf{X}_b'\left(\mathbf{I} - \frac{1}{N}\mathbf{Y}'{}^{\mathsf{T}}\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}'\right).
-\end{aligned}\tag{7}\label{eq:bulkensupdate}
+\end{aligned}\tag{8}\label{eq:bulkensupdate}
 $$
 
 It is worth considering for a moment what is required to implement the ensemble square root Kalman filter as described here (whether through a bulk or sequential implementation). We first build the full error covariance matrix $\mathbf{P}_b$. We compute its square root $\mathbf{Z}_b$ and multiply it with a Gaussian random matrix of reduced shape, $\mathbf{X}_b=\mathbf{Z}_b\mathbf{G}$. We then compute $\mathbf{H}\mathbf{X}_b$ which yields $N$ (rather than $n$) 'ensemble' realizations, i.e., all equally plausible model realizations. Essentially, our computations are cheaper by a factor $N/n$. If $N$ is chosen too small, however, $\mathbf{X}_b\mathbf{X}_b^{\mathsf{T}}/N$ does not tend to $\mathbf{P}_b$ very well, so $N$ must be small-but-not-too-small. If $\mathbf{P}_b$ is purely diagonal, this strategy will not work, because we cannot rank-reduce it. Therefore, we assume (or must make sure) that $\mathbf{P}_b$ exhibits considerable covariance between the various state vector elements to make a rank reduction possible. Finally, once $\mathbf{H}\mathbf{X}_b$ and $\mathbf{H}\mathbf{x}_b$ are computed, we have all the ingredients to compute the (square root form of the) Kalman filter which we compute by computing eq. \eqref{eq:bulkensupdate}.
@@ -132,7 +132,7 @@ $$
     \mathbf{x}^{(i)} & = \mathbf{x}^{(i-1)} +\mathbf{K}([\mathbf{y}_\mathrm{obs}]_i - [\mathbf{H}]_i\mathbf{x}^{(i-1)}) && \in\mathbb{R}^{n\times 1}, \\
     \mathbf{Z}^{(i)} & = \mathbf{Z}^{(i-1)} - \alpha \mathbf{K} \mathbf{a} && \in\mathbb{R}^{n\times n}.
 \end{aligned}
-\tag{11}\label{eq:Zupdate}
+\tag{9}\label{eq:Zupdate}
 $$
 After all $m$ observations are assimilated, $\mathbf{x}^{(m)}=\mathbf{x}_a$ and $\mathbf{Z}^{(m)}=\mathbf{Z}_a$. Note how we substituted the Kalman gain into the expression for the square root of the error covariance matrix. This was possible because terms like $\mathbf{Y}_b\mathbf{Y}_b^{\mathsf{T}}+\mathbf{R}$ are simple scalars when considering single updates.
 
