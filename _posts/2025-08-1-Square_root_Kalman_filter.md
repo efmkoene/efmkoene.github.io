@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Square Root Kalman Filter"
+title: "The Stationary Square Root Kalman Filter"
 subtitle: ""
 tags: [atmospheric modeling, kalman filter]
 ---
@@ -98,7 +98,7 @@ and analogously for $\mathbf{P}_a$. Thus, we can formulate the square root EnKF 
 $$
 \begin{aligned}
     \mathbf{X}_b' &= \mathbf{Z}_b\mathbf{G},\\
-    \mathbf{Y}' &= \mathbf{H} \mathbf{x}_b', \\
+    \mathbf{Y}' &= \mathbf{H} \mathbf{X}_b', \\
     \mathbf{K}' &= \frac{1}{N} \mathbf{x}_b' \mathbf{Y}'{}^{\mathsf{T}} \left( \frac{1}{N} \mathbf{Y}' \mathbf{Y}'{}^{\mathsf{T}} + \mathbf{R} \right)^{-1}, \\
     \mathbf{x}'_a &= \mathbf{x}_b + \mathbf{K}'(\mathbf{y}_\mathrm{obs} - \mathbf{H}\mathbf{x}_b), \\
     \mathbf{X}'_a &= \mathbf{X}_b'\left(\mathbf{I} - \frac{1}{N}\mathbf{Y}'{}^{\mathsf{T}}\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}^{-\top}\left(\sqrt{\frac{1}{N}\mathbf{Y}'\mathbf{Y}'{}^{\mathsf{T}}+\mathbf{R}}+\sqrt{\mathbf{R}}\right)^{-1}\mathbf{Y}'\right).
