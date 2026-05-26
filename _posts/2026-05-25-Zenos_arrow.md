@@ -7,7 +7,6 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Zeno_Arrow_
 tags: [philosophy, metaphysics]
 ---
 
-#### Parmenides
 
 Zeno of Elea (hereafter: Zeno) posed a bunch of paradoxes to his contemporaries, a few of which even survived up to the present day. For example, the paradox of Achilles and the Tortoise (Achilles can never catch a tortoise with a head start because every time he reaches the tortoise's previous position, the tortoise has already moved a bit further ahead) is still famous today. 
 
