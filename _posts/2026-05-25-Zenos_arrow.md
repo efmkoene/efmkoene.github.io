@@ -53,15 +53,15 @@ But this assumption is precisely backwards. An instant (a durationless "now") is
 
 Why not? Because zero, added to itself any number of times, even infinitely many, remains zero. An instant has zero duration. An infinite collection of zero-duration moments has zero duration. Time cannot be reconstructed from instants, because instants are not parts of time at all; they are just a particular way of *thinking about* time. Henri Bergson made exactly this argument against Zeno: once you have replaced movement with a series of frozen positions, you have lost movement permanently. No number of positions and instants, however many, will give it back.
 
+That is -- motion disappears if we consider it (or reality in general) is like a flipbook, composed of infinitely many (and in some sense disconnected) instants. But we must draw the opposite conclusion: reality is *not* like a flipbook, because it is not composed of instants! If reality is not a flipbook, motion is not under any threat of being an illusion at all.
+
 (For readers who may be thinking of integration: an integral *does* sum infinitely many "slices" to give a finite area, but this works precisely because each slice has an infinitesimal *width*, not zero width. The machinery of the integral is designed to avoid the very problem Zeno poses; it is not evidence that zero-duration instants can sum to a finite duration.)
 
-The conclusion is this: Zeno is right that the arrow does not move at any *instant*! But, since instants are not real constituents of *time* (since they are abstractions *from* time, not atoms *of* it), this is of no issue whatsoever! The arrow moves across an *irreducible* (or *indivisible*) temporal interval. That interval cannot be decomposed into instants and then reassembled; the decomposition destroys precisely what it is trying to analyse.
+The conclusion is this: Zeno is right that the arrow does not move at any *instant*! But, since instants are not real constituents of *time* (since they are abstractions *from* time, not atoms *of* it), this is of no issue whatsoever! The arrow moves across an *irreducible* (or *indivisible*) temporal interval. That interval cannot be decomposed into instants and then reassembled; the decomposition destroys precisely what it is trying to analyse. Motion is *something other than* the sum of its parts (positions at instants); and we therefore cannot re-assemble motion out of the considered parts.
 
 The physicist's calculus, interpreted carefully, actually supports this conclusion. To compute the velocity at "an instant", one must situate that instant inside an interval over which a limit is taken first. The interval is prior; the instant is derived. Even in the mathematics, the full time interval comes first.
 
-There is something vertiginous about this secondary conclusion. It means the "now", the present moment, the knife-edge between past and future, may be a pure abstraction, doesn't really exist *as an instant*. No matter how many mindfulness teachers advise us to stay in the now, this instant might simply not be there to inhabit.
-
-The way to think of it is like this: time is something like a river, you can mark positions ("instants") along it, but the marks are not what it is made of. Motion is like that too, you can mark its positions ("places") along it, but the places are not what it is made of.
+The way to think of it is like this: time is something like a river, you can mark positions ("instants") along it, but the marks are not what it is made of. Motion is like that too, you can mark its positions ("instants" and "places") along it, but those marks are still not what it is made of.
 
 > What then is time? If no one asks me, I know: if I wish to explain it to one who asks, I know not.
 
