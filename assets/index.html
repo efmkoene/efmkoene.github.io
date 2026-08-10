@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plumb · Eccentric Posture Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="titleblock">
+    <div class="titleblock__left">
+      <span class="eyebrow">DWG NO. 01 — POSTURE</span>
+      <h1>Plumb</h1>
+      <p class="subtitle">Eccentric training program, tracked like an alignment check.</p>
+    </div>
+    <div class="titleblock__right" id="plumbWrap">
+      <svg id="plumbLine" viewBox="0 0 80 140" width="60" height="110">
+        <line id="plumbString" x1="40" y1="4" x2="40" y2="118" stroke="var(--line)" stroke-width="1.5"/>
+        <circle cx="40" cy="4" r="3" fill="var(--line)"/>
+        <path id="plumbBob" d="M40,110 L30,124 L50,124 Z" fill="var(--accent)"/>
+      </svg>
+      <span class="plumb-label" id="plumbLabel">no data yet</span>
+    </div>
+  </header>
+
+  <section class="status-strip">
+    <div class="status-cell">
+      <span class="status-num" id="weekCount">0</span>
+      <span class="status-caption">sessions this week / 3</span>
+    </div>
+    <div class="status-cell">
+      <span class="status-num" id="streakCount">0</span>
+      <span class="status-caption">week streak</span>
+    </div>
+    <div class="status-cell">
+      <span class="status-num" id="totalCount">0</span>
+      <span class="status-caption">sessions logged</span>
+    </div>
+    <div class="status-cell" id="authCell">
+      <span class="status-num status-num--small" id="authState">connecting…</span>
+      <span class="status-caption">database</span>
+    </div>
+  </section>
+
+  <main class="program" id="program">
+    <!-- day cards injected by app.js -->
+  </main>
+
+  <section class="history">
+    <div class="section-head">
+      <h2>Last 10 weeks</h2>
+      <span class="section-note">filled = 3+ sessions · half = 1–2 · empty = 0</span>
+    </div>
+    <div class="grid-strip" id="historyGrid"></div>
+  </section>
+
+  <footer class="footer">
+    <span>Data stored in your Firestore database · sessions never leave your project</span>
+  </footer>
+
+</div>
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

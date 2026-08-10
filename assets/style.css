@@ -1,0 +1,316 @@
+:root {
+  --bg: #14262F;
+  --bg-line: rgba(232, 226, 208, 0.07);
+  --paper: #E8E2D0;
+  --line: #C9D8DC;
+  --accent: #E8A33D;
+  --good: #7FB77E;
+  --muted: #6E8A94;
+  --card-bg: #182D37;
+  --card-border: rgba(232, 226, 208, 0.14);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    linear-gradient(var(--bg-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--paper);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ---------- Title block ---------- */
+.titleblock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 28px;
+  margin-bottom: 32px;
+  gap: 24px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  margin: 6px 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 40ch;
+}
+
+.titleblock__right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.plumb-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#plumbString, #plumbBob {
+  transition: transform 0.6s cubic-bezier(.25,.9,.3,1.2);
+  transform-origin: 40px 4px;
+}
+
+/* ---------- Status strip ---------- */
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--card-border);
+  border: 1px solid var(--card-border);
+  margin-bottom: 40px;
+}
+
+.status-cell {
+  background: var(--card-bg);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-num {
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.status-num--small {
+  font-size: 14px;
+  color: var(--good);
+}
+
+.status-caption {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Program ---------- */
+.program {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.day-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 24px;
+}
+
+.day-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.day-card__head h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.day-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.day-card__sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 18px;
+}
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 18px;
+}
+
+.exercise-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px dashed var(--card-border);
+  cursor: pointer;
+}
+
+.exercise-row:last-child { border-bottom: none; }
+
+.exercise-row input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--muted);
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.exercise-row input[type="checkbox"]:checked {
+  background: var(--good);
+  border-color: var(--good);
+}
+
+.exercise-row input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--bg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.exercise-name {
+  flex: 1;
+  font-size: 14px;
+}
+
+.exercise-name.checked-text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.exercise-detail {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.log-btn {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.log-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.log-btn:not(:disabled):hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.log-btn.done {
+  border-color: var(--good);
+  color: var(--good);
+  cursor: default;
+}
+
+/* ---------- History ---------- */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 0;
+}
+
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.grid-strip {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+}
+
+.week-box {
+  aspect-ratio: 1;
+  border: 1.5px solid var(--muted);
+  position: relative;
+}
+
+.week-box[data-fill="full"] { background: var(--good); border-color: var(--good); }
+.week-box[data-fill="half"] { background: linear-gradient(135deg, var(--good) 50%, transparent 50%); }
+.week-box[data-fill="empty"] { background: transparent; }
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding-top: 24px;
+  border-top: 1px solid var(--card-border);
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 38px; }
+  .status-strip { grid-template-columns: repeat(2, 1fr); }
+  .grid-strip { grid-template-columns: repeat(5, 1fr); }
+  .titleblock { flex-direction: column; }
+}
